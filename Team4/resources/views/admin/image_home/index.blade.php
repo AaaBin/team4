@@ -26,8 +26,8 @@
                     <input type="text" class="form-control" id="youtube_url" name="youtube_url" required>
                 </div>
                 <div class="form-group">
-                    <label for="video_title">Video Title</label>
-                    <input type="text" class="form-control" id="video_title" name="video_title" required>
+                    <label for="video_title_store">Video Title</label>
+                    <input type="text" class="form-control" id="video_title_store" name="video_title" required>
                 </div>
                 <div class="form-group">
                     <label for="sort">Sort</label>
@@ -87,18 +87,18 @@
             </tr>
             <div class="collapse" id="edit_collapse{{$item->id}}">
                 <div class="card card-body">
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="/admin/image_home/{{$item->id}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <div class="form-group">
-                                <label for="youtube_url">Youtube URL</label>
-                                <input class="form-control" id="youtube_url" name="youtube_url"
+                                <label for="youtube_url{{$item->id}}">Youtube URL</label>
+                                <input class="form-control" id="youtube_url{{$item->id}}" name="youtube_url"
                                     value="{{$item->youtube_url}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="video_title">Video Title</label>
-                            <input type="text" class="form-control" id="video_title" name="video_title"
+                            <label for="video_title_edit{{$item->id}}">Video Title</label>
+                            <input type="text" class="form-control" id="video_title_edit{{$item->id}}" name="video_title"
                                 value="{{$item->video_title}}">
                         </div>
                         <div class="form-group">
@@ -106,7 +106,6 @@
                             <input class="form-control" type="number" min="0" value="{{$item->sort}}" name="sort"
                                 id="sort" required style="width:100px">
                         </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -237,5 +236,12 @@
             $(this).attr('src',`http://www.youtube.com/embed/${vedio_id}`);
         });
     });
+</script>
+<script>
+    $('.collapse').on('show.bs.collapse', function () {
+        console.log("999");
+        $('*').collapse('hide');
+        // $('').collapse('hide');
+    })
 </script>
 @endsection

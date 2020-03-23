@@ -12,7 +12,6 @@
 */
 
 Auth::routes();
-
 //front
 Route::get('/','FrontController@image_home');
 Route::get('/home','FrontController@home');
@@ -34,6 +33,7 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::post('/image_home/sort_up','ImageHomeController@sort_up');
     Route::post('/image_home/sort_down','ImageHomeController@sort_down');
     Route::post('/image_home','ImageHomeController@store');
+    Route::post('/image_home/{id}','ImageHomeController@update');
 
 
 });

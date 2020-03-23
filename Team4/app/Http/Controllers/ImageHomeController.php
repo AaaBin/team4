@@ -97,4 +97,10 @@ class ImageHomeController extends Controller
         imagehome::create($request_data);
         return redirect('/admin/image_home');
     }
+    public function update(Request $request,$id)
+    {
+        $request_data = $request->all();
+        $item = imagehome::find($id);
+        dd($item,$request_data);
+    }
 }
