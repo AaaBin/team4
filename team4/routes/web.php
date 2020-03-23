@@ -33,7 +33,9 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::post('/image_home/sort_up','ImageHomeController@sort_up');
     Route::post('/image_home/sort_down','ImageHomeController@sort_down');
     Route::post('/image_home','ImageHomeController@store');
-    Route::post('/image_home/{id}','ImageHomeController@update');
+    Route::patch('/image_home/{id}','ImageHomeController@update');
+    Route::delete('/image_home/{id}','ImageHomeController@delete');
+
 
 
 });

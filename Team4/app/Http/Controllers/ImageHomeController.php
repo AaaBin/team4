@@ -101,6 +101,14 @@ class ImageHomeController extends Controller
     {
         $request_data = $request->all();
         $item = imagehome::find($id);
-        dd($item,$request_data);
+        $item->update($request_data);
+        return redirect('admin/image_home');
+    }
+    // delete
+    public function delete($id)
+    {
+        $item = imagehome::find($id);
+        $item->delete();
+        return ;
     }
 }

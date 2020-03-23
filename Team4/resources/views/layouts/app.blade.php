@@ -17,6 +17,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
         * {
             font-family: 微軟正黑體;
         }
