@@ -94,15 +94,24 @@ class FlowerController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
-        flower::create($request_data);
-        return redirect('/admin/image_home');
+        $data_data = $request_data['date'];
+        // 以new創建新資料
+        $flower = new flower;
+        // 將輸入的日期字串拆開，分別填入欄位
+        $flower->date_y = explode('-',$data_data)[0];
+        $flower->date_m = explode('-',$data_data)[1];
+        $flower->date_d = explode('-',$data_data)[2];
+        $flower->title = $request_data['title'];
+        $flower->content = $request_data['content'];
+        $flower->save(); //save data
+        return redirect('/admin/flower');
     }
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
         $item = flower::find($id);
         $item->update($request_data);
-        return redirect('admin/image_home');
+        return redirect('admin/flower');
     }
     // delete
     public function delete($id)

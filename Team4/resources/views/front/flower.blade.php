@@ -139,6 +139,25 @@
                     反正就是走走路、聊聊天、流流汗、吹吹風，防疫期間，這個行程跟待在家裡面和家人聊天好像真的有一模沒有兩樣。所以真的在家憋不住了，再到山裡走走吧！
                 </article>
             </div>
+            @foreach ($flower_datas as $key => $item)
+
+            {{-- @if ($key == 0) --}}
+            <div class="container d-flex flex-column align-items-center px-md-4 ">
+                <h2 class="flower_condition_recent_title my-5 px-3 mb-md-0">
+                    近期花況
+                </h2>
+                <div class="flower_condition_recent_date_area position-relative mb-2">
+                    <div class="flower_condition_recent_date_area_m pr-4">{{$item->date_y}}{{$item->date_m}}</div>
+                    <div class="flower_condition_recent_date_area_d pl-4">{{$item->date_d}}</div>
+                </div>
+                <article class="flower_condition_recent_content">
+                    {!!$item->content!!}
+                    {{$key}}
+                </article>
+            </div>
+            {{-- @endif --}}
+
+            @endforeach
         </section>
         <section class="flower_view mb-5">
             <div class="container d-flex flex-column align-items-center">

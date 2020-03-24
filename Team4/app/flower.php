@@ -24,6 +24,6 @@ class flower extends Model
     /**
      * @var array
      */
-    protected $fillable = ['date_m', 'date_d',  'title', 'content', 'created_at', 'updated_at'];
+    protected $fillable = [ "date_y", 'date_m', 'date_d',  'title', 'content', 'created_at', 'updated_at'];
 
 }

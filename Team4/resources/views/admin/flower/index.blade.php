@@ -4,39 +4,37 @@
 @section('css')
 {{-- data table --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+{{-- summernote --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
 
 
 @section('content')
 <div class="container">
-    <h2>形象首頁</h2>
+    <h2>花況消息</h2>
     <p>
         <a class="btn btn-primary" data-toggle="collapse" href="#create_collapse" role="button" aria-expanded="false"
             aria-controls="create_collapse">
-            new image vedio
+            new flower condition
         </a>
     </p>
     {{-- 摺疊，新增區塊 --}}
     <div class="collapse" id="create_collapse">
         <div class="card card-body">
-            <form method="POST" action="/admin/image_home" enctype="multipart/form-data">
+            <form method="POST" action="/admin/flower" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="date_m">Month</label>
-                    <input type="text" class="form-control" id="date_m" name="date_m" required>
-                </div>
-                <div class="form-group">
-                    <label for="date_d">Date</label>
-                    <input type="text" class="form-control" id="date_d" name="date_d" required>
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required style="width:200px">
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input class="form-control" name="title" id="title" cols="30" rows="10" required >
+                    <input class="form-control" name="title" id="title" cols="30" rows="10" required>
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <input class="form-control" name="content" id="content" cols="30" rows="10" required >
+                    <textarea class="form-control summernote" name="content" id="content" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -48,11 +46,12 @@
 
         <thead>
             <tr>
+                <th>date_y</th>
                 <th>date_m</th>
                 <th>date_d</th>
                 <th>title</th>
                 <th>content</th>
-                <th>edit/delete</th>
+                <th style="width:100px">edit/delete</th>
             </tr>
         </thead>
 
@@ -60,10 +59,11 @@
             @foreach ($all_flower_datas as $item)
 
             <tr id="data_{{$item->id}}">
+                <td>{{$item->date_y}}</td>
                 <td>{{$item->date_m}}</td>
                 <td>{{$item->date_d}}</td>
                 <td>{{$item->title}}</td>
-                <td>{{$item->content}}</td>
+                <td>{!!$item->content!!}</td>
                 <td>
                     {{-- 修改、刪除 --}}
                     <a class="btn col-12 btn-block btn-sm btn-primary" data-toggle="collapse"
@@ -91,26 +91,27 @@
     @foreach ($all_flower_datas as $item)
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <form method="POST" action="/admin/image_home/{{$item->id}}" enctype="multipart/form-data">
+            <form method="POST" action="/admin/flower/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="youtube_url{{$item->id}}">Youtube URL</label>
-                    <input class="form-control" id="youtube_url{{$item->id}}" name="youtube_url"
-                        value="{{$item->youtube_url}}">
+                    <label for="date_{{$item->id}}">Date</label>
+                    <input type="date" class="form-control" id="date_{{$item->id}}" name="date_d"
+                        value="{{$item->date_y}}-{{$item->date_m}}-{{$item->date_d}}" required>
                 </div>
                 <div class="form-group">
-                    <label for="video_title_edit{{$item->id}}">Video Title</label>
-                    <input type="text" class="form-control" id="video_title_edit{{$item->id}}" name="video_title"
-                        value="{{$item->video_title}}">
+                    <label for="title{{$item->id}}">Title</label>
+                    <input class="form-control" name="title" id="title{{$item->id}}" cols="30" rows="10"
+                        value="{{$item->title}}" required>
                 </div>
                 <div class="form-group">
-                    <label for="sort_edit">Sort</label>
-                    <input class="form-control" type="number" min="0" value="{{$item->sort}}" name="sort" id="sort_edit"
-                        required style="width:100px">
+                    <label for="content{{$item->id}}">Content</label>
+                    <textarea id="content{{$item->id}}" class="form-control summernote" name="content" required>
+                        {{$item->content}}
+                    </textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-info" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
             </form>
         </div>
     </div>
@@ -119,13 +120,31 @@
 </div>
 @endsection
 @section('js')
+{{-- summernote --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+{{-- summernote語言包 --}}
+<script src="{{asset('js/summernote-zh-TW.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            minHeight:300,
+            lang: 'zh-TW', //更改語言
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+            ],
+        });
+    })
+</script>
+
 {{-- 接入js，並初始化datatables --}}
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-            "order": [[ 2, "desc" ]]
+            "order": [[ 0, "desc" ],[1,"desc"],[2,"desc"]]
             });
         });
 </script>
@@ -139,8 +158,9 @@
             let r = confirm("你即將刪除這筆最新消息!");
             if (r == true){
                 // document.querySelector(`#delete_form${id}`).submit();
+
                  // axios delete
-                axios.delete(`/admin/image_home/${id}`)
+                axios.delete(`/admin/flower/${id}`)
                 .then(function (response) {
                     $(`#data_${id}`).remove();
                 })

@@ -117,7 +117,7 @@
                         required style="width:100px">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-info" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
             </form>
         </div>
     </div>

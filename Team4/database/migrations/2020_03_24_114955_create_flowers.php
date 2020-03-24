@@ -15,10 +15,11 @@ class CreateFlowers extends Migration
     {
         Schema::create('flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('date_y');
             $table->string('date_m');
             $table->string('date_d');
             $table->string('title');
-            $table->string('content');
+            $table->string('content',1000);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\flower;
 use Carbon\Carbon;
 use App\Jobs\SendEmail;
 use Illuminate\Http\Request;
@@ -39,7 +40,8 @@ class FrontController extends Controller
     // 花況
     public function flower()
     {
-        return view('/front/flower');
+        $flower_datas = flower::all()->sortByDesc('date_d')->sortByDesc('date_m')->sortByDesc('date_y');
+        return view('/front/flower',compact('flower_datas'));
     }
     // 活動
     public function activity()
