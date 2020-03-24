@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/test','FrontController@test_queue');
+
+
 Auth::routes();
 //front
 Route::get('/','FrontController@image_home');
@@ -36,6 +39,13 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::patch('/image_home/{id}','ImageHomeController@update');
     Route::delete('/image_home/{id}','ImageHomeController@delete');
 
+    // flower
+    Route::get('/flower','FlowerController@index');
+    Route::post('/flower/sort_up','FlowerController@sort_up');
+    Route::post('/flower/sort_down','FlowerController@sort_down');
+    Route::post('/flower','FlowerController@store');
+    Route::patch('/flower/{id}','FlowerController@update');
+    Route::delete('/flower/{id}','FlowerController@delete');
 
 
 });

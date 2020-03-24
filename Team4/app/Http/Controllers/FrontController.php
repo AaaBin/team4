@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Jobs\SendEmail;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+    public function test_queue()
+    {
+        // 將寄送資料儲存成變數
+        $details = ['email' => 'birnie1571@gmail.com'];
+        // 用new job的方式建立新的job，夾帶變數並加上要delay的時間
+        $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(60));
+        // dispatch(派送)這一job進入queue，在這裡是使用database，代表會在database中建立資料
+        dispatch($emailJob);
+        return redirect('/home');
+    }
+
+
+
     // 形象首頁
     public function image_home()
     {
@@ -14,7 +29,7 @@ class FrontController extends Controller
     // 首頁
     public function home()
     {
-        return view('/front/home');
+        return view('/front/index');
     }
     // 園區介紹
     public function intro()
