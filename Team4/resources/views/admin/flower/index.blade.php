@@ -57,11 +57,17 @@
 
         <tbody>
             @foreach ($all_flower_datas as $item)
+            <?php
+            $date_data = $item->date;
+            $date_y = explode('-',$date_data)[0];
+            $date_m = explode('-',$date_data)[1];
+            $date_d = explode('-',$date_data)[2];
 
+            ?>
             <tr id="data_{{$item->id}}">
-                <td>{{$item->date_y}}</td>
-                <td>{{$item->date_m}}</td>
-                <td>{{$item->date_d}}</td>
+                <td>{{$date_y}}</td>
+                <td>{{$date_m}}</td>
+                <td>{{$date_d}}</td>
                 <td>{{$item->title}}</td>
                 <td>{!!$item->content!!}</td>
                 <td>
@@ -97,7 +103,7 @@
                 <div class="form-group">
                     <label for="date_{{$item->id}}">Date</label>
                     <input type="date" class="form-control" id="date_{{$item->id}}" name="date_d"
-                        value="{{$item->date_y}}-{{$item->date_m}}-{{$item->date_d}}" required>
+                        value="{{$item->date}}" required>
                 </div>
                 <div class="form-group">
                     <label for="title{{$item->id}}">Title</label>

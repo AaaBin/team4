@@ -40,7 +40,7 @@ class FrontController extends Controller
     // 花況
     public function flower()
     {
-        $flower_datas = flower::all()->sortByDesc('date_d')->sortByDesc('date_m')->sortByDesc('date_y');
+        $flower_datas = flower::all()->sortByDesc('date');
         return view('/front/flower',compact('flower_datas'));
     }
     // 活動

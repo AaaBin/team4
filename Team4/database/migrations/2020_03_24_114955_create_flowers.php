@@ -15,9 +15,7 @@ class CreateFlowers extends Migration
     {
         Schema::create('flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('date_y');
-            $table->string('date_m');
-            $table->string('date_d');
+            $table->string('date');
             $table->string('title');
             $table->string('content',1000);
             $table->timestamps();
