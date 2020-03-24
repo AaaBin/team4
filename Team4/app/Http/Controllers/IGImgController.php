@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Imagehome;
+use App\Ig_img;
 use Illuminate\Http\Request;
 
-class ImageHomeController extends Controller
+class IGImgController extends Controller
 {
     public function index(Request $request)
     {
-        $all_imagehome_datas = Imagehome::all();
-        return view('admin/image_home/index', compact("all_imagehome_datas"));
+        $all_Ig_img_datas = Ig_img::all();
+        return view('admin/ig_img/index', compact("all_Ig_img_datas"));
     }
 
 
@@ -19,11 +19,11 @@ class ImageHomeController extends Controller
     public function sort_down(Request $request)
     {
         // 依照ajax送進來的資料，抓到正在動作的是哪一筆資料(主資料)
-        $item = Imagehome::find($request->data_id);
+        $item = Ig_img::find($request->data_id);
         // 抓到主資料的目前sort值
         $sort_value = $item->sort;
         // 排序後以first抓到第一筆，存成變數(目標資料)
-        $target = Imagehome::where('sort','<',$sort_value)->orderby('sort','desc')->first();
+        $target = Ig_img::where('sort','<',$sort_value)->orderby('sort','desc')->first();
 
         if ($target == null) {
             // 進行判斷，如果目標資料不存在，代表主資料的sort值已經是最小
@@ -60,10 +60,10 @@ class ImageHomeController extends Controller
     public function sort_up(Request $request)
     {
         // 依照ajax送進來的資料，抓到正在動作的是哪一筆資料(主資料)
-        $item = Imagehome::find($request->data_id);
+        $item = Ig_img::find($request->data_id);
         // 抓到主資料的目前sort值
         $sort_value = $item->sort;
-        $target = Imagehome::where('sort','>',$sort_value)->orderby('sort','asc')->first();
+        $target = Ig_img::where('sort','>',$sort_value)->orderby('sort','asc')->first();
         // 先建立對象資料更改後的sort值，也就是主資料的sort值
 
         if ($target == null) {
@@ -94,20 +94,21 @@ class ImageHomeController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
-        Imagehome::create($request_data);
-        return redirect('/admin/image_home');
+        Ig_img::create($request_data);
+
+        return redirect('/admin/ig_img');
     }
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
-        $item = Imagehome::find($id);
+        $item = Ig_img::find($id);
         $item->update($request_data);
-        return redirect('admin/image_home');
+        return redirect('admin/ig_img');
     }
     // delete
     public function delete($id)
     {
-        $item = Imagehome::find($id);
+        $item = Ig_img::find($id);
         $item->delete();
         return ;
     }

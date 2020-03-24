@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  */
-class flower extends Model
+class Flower extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     *
+     * 
      * @var string
      */
     protected $keyType = 'integer';
@@ -24,6 +24,6 @@ class flower extends Model
     /**
      * @var array
      */
-    protected $fillable = [ "date", 'title', 'content', 'created_at', 'updated_at'];
+    protected $fillable = ['date', 'title', 'content', 'created_at', 'updated_at'];
 
 }

@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property string $video_title
- * @property string $youtube_url
+ * @property string $img_url
  * @property int $sort
  * @property string $created_at
  * @property string $updated_at
  */
-class Imagehome extends Model
+class Ig_img extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
@@ -24,6 +23,6 @@ class Imagehome extends Model
     /**
      * @var array
      */
-    protected $fillable = ['video_title', 'youtube_url', 'sort', 'created_at', 'updated_at'];
+    protected $fillable = ['img_url', 'sort', 'created_at', 'updated_at'];
 
 }

@@ -188,6 +188,30 @@
 
         </section>
         <section class="flower_condition_old">
+
+            @foreach ($flower_datas as $item)
+            <?php
+            $date_data = $item->date;
+            $date_m = explode('-',$date_data)[1];
+            $date_d = explode('-',$date_data)[2];
+            ?>
+            {{-- 只需要第一筆以外的資料，所以加上判斷式 --}}
+            @if ($loop->first)
+                {{-- do nothing --}}
+            @else
+                <div class="container d-flex flex-column align-items-center justify-content-center mb-5 px-3 px-md-4">
+                    <div class="flower_condition_old_date_area position-relative mb-2">
+                        <div class="flower_condition_old_date_area_m pr-4">{{$date_m}}</div>
+                        <div class="flower_condition_old_date_area_d pl-4">{{$date_d}}</div>
+                    </div>
+                    <article class="flower_condition_old_content">
+                        {!!$item->content!!}
+                    </article>
+                </div>
+            @endif
+
+            @endforeach
+
             <div class="container d-flex flex-column align-items-center justify-content-center mb-5 px-3 px-md-4">
                 <div class="flower_condition_old_date_area position-relative mb-2">
                     <div class="flower_condition_old_date_area_m pr-4">02</div>
