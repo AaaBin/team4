@@ -56,6 +56,17 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::delete('/flower/{id}','FlowerController@delete');
 
 
+    // camp
+    Route::get('/booking/camp','CampController@index');
+    Route::post('/booking/camp','CampController@store');
+    Route::patch('/booking/camp/{id}','CampController@update');
+    Route::delete('/booking/camp/{id}','CampController@delete');
+
+    // restaurant
+    Route::get('/booking/restaurant','RestaurantController@index');
+    Route::post('/booking/restaurant','RestaurantController@store');
+    Route::patch('/booking/restaurant/{id}','RestaurantController@update');
+    Route::delete('/booking/restaurant/{id}','RestaurantController@delete');
 });
 
 

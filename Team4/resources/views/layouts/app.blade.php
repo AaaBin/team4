@@ -67,16 +67,17 @@
                             <a class="nav-link" href="/admin/flower">flower</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="/admin/activity">activity</a>
-                        </li>
-                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">booking</a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="/admin/booking">訂單管理</a>
+                                <a class="dropdown-item" href="/admin/booking/camp">露營訂單管理</a>
+                                <a class="dropdown-item" href="/admin/booking/restaurant">餐廳訂單管理</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/admin/customer">customer</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="/admin/ig_img">IG img</a>
                         </li>
                     </ul>
 

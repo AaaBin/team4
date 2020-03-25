@@ -194,7 +194,7 @@
 
         setTimeout(() => {
             $(`#move_to_edit${id}`)[0].click();
-        }, 500);
+        }, 250);
 
 
     }

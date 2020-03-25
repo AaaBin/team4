@@ -65,10 +65,8 @@
                 <td data-sort_id='{{$item->id}}'>{{$item->sort}}</td>
                 <td>
                     {{-- 權重排序 --}}
-                    <a href="#" type="button" class="btn btn-outline-info btn-sm col-12 btn-block"
-                        onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
-                    <a data-btn_id="{{$item->id}}" href="#" type="button"
-                        class="btn btn-outline-info btn-sm col-12 btn-block"
+                    <a href="#"  class="btn btn-outline-info btn-sm col-12 btn-block" onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
+                    <a data-btn_id="{{$item->id}}" href="#" class="btn btn-outline-info btn-sm col-12 btn-block"
                         onclick="too_small({{$item->sort}},{{$item->id}});test({{$item->id}})">Down</a>
                 </td>
                 <td>

@@ -15,7 +15,7 @@ class CreateIgImgs extends Migration
     {
         Schema::create('ig_imgs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('img_url');
+            $table->string('img_url',1000);
             $table->integer('sort');
             $table->timestamps();
         });

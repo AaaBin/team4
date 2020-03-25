@@ -58,10 +58,8 @@
                 <td data-sort_id='{{$item->id}}'>{{$item->sort}}</td>
                 <td>
                     {{-- 權重排序 --}}
-                    <a href="#" type="button" class="btn btn-outline-info btn-sm col-12 btn-block"
-                        onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
-                    <a data-btn_id="{{$item->id}}" href="#" type="button"
-                        class="btn btn-outline-info btn-sm col-12 btn-block"
+                    <a href="#"  class="btn btn-outline-info btn-sm col-12 btn-block" onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
+                    <a data-btn_id="{{$item->id}}" href="#" class="btn btn-outline-info btn-sm col-12 btn-block"
                         onclick="too_small({{$item->sort}},{{$item->id}});">Down</a>
                 </td>
                 <td>
@@ -90,8 +88,8 @@
                 @csrf
                 @method('PATCH')
                 <p>OLD IMG: </p>
-                <div class="card justify-content-center align-items-center">
-                    <img src="{{$item->img_url}}" alt="" style="width:500px">
+                <div class="card justify-content-center align-items-center p-3">
+                    <img class="rounded" src="{{$item->img_url}}" alt="" style="width:500px">
                 </div>
                 <div class="form-group">
                     <label for="img_url">IMG URL</label>
