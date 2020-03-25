@@ -6,6 +6,12 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 {{-- summernote --}}
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<!-- fullcalendar -->
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
+<!-- fullcalendar core -->
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
+<!-- fullcalendar day grid -->
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
 @endsection
 
 
@@ -20,6 +26,15 @@
         </a>
     </p> --}}
 </div>
+
+
+
+{{-- calendar --}}
+<div class="container">
+    <div id="calendar"></div>
+</div>
+
+
 {{-- 摺疊，新增區塊 --}}
 {{-- <div class="collapse" id="create_collapse">
         <div class="card card-body">
@@ -300,5 +315,50 @@
 
 
     }
+</script>
+
+{{-- calendar --}}
+<!-- moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- fullcalendar -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- core -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- interaction plugin -->
+<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
+<!-- day grid -->
+<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+<script>
+    
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid', 'interaction'],
+            // 讓日曆可被點選，單這一個只有顏色，沒有其他效果
+            selectable: true,
+            // 設定行事曆顯示模式，月份或是週、日等
+            // defaultView: 'dayGridWeek',
+            // 添加事件進日曆
+            events: [
+                { // this object will be "parsed" into an Event Object
+                    title: 'The Title', // a property!
+                    start: '2020-03-24', // a property!
+                    end: '2020-03-27' ,// a property! ** see important note below about 'end' **
+                    className:"hello",
+                }
+            ],
+            dateClick: function (info) {
+                alert('Clicked on: ' + info.dateStr);
+                // change the day's background color just for fun
+                info.dayEl.style.backgroundColor = 'green';
+            }
+        });
+
+        calendar.render();
+    });
+
+
 </script>
 @endsection
