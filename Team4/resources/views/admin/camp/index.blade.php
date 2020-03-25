@@ -183,15 +183,15 @@
                             <option>Big Pavilion</option>
                             @else
 
-                                @if ($item->campsite_type == "Small Pavilion")
-                                <option selected>Small Pavilion</option>
-                                <option>Big Pavilion</option>
-                                <option>Grass</option>
-                                @else
-                                <option selected>Big Pavilion</option>
-                                <option>Small Pavilion</option>
-                                <option>Grass</option>
-                                @endif
+                            @if ($item->campsite_type == "Small Pavilion")
+                            <option selected>Small Pavilion</option>
+                            <option>Big Pavilion</option>
+                            <option>Grass</option>
+                            @else
+                            <option selected>Big Pavilion</option>
+                            <option>Small Pavilion</option>
+                            <option>Grass</option>
+                            @endif
 
                             @endif
                         </select>
@@ -218,7 +218,8 @@
                 </div>
                 <div class="form-group">
                     <label for="remark{{$item->id}}">Remark</label>
-                    <textarea type="text" class="form-control" name="remark" id="remark{{$item->id}}">{{$item->remark}}</textarea>
+                    <textarea type="text" class="form-control" name="remark"
+                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
@@ -329,36 +330,39 @@
 <!-- day grid -->
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 <script>
-    
+    // passing data in js
+    // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
+    var all_camp_datas = {!! json_encode($all_camp_datas->toArray(),JSON_HEX_TAG) !!};
+    console.log(all_camp_datas);
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['dayGrid', 'interaction'],
-            // 讓日曆可被點選，單這一個只有顏色，沒有其他效果
-            selectable: true,
-            // 設定行事曆顯示模式，月份或是週、日等
-            // defaultView: 'dayGridWeek',
-            // 添加事件進日曆
-            events: [
-                { // this object will be "parsed" into an Event Object
+    // https://fullcalendar.io/docs/event-parsing
+    // 添加事件進日曆
+    $(document).ready(function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'interaction'],
+                // 讓日曆可被點選，單這一個只有顏色，沒有其他效果
+                selectable: true,
+                // 設定行事曆顯示模式，月份或是週、日等
+                // defaultView: 'dayGridWeek',
+                events: [
+                    { // this object will be "parsed" into an Event Object
                     title: 'The Title', // a property!
-                    start: '2020-03-24', // a property!
-                    end: '2020-03-27' ,// a property! ** see important note below about 'end' **
-                    className:"hello",
-                }
-            ],
-            dateClick: function (info) {
-                alert('Clicked on: ' + info.dateStr);
-                // change the day's background color just for fun
-                info.dayEl.style.backgroundColor = 'green';
-            }
-        });
+                    start: '2020-03-26', // a property!
+                    end: '2020-03-29' // a property! ** see important note below about 'end' **
+                    }
+                ]
+                // alert('Clicked on: ' + info.dateStr);
+                // // change the day's background color just for fun
+                // info.dayEl.style.backgroundColor = 'green';
 
-        calendar.render();
-    });
+            });
 
+            calendar.render();
+
+    })
 
 </script>
 @endsection
