@@ -1,0 +1,545 @@
+*{
+    box-sizing: border-box;
+}
+p{
+    padding: 0;
+    margin: 0;
+}
+//banner點上去字變大
+.active{
+    font-size: 20px;
+    outline:none;
+    font-weight: 900;
+    text-shadow: 0 0 0.2em rgba($color: #000000, $alpha: 1.0);
+    @media (max-width: 768px){
+        font-weight: 700;
+        text-shadow:unset;
+    }
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+// 通用類別 字型大小
+.font_19{
+    font-size:19px;
+}
+.font_24{
+    font-size: 24px;
+}
+// 首頁＿header 
+.home_header{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 768px){
+        height: 100px;
+    } 
+    .home_header_logo{
+        height: 145px;
+        width: 145px;
+        
+        
+        @media (max-width: 768px){
+            height: 100px;
+            display: flex;
+        align-items: center;
+        } 
+        img{
+            @media (max-width: 768px){
+                display: none;
+            } 
+        }
+        .small_logo{
+            width: 100%;
+            height: 50px;
+            display: none;
+            
+            @media (max-width: 768px){
+                display: block;
+            }
+            img{
+                display: block;
+            }
+        }
+    }
+    .home_header_social{
+        height: 50px;
+        width: 50px;
+        background-color: goldenrod;
+    }
+    .home_header_hamburger{
+        display: none;
+    }
+}
+
+
+//bannerrrrrrr輪播
+.swiper-pagination{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    @media (max-width: 768px){
+        margin: auto;
+    }
+
+}
+.swiper-pagination-clickable{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top:76%;
+    right: 18%;
+    @media (max-width: 1725px){
+        top:74%;
+    }
+    @media (max-width: 1560px){
+        top:72%;
+    }
+    @media (max-width: 1450px){
+        top:70%;
+    }
+    @media (max-width: 1300px){
+        top:68%;
+    }
+    @media (max-width: 1200px){
+        top:66%;
+    }
+    @media (max-width: 1100px){
+        top:64%;
+    }
+    @media (max-width: 1040px){
+        top:62%;
+    }
+    @media (max-width: 975px){
+        top:60%;
+    }
+    @media (max-width: 910px){
+        top:58%;
+    }
+    @media (max-width: 814px){
+        top:56%;
+        right: 5%;
+    }
+    @media (max-width: 768px){
+        position: unset;
+        align-items: flex-start;
+        // justify-content: center;
+        height: 250px;
+        writing-mode: vertical-lr ;
+        margin-top: 20px;
+
+    }
+
+
+}
+.swiper-pagination-bullet{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 350px;
+    margin: 20px 0 !important;
+    border-radius: 100%;
+    opacity: .8;
+    color:white;
+    background:rgba(0, 0, 0, 0);
+    // @media (max-width: 814px){
+    //     margin: 10px 0 !important;
+    // }
+    @media (max-width: 768px){
+        color: black;
+        // writing-mode: vertical-lr ;
+        margin:  15px !important;
+        height: 300px;
+        width: 25%;
+        align-items: flex-start;
+    } 
+    
+    
+}
+// 畫面右邊固定的 spring
+.home_springmountain{
+    @media (max-width: 768px){
+        display: none;
+    } 
+    span{
+        font-size: 18px;
+        position: fixed;
+        right: 0;
+        top:80%;
+        z-index: 1000;
+        transform:rotate(90deg);
+        
+    }
+}
+
+//banner
+.home_banner_area{
+    display: flex;
+    position: relative;
+    .home_banner{
+        width: 85%;
+        // height: 800px;
+        @media (max-width: 814px){
+            width: 100%;
+        }
+
+        img{
+            width: 100%;
+            // height: 800px;
+        }
+        
+    }
+    .home_nav_right{
+        width: 15%;
+        @media (max-width: 814px){
+            display: none;
+        }
+        ul{
+            margin-top: 100px;
+            @media (max-width: 1050px){
+                padding-left: 20px;
+            }
+            @media (max-width: 914px){
+                padding-left: 10px;
+            }
+            @media (max-width: 846px){
+                padding-left: 5px;
+            }
+            li{
+                list-style: none;
+                margin:20px ;
+                
+                a{
+                    text-decoration:none;
+                    color: black;
+
+                    &:hover{
+                        color:#F1A200;
+                    }
+                }
+                
+            }
+        }
+    }
+    
+}
+
+// banner 底下的 slogan 
+.home_slogan{
+    
+    .home_slogan_text{
+        
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        margin: 180px auto;
+        p{
+            line-height: 100px;
+            @media (max-width: 768px){
+                font-size: 18px;
+            } 
+        }
+        span{
+            @media (max-width: 768px){
+                font-size: 14px;
+            } 
+        }
+    }
+}
+// 過場
+.home_transitions{
+    width: 100%;
+    min-height: 800px;
+    background-color: indianred;
+    @media (max-width: 768px){
+        min-height: 360px;
+    } 
+}
+
+// 日出
+.home_sunrise{
+    display: flex;
+    height: 900px;
+    margin: 100px auto;
+    @media (max-width: 768px){
+        height: 360px;
+    } 
+    @media (max-width: 576px){
+        height: 265px;
+        flex-direction: column;
+        
+
+    } 
+    .home_sunrise_text{
+        display: flex;
+        align-items: center;
+        @media (max-width: 768px){
+            font-size: 14px;
+        } 
+        @media (max-width: 576px){
+            flex:unset;
+            justify-content: center;
+            
+        } 
+    }
+    .home_sunrise_img{
+        height: 100%;
+        width: 100%;
+        background-image: url(/img/日出曙光1.jpg);
+        background-size: cover;
+        
+    }
+}
+
+//森林
+.home_forest{
+    position: relative;
+    
+    .home_forest_img{
+        position: absolute;
+        height: 660px;
+        width: 65%; //1260px
+        background-image: url(/img/翠綠原始林木.jpg);
+        background-size: cover;
+        background-position:center;
+        @media (max-width: 768px){
+            height: 360px;
+            top: 60px;
+            width: 90%;
+        } 
+        @media (max-width: 576px){
+            display: none;
+        }  
+    }
+    .container{
+        display: flex;
+        height: 660px;
+        margin: 0 auto 100px auto;
+        justify-content:flex-end ;
+        @media (max-width: 768px){
+            height: 360px;
+        }
+        @media (max-width: 576px){
+            height: 265px;
+            margin: 0 auto 50px auto;
+            flex-direction: column;
+        }  
+        
+        .home_forest_text{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            @media (max-width: 768px){
+                align-items: flex-start;
+                font-size: 14px;
+            } 
+            @media (max-width: 576px){
+                flex:unset;
+                justify-content: center;
+                
+            } 
+        }
+        .home_forest_img_col{
+            display: none;
+            background-image:url(/img/翠綠原始林木.jpg); 
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 265px;
+            @media (max-width: 576px){
+                display: block;
+                width: 100%;
+                height: 265px;
+            }  
+        }
+    }
+}
+
+//自然
+.home_nature{
+    position: relative;
+    .container{
+        display: flex;
+        height: 660px;
+        margin: 0 auto 100px auto;
+        justify-content:flex-start ;
+        @media (max-width: 768px){
+            height: 360px;
+        } 
+        @media (max-width: 576px){
+            height: 265px;
+            flex-direction: column;
+            margin: 0;
+        } 
+        .home_nature_text{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            @media (max-width: 768px){
+                align-items: flex-start;
+                font-size: 14px;
+                
+            } 
+            @media (max-width: 576px){
+                flex:unset;
+                justify-content: center;     
+            } 
+        }
+        .home_nature_img_col{
+            display: none;
+            background-image:url(/img/自然美妙天籟.jpg); 
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 265px;
+            @media (max-width: 576px){
+                display: block;
+                width: 100%;
+                height: 265px;
+            }  
+        }
+    }
+    .home_nature_img{
+        position: absolute;
+        height: 660px;
+        width: 64%; //1230px
+        background-image: url(/img/自然美妙天籟.jpg);
+        background-size: cover;
+        top:0;
+        right: 0;
+        background-position:center;
+        @media (max-width: 768px){
+            height: 360px;
+            top:60px;
+            width: 90%;
+        } 
+        @media (max-width: 576px){
+            display: none;
+        }  
+    }
+}
+
+//ig title
+.home_ig_title{
+    .container{
+        display: flex;
+        justify-content: flex-end;
+        @media (max-width: 576px){
+            justify-content: center;
+        } 
+        .home_ig_title_text{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            @media (max-width: 768px){
+                font-size: 14px;
+                margin-top: unset;
+                margin-bottom: unset;
+                margin:60px 0;
+            } 
+             
+        }
+    }
+}
+
+//ig
+.container{
+    display: flex;
+    justify-content: space-between;
+    img{
+        height: 100%;
+        width: 23%;
+        // @media (max-width: 1204px){
+        //     width: 23%;
+            
+        // }
+        // @media (max-width: 998px){
+        //     width: 23%;
+           
+        // }
+        // @media (max-width: 770px){
+        //     width: 23%;
+            
+        // }
+        // @media (max-width: 576px){
+        //     width: 23%;
+            
+        // } 
+        // @media (max-width: 320px){
+        //     width: 23%;
+            
+        // } 
+    }
+}
+
+//welcome
+.home_welcome{
+    display: flex;
+    justify-content: center;
+    .home_welcome_text{
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        margin: 180px 0;
+        @media (max-width: 768px){
+            margin: 60px 0;
+            font-size: 14px;
+        } 
+    }
+}
+
+//footer
+.home_footer{
+    position: relative;
+    background-color: lemonchiffon;
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 768px){
+        height: 430px;
+    } 
+    @media (max-width: 576px){
+        height: 320px;
+    } 
+    a{
+        text-decoration:none;
+        color: black;
+        @media (max-width: 768px){
+            font-size: 18px;
+        } 
+    }
+    
+    .home_footer_booking{
+        
+        width: 220px;
+        height: 30px;
+        background-color: lightcoral;
+        text-align: center;
+        line-height: 24px;
+        @media (max-width: 768px){
+            width: 130px;
+            height: 20px;
+        } 
+       
+    }
+    .home_footer_copyright{
+        margin: 50px auto;
+        position: absolute;
+        bottom: 0;
+        @media (max-width: 768px){
+            font-size: 10px;
+        } 
+    }
+    
+}
