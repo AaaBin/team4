@@ -65,7 +65,8 @@
                 <td data-sort_id='{{$item->id}}'>{{$item->sort}}</td>
                 <td>
                     {{-- 權重排序 --}}
-                    <a href="#"  class="btn btn-outline-info btn-sm col-12 btn-block" onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
+                    <a href="#" class="btn btn-outline-info btn-sm col-12 btn-block"
+                        onclick="sort_up({{$item->sort}},{{$item->id}})">Up</a>
                     <a data-btn_id="{{$item->id}}" href="#" class="btn btn-outline-info btn-sm col-12 btn-block"
                         onclick="too_small({{$item->sort}},{{$item->id}});test({{$item->id}})">Down</a>
                 </td>
@@ -141,15 +142,27 @@
 <script>
     // confirm函式，跳出視窗警告使用者正在進行刪除行為，若確認，則送出隱藏的表單，執行刪除
         function show_confirm(id){
-            let r = confirm("你即將刪除這筆最新消息!");
-            if (r == true){
-                // document.querySelector(`#delete_form${id}`).submit();
-                 // axios delete
+            swal({
+            title: "Delete data",
+            text: "Once deleted, you will not be able to recover it. Make sure this video is not using",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
                 axios.delete(`/admin/image_home/${id}`)
                 .then(function (response) {
                     $(`#data_${id}`).remove();
                 })
+                swal("You delete the data.", {
+                icon: "success",
+                });
+            } else {
+                swal("You cancel the delete event.");
             }
+            });
+
         }
 </script>
 {{-- 權重、刪除，及時更新 --}}
@@ -264,8 +277,5 @@
 
 
     }
-</script>
-<script>
-
 </script>
 @endsection

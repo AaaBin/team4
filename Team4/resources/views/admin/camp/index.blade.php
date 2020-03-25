@@ -203,8 +203,7 @@
                 </div>
                 <div class="form-group">
                     <label for="remark{{$item->id}}">Remark</label>
-                    <textarea type="text" class="form-control" name="remark" id="remark{{$item->id}}"
-                        required>{{$item->remark}}</textarea>
+                    <textarea type="text" class="form-control" name="remark" id="remark{{$item->id}}">{{$item->remark}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
@@ -252,17 +251,28 @@
 
 <script>
     // confirm函式，跳出視窗警告使用者正在進行刪除行為，若確認，則送出隱藏的表單，執行刪除
-        function show_confirm(id){
-            let r = confirm("你即將刪除這筆最新消息!");
-            if (r == true){
-                // document.querySelector(`#delete_form${id}`).submit();
-
-                 // axios delete
+    function show_confirm(id){
+            swal({
+            title: "Delete data",
+            text: "Once deleted, you will not be able to recover it. Make sure this video is not using",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
                 axios.delete(`/admin/booking/camp/${id}`)
                 .then(function (response) {
                     $(`#data_${id}`).remove();
                 })
+                swal("You delete the data.", {
+                icon: "success",
+                });
+            } else {
+                swal("You cancel the delete event.");
             }
+            });
+
         }
 </script>
 {{-- 權重、刪除，及時更新 --}}
