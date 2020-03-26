@@ -20,6 +20,7 @@ class CreateRestaurants extends Migration
             $table->integer('vegetarian_number')->nullable();
             $table->string('date');
             $table->string('time');
+            $table->string('time_session');
             $table->string('price');
             $table->string('payment_condition')->default("not yet");
             $table->string('remark',1000)->nullable();

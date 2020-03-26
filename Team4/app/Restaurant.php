@@ -28,6 +28,6 @@ class Restaurant extends Model
     /**
      * @var array
      */
-    protected $fillable = ['customer_id', 'total_number', 'vegetarian_number', 'date', 'time', 'price', 'remark', 'created_at', 'updated_at','payment_condition'];
+    protected $fillable = ['customer_id', 'total_number', 'vegetarian_number', 'date', 'time', 'time_session', 'price', 'remark', 'created_at', 'updated_at','payment_condition'];
 
 }

@@ -50,8 +50,11 @@
 
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <p>Customer ID:{{$item->id}}</p>
+            <b>
+            <p>Order ID:{{$item->id}} </p>
+            <p>Customer ID:{{$item->customer_id}}</p>
             <p>Name:</p>
+            </b>
             <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -226,11 +229,6 @@
                     {{-- 點擊連結→觸發js事件→中斷連結的事件進行，執行指定函式 --}}
                     <a href="#" class="btn col-12 btn-block btn-sm btn-danger"
                         onclick="event.preventDefault();show_confirm(`{{$item->id}}`)">刪除</a>
-                    <form id="delete_form{{$item->id}}" action="/admin/image_home/{{$item->id}}" method="POST"
-                        style="display: none;">
-                        @csrf
-                        @method('delete')
-                    </form>
                 </td>
             </tr>
 
@@ -247,23 +245,6 @@
 {{-- tootip.js --}}
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
-{{-- summernote --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-{{-- summernote語言包 --}}
-<script src="{{asset('js/summernote-zh-TW.js')}}"></script>
-<script>
-    $(document).ready(function() {
-        $('.summernote').summernote({
-            minHeight:300,
-            lang: 'zh-TW', //更改語言
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
-            ],
-        });
-    })
-</script>
 
 {{-- 接入js，並初始化datatables --}}
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>

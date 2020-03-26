@@ -12,7 +12,10 @@
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
 <!-- fullcalendar day grid -->
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
-
+{{-- time grid --}}
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css">
+{{-- timepicker --}}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 <style>
     .fc-event-container{
@@ -26,14 +29,9 @@
 @section('content')
 <div class="container">
     <h2>用餐預約表單</h2>
-    {{-- <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#create_collapse" role="button" aria-expanded="false"
-            aria-controls="create_collapse">
-            new camp booking list
-        </a>
-    </p> --}}
 </div>
 <hr>
+
 
 
 
@@ -50,73 +48,52 @@
 
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <p>Customer ID:{{$item->id}}</p>
+            <b>
+            <p>Order ID:{{$item->id}}</p>
+            <p>Customer ID:{{$item->customer_id}}</p>
             <p>Name:</p>
-            <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
+            </b>
+            <form method="POST" action="/admin/booking/restaurant/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                {{-- <div class="form-group">
-                    <label for="customer_id">Customer id</label>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
-                </div> --}}
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="adult{{$item->id}}">Adult</label>
-                        <input type="number" min="0" class="form-control" id="adult{{$item->id}}" name="adult"
-                            value="{{$item->adult}}" required>
+                        <label for="adult{{$item->total_number}}">Total Number</label>
+                        <input type="number" min="0" class="form-control" id="total_number{{$item->id}}" name="total_number"
+                            value="{{$item->total_number}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="child{{$item->id}}">Child</label>
-                        <input type="number" min="0" class="form-control" id="child{{$item->id}}" name="child"
-                            value="{{$item->child}}" required>
+                        <label for="vegetarian_number{{$item->id}}">Vegetarian Number</label>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number{{$item->id}}" name="vegetarian_number"
+                            value="{{$item->vegetarian_number}}" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="check_in_date{{$item->id}}">Check in date</label>
-                        <input type="date" class="form-control" id="check_in_date{{$item->id}}" name="check_in_date"
-                            value="{{$item->check_in_date}}" required>
+                        <label for="date{{$item->id}}">Date</label>
+                        <input type="date" class="form-control" id="date{{$item->id}}" name="date"
+                            value="{{$item->date}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="striking_camp_date{{$item->id}}">Striking camp date</label>
-                        <input type="date" class="form-control" name="striking_camp_date"
-                            id="striking_camp_date{{$item->id}}" value="{{$item->striking_camp_date}}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="campsite_type{{$item->id}}">Campsite type</label>
-                        <select id="campsite_type{{$item->id}}" class="form-control form-control-lg "
-                            name="campsite_type">
-                            @if ($item->campsite_type == "Grass")
-                            <option selected>Grass</option>
-                            <option>Small Pavilion</option>
-                            <option>Big Pavilion</option>
+                        <label for="time{{$item->time}}">Time</label>
+                        <select id="time{{$item->id}}" class="form-control form-control-lg "
+                            name="time">
+                            @if ($item->time == "Breakfast")
+                            <option selected>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
                             @else
 
-                            @if ($item->campsite_type == "Small Pavilion")
-                            <option selected>Small Pavilion</option>
-                            <option>Big Pavilion</option>
-                            <option>Grass</option>
+                            @if ($item->time == "Lunch")
+                            <option selected>Lunch</option>
+                            <option>Dinner</option>
+                            <option>Breakfast</option>
                             @else
-                            <option selected>Big Pavilion</option>
-                            <option>Small Pavilion</option>
-                            <option>Grass</option>
+                            <option selected>Dinner</option>
+                            <option>Lunch</option>
+                            <option>Breakfast</option>
                             @endif
 
-                            @endif
-                        </select>
-                    </div>
-                    <div class="form-group col">
-                        <label for="equipment_need{{$item->id}}">Equipment need</label>
-                        <select id="equipment_need{{$item->id}}"
-                            class="form-control form-control-lg equipment_need_select" name="equipment_need">
-                            @if ($item->equipment_need == "Yes")
-                            <option selected>Yes</option>
-                            <option>No</option>
-                            @else
-                            <option selected>No</option>
-                            <option>Yes</option>
                             @endif
                         </select>
                     </div>
@@ -140,48 +117,6 @@
     @endforeach
 
 </div>
-{{-- 摺疊，新增區塊 --}}
-{{-- <div class="collapse" id="create_collapse">
-        <div class="card card-body">
-            <form method="POST" action="/admin/flower" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="customer_id">Customer id</label>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
-                </div>
-                <div class="form-group">
-                    <label for="adult">Adult</label>
-                    <input type="number" min="0" class="form-control" id="adult" name="adult" required>
-                </div>
-                <div class="form-group">
-                    <label for="child">Child</label>
-                    <input type="number" min="0" class="form-control" id="child" name="child" required>
-                </div>
-                <div class="form-group">
-                    <label for="check_in_date">Check in date</label>
-                    <input type="date" class="form-control" name="check_in_date" id="check_in_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="striking_camp_date">Striking camp date</label>
-                    <input type="date" class="form-control" name="striking_camp_date" id="striking_camp_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="campsite_type">Campsite type</label>
-                    <select class="form-control form-control-lg">
-                        <option>Grass</option>
-                        <option>Pavilion</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="equipment_need">
-                    <label class="form-check-label" for="equipment_need">
-                        Equipment need
-                    </label>
-                  </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div> --}}
 
 <hr>
 <div class="table_section p-5">
@@ -189,13 +124,11 @@
 
         <thead>
             <tr>
+                <th>customer_id</th>
                 <th>total_number</th>
                 <th>vegetarian_number</th>
-                <th>child</th>
-                <th>check_in_date</th>
-                <th>striking_camp_date</th>
-                <th>campsite_type</th>
-                <th>equipment_need</th>
+                <th>date</th>
+                <th>time</th>
                 <th>price</th>
                 <th>payment_condition</th>
                 <th>remark</th>
@@ -204,16 +137,14 @@
         </thead>
 
         <tbody>
-            @foreach ($all_camp_datas as $item)
+            @foreach ($all_restaurant_datas as $item)
 
             <tr id="data_{{$item->id}}">
                 <td>{{$item->customer_id}}</td>
-                <td>{{$item->adult}}</td>
-                <td>{{$item->child}}</td>
-                <td>{{$item->check_in_date}}</td>
-                <td>{{$item->striking_camp_date}}</td>
-                <td>{{$item->campsite_type}}</td>
-                <td>{{$item->equipment_need}}</td>
+                <td>{{$item->total_number}}</td>
+                <td>{{$item->vegetarian_number}}</td>
+                <td>{{$item->date}}</td>
+                <td>{{$item->time}}</td>
                 <td>{{$item->price}}</td>
                 <td>{{$item->payment_condition}}</td>
                 <td>{{$item->remark}}</td>
@@ -226,11 +157,6 @@
                     {{-- 點擊連結→觸發js事件→中斷連結的事件進行，執行指定函式 --}}
                     <a href="#" class="btn col-12 btn-block btn-sm btn-danger"
                         onclick="event.preventDefault();show_confirm(`{{$item->id}}`)">刪除</a>
-                    <form id="delete_form{{$item->id}}" action="/admin/image_home/{{$item->id}}" method="POST"
-                        style="display: none;">
-                        @csrf
-                        @method('delete')
-                    </form>
                 </td>
             </tr>
 
@@ -242,36 +168,39 @@
 </div>
 
 
+
+{{-- test --}}
+
 @endsection
 @section('js')
+{{-- timepicker --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 {{-- tootip.js --}}
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
-{{-- summernote --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-{{-- summernote語言包 --}}
-<script src="{{asset('js/summernote-zh-TW.js')}}"></script>
-<script>
-    $(document).ready(function() {
-        $('.summernote').summernote({
-            minHeight:300,
-            lang: 'zh-TW', //更改語言
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
-            ],
-        });
-    })
-</script>
 
 {{-- 接入js，並初始化datatables --}}
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+{{-- calendar --}}
+<!-- moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- fullcalendar -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- core -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- interaction plugin -->
+<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
+<!-- day grid -->
+<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+{{-- time grid --}}
+<script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-            "order": [[ 4, "desc" ]]
+            "order": [[ 3, "desc" ]]
             });
         });
 </script>
@@ -291,7 +220,7 @@
             })
             .then((willDelete) => {
             if (willDelete) {
-                axios.delete(`/admin/booking/camp/${id}`)
+                axios.delete(`/admin/booking/restaurant/${id}`)
                 .then(function (response) {
                     $(`#data_${id}`).remove();
 
@@ -337,37 +266,30 @@
     }
 </script>
 
-{{-- calendar --}}
-<!-- moment.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<!-- fullcalendar -->
-<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
-<!-- core -->
-<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
-<!-- interaction plugin -->
-<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
-<!-- day grid -->
-<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+
 <script>
 
     // passing data in js
     // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
-    var all_camp_datas = {!! json_encode($all_camp_datas,JSON_HEX_TAG) !!};
+    var all_restaurant_datas = {!! json_encode($all_restaurant_datas,JSON_HEX_TAG) !!};
 
-    all_camp_datas.forEach(element => {
-        element.title = String(element.customer_id) + ":" + element.campsite_type ;
-        element.start = element.check_in_date;
-        element.end = element.striking_camp_date;
-        if (element.campsite_type == "Grass") {
+    all_restaurant_datas.forEach(element => {
+        element.title = String(element.customer_id) + ":" + element.date + element.time;
+        if (element.time_session == "Lunch") {
+            element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#78B399";
         }
-        if (element.campsite_type == "Small Pavilion") {
+        if (element.time_session == "Dinner") {
+            element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#FFE4AB";
         }
-        if (element.campsite_type == "Big Pavilion") {
+        if (element.time_session == "Breakfst") {
+            element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#B8A783";
         }
         element.className ="Order_" + String(element.id);
+        element.allDay = false;
+        console.log(element.date + "T" + element.time + ":00");
 
     });
 
@@ -377,11 +299,16 @@
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid', 'interaction'],
+                plugins: ['dayGrid', 'interaction','timeGrid'],
                 // 讓日曆可被點選，單這一個只有顏色，沒有其他效果
                 selectable: true,
                 // 設定行事曆顯示模式，月份或是週、日等
-                // defaultView: 'dayGridWeek',
+                defaultView: 'timeGridWeek',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridWeek,timeGridDay'
+                },
                 eventLimit: true,
                 eventRender: function(info) {
                     tippy(info.el, {
@@ -391,7 +318,7 @@
                         content: `<b>customer</b> : ${info.event.extendedProps.customer_id} <br> <b>payment condition</b> : ${info.event.extendedProps.payment_condition}`,
                     });
                 },
-                events: all_camp_datas,
+                events: all_restaurant_datas,
                 eventClick:function(info){
                     let order_id = info.event.id;
                     $(`#edit_btn${order_id}`).click();
@@ -404,6 +331,17 @@
 
 </script>
 <script>
-
+    // test timepicker
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 15,
+        minTime: '1',
+        maxTime: '6:00pm',
+        defaultTime: '1',
+        startTime: '12:00',
+        dynamic: true,
+        dropdown: true,
+        scrollbar: false
+    });
 </script>
 @endsection

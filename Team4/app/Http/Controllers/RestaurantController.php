@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,11 @@ class RestaurantController extends Controller
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
+        dd($request_data);
+
         $item = Restaurant::find($id);
         $item->update($request_data);
-        return redirect('admin/restaurant');
+        return redirect('admin/booking/restaurant');
     }
     // delete
     public function delete($id)
