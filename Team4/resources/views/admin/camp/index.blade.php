@@ -30,7 +30,7 @@
 
 
 {{-- calendar --}}
-<div class="container">
+<div class="container" style="padding:25px 50px">
     <div id="calendar"></div>
 </div>
 
@@ -114,7 +114,7 @@
                 <td>{{$item->remark}}</td>
                 <td>
                     {{-- 修改、刪除 --}}
-                    <a class="btn col-12 btn-block btn-sm btn-primary" data-toggle="collapse"
+                    <a id="edit_btn{{$item->id}}" class="btn col-12 btn-block btn-sm btn-primary" data-toggle="collapse"
                         href="#edit_collapse{{$item->id}}" role="button" onclick="move_to_edit({{$item->id}})">修改</a>
                     <a id="move_to_edit{{$item->id}}" class="d-none" href="#edit_collapse{{$item->id}}"></a>
 
@@ -233,6 +233,9 @@
 
 @endsection
 @section('js')
+{{-- tootip.js --}}
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 {{-- summernote --}}
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 {{-- summernote語言包 --}}
@@ -330,11 +333,27 @@
 <!-- day grid -->
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 <script>
+
     // passing data in js
     // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
-    var all_camp_datas = {!! json_encode($all_camp_datas->toArray(),JSON_HEX_TAG) !!};
-    console.log(all_camp_datas);
+    var all_camp_datas = {!! json_encode($all_camp_datas,JSON_HEX_TAG) !!};
 
+    all_camp_datas.forEach(element => {
+        element.title = String(element.customer_id) + ":" + element.campsite_type ;
+        element.start = element.check_in_date;
+        element.end = element.striking_camp_date;
+        if (element.campsite_type == "Grass") {
+            element.backgroundColor = "#78B399";
+        }
+        if (element.campsite_type == "Small Pavilion") {
+            element.backgroundColor = "#FFE4AB";
+        }
+        if (element.campsite_type == "Big Pavilion") {
+            element.backgroundColor = "#B8A783";
+        }
+        element.className ="Order_" + String(element.id) + "-Customer_" + String(element.customer_id)
+
+    });
 
     // https://fullcalendar.io/docs/event-parsing
     // 添加事件進日曆
@@ -347,22 +366,31 @@
                 selectable: true,
                 // 設定行事曆顯示模式，月份或是週、日等
                 // defaultView: 'dayGridWeek',
-                events: [
-                    { // this object will be "parsed" into an Event Object
-                    title: 'The Title', // a property!
-                    start: '2020-03-26', // a property!
-                    end: '2020-03-29' // a property! ** see important note below about 'end' **
-                    }
-                ]
-                // alert('Clicked on: ' + info.dateStr);
-                // // change the day's background color just for fun
-                // info.dayEl.style.backgroundColor = 'green';
-
+                eventLimit: true,
+                eventRender: function(info) {
+                    tippy(`.${info.event.classNames[0]}`, {
+                    content: "I'm a Tippy tooltip!",
+                    trigger: 'hover'
+                    });
+                },
+                events: all_camp_datas,
+                eventClick:function(info){
+                    console.log(info);
+                    console.log(info.event.classNames[0]);
+                    let order_id = info.event.id;
+                    $(`#edit_btn${order_id}`).click();
+                }
             });
 
             calendar.render();
 
     })
 
+</script>
+<script>
+    tippy(`#edit_btn2`, {
+        content: "I'm a Tippy tooltip!",
+        trigger: 'hover'
+    });
 </script>
 @endsection
