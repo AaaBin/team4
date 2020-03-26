@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
 <!-- fullcalendar day grid -->
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
+
+
+<style>
+    .fc-event-container{
+        cursor: pointer;
+    }
+</style>
 @endsection
 
 
@@ -26,6 +33,8 @@
         </a>
     </p> --}}
 </div>
+<hr>
+
 
 
 
@@ -35,6 +44,102 @@
 </div>
 
 
+<div class="container">
+    {{-- 摺疊，編輯區塊 --}}
+    @foreach ($all_camp_datas as $item)
+
+    <div class="collapse py-5" id="edit_collapse{{$item->id}}">
+        <div class="card card-body">
+            <p>Customer ID:{{$item->id}}</p>
+            <p>Name:</p>
+            <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                {{-- <div class="form-group">
+                    <label for="customer_id">Customer id</label>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
+                </div> --}}
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="adult{{$item->id}}">Adult</label>
+                        <input type="number" min="0" class="form-control" id="adult{{$item->id}}" name="adult"
+                            value="{{$item->adult}}" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="child{{$item->id}}">Child</label>
+                        <input type="number" min="0" class="form-control" id="child{{$item->id}}" name="child"
+                            value="{{$item->child}}" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="check_in_date{{$item->id}}">Check in date</label>
+                        <input type="date" class="form-control" id="check_in_date{{$item->id}}" name="check_in_date"
+                            value="{{$item->check_in_date}}" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="striking_camp_date{{$item->id}}">Striking camp date</label>
+                        <input type="date" class="form-control" name="striking_camp_date"
+                            id="striking_camp_date{{$item->id}}" value="{{$item->striking_camp_date}}" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="campsite_type{{$item->id}}">Campsite type</label>
+                        <select id="campsite_type{{$item->id}}" class="form-control form-control-lg "
+                            name="campsite_type">
+                            @if ($item->campsite_type == "Grass")
+                            <option selected>Grass</option>
+                            <option>Small Pavilion</option>
+                            <option>Big Pavilion</option>
+                            @else
+
+                            @if ($item->campsite_type == "Small Pavilion")
+                            <option selected>Small Pavilion</option>
+                            <option>Big Pavilion</option>
+                            <option>Grass</option>
+                            @else
+                            <option selected>Big Pavilion</option>
+                            <option>Small Pavilion</option>
+                            <option>Grass</option>
+                            @endif
+
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="equipment_need{{$item->id}}">Equipment need</label>
+                        <select id="equipment_need{{$item->id}}"
+                            class="form-control form-control-lg equipment_need_select" name="equipment_need">
+                            @if ($item->equipment_need == "Yes")
+                            <option selected>Yes</option>
+                            <option>No</option>
+                            @else
+                            <option selected>No</option>
+                            <option>Yes</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment_condition{{$item->id}}">Payment condition</label>
+                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
+                        value="{{$item->payment_condition}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="remark{{$item->id}}">Remark</label>
+                    <textarea type="text" class="form-control" name="remark"
+                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
+            </form>
+        </div>
+    </div>
+    @endforeach
+
+</div>
 {{-- 摺疊，新增區塊 --}}
 {{-- <div class="collapse" id="create_collapse">
         <div class="card card-body">
@@ -136,100 +241,6 @@
     </table>
 </div>
 
-<div class="container">
-    {{-- 摺疊，編輯區塊 --}}
-    @foreach ($all_camp_datas as $item)
-    <div class="collapse py-5" id="edit_collapse{{$item->id}}">
-        <div class="card card-body">
-            <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
-                {{-- <div class="form-group">
-                    <label for="customer_id">Customer id</label>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
-                </div> --}}
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="adult{{$item->id}}">Adult</label>
-                        <input type="number" min="0" class="form-control" id="adult{{$item->id}}" name="adult"
-                            value="{{$item->adult}}" required>
-                    </div>
-                    <div class="form-group col">
-                        <label for="child{{$item->id}}">Child</label>
-                        <input type="number" min="0" class="form-control" id="child{{$item->id}}" name="child"
-                            value="{{$item->child}}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="check_in_date{{$item->id}}">Check in date</label>
-                        <input type="date" class="form-control" id="check_in_date{{$item->id}}" name="check_in_date"
-                            value="{{$item->check_in_date}}" required>
-                    </div>
-                    <div class="form-group col">
-                        <label for="striking_camp_date{{$item->id}}">Striking camp date</label>
-                        <input type="date" class="form-control" name="striking_camp_date"
-                            id="striking_camp_date{{$item->id}}" value="{{$item->striking_camp_date}}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="campsite_type{{$item->id}}">Campsite type</label>
-                        <select id="campsite_type{{$item->id}}" class="form-control form-control-lg "
-                            name="campsite_type">
-                            @if ($item->campsite_type == "Grass")
-                            <option selected>Grass</option>
-                            <option>Small Pavilion</option>
-                            <option>Big Pavilion</option>
-                            @else
-
-                            @if ($item->campsite_type == "Small Pavilion")
-                            <option selected>Small Pavilion</option>
-                            <option>Big Pavilion</option>
-                            <option>Grass</option>
-                            @else
-                            <option selected>Big Pavilion</option>
-                            <option>Small Pavilion</option>
-                            <option>Grass</option>
-                            @endif
-
-                            @endif
-                        </select>
-                    </div>
-                    <div class="form-group col">
-                        <label for="equipment_need{{$item->id}}">Equipment need</label>
-                        <select id="equipment_need{{$item->id}}"
-                            class="form-control form-control-lg equipment_need_select" name="equipment_need">
-                            @if ($item->equipment_need == "Yes")
-                            <option selected>Yes</option>
-                            <option>No</option>
-                            @else
-                            <option selected>No</option>
-                            <option>Yes</option>
-                            @endif
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="payment_condition{{$item->id}}">Payment condition</label>
-                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
-                        value="{{$item->payment_condition}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="remark{{$item->id}}">Remark</label>
-                    <textarea type="text" class="form-control" name="remark"
-                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
-            </form>
-        </div>
-    </div>
-    @endforeach
-
-</div>
-
 
 @endsection
 @section('js')
@@ -283,6 +294,11 @@
                 axios.delete(`/admin/booking/camp/${id}`)
                 .then(function (response) {
                     $(`#data_${id}`).remove();
+
+                    $.each($(`.Order_${id}`),function (i,val) {
+                        val.remove();
+                    })
+
                 })
                 swal("You delete the data.", {
                 icon: "success",
@@ -351,7 +367,7 @@
         if (element.campsite_type == "Big Pavilion") {
             element.backgroundColor = "#B8A783";
         }
-        element.className ="Order_" + String(element.id) + "-Customer_" + String(element.customer_id)
+        element.className ="Order_" + String(element.id);
 
     });
 
@@ -368,15 +384,15 @@
                 // defaultView: 'dayGridWeek',
                 eventLimit: true,
                 eventRender: function(info) {
-                    tippy(`.${info.event.classNames[0]}`, {
-                    content: "I'm a Tippy tooltip!",
-                    trigger: 'hover'
+                    tippy(info.el, {
+                        delay:[100,200],
+                        arrow:true,
+                        allowHTML:true,
+                        content: `<b>customer</b> : ${info.event.extendedProps.customer_id} <br> <b>payment condition</b> : ${info.event.extendedProps.payment_condition}`,
                     });
                 },
                 events: all_camp_datas,
                 eventClick:function(info){
-                    console.log(info);
-                    console.log(info.event.classNames[0]);
                     let order_id = info.event.id;
                     $(`#edit_btn${order_id}`).click();
                 }
@@ -388,9 +404,6 @@
 
 </script>
 <script>
-    tippy(`#edit_btn2`, {
-        content: "I'm a Tippy tooltip!",
-        trigger: 'hover'
-    });
+
 </script>
 @endsection
