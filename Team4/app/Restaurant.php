@@ -30,4 +30,9 @@ class Restaurant extends Model
      */
     protected $fillable = ['customer_id', 'total_number', 'vegetarian_number', 'date', 'time', 'time_session', 'price', 'remark', 'created_at', 'updated_at','payment_condition'];
 
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
+
 }

@@ -15,6 +15,8 @@ Route::get('/test','FrontController@test_queue');
 
 
 Auth::routes();
+
+
 //front
 Route::get('/','FrontController@image_home');
 Route::get('/home','FrontController@home');

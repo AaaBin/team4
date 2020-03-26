@@ -10,7 +10,7 @@ class RestaurantController extends Controller
 {
     public function index(Request $request)
     {
-        $all_restaurant_datas = Restaurant::all();
+        $all_restaurant_datas = Restaurant::with('customer')->get();
         return view('admin/restaurant/index', compact("all_restaurant_datas"));
     }
 

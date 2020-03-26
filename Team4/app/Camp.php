@@ -32,4 +32,8 @@ class Camp extends Model
      */
     protected $fillable = ['customer_id', 'adult', 'child', 'check_in_date', 'striking_camp_date', 'campsite_type', 'equipment_need', 'price', 'remark', 'created_at', 'updated_at','payment_condition'];
 
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
 }

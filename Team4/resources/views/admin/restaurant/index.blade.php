@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 <style>
+    /* 針對fullcalendar上的事件改變滑鼠hover的游標 */
     .fc-event-container{
         cursor: pointer;
     }
@@ -236,7 +237,6 @@
                 swal("You cancel the delete event.");
             }
             });
-
         }
 </script>
 {{-- 權重、刪除，及時更新 --}}
@@ -257,24 +257,23 @@
 <script>
     // 點擊修改，畫面移至編輯區塊
     function move_to_edit(id){
-
+        // 設定時間間個，讓摺疊區塊顯示後才移動畫面
         setTimeout(() => {
             $(`#move_to_edit${id}`)[0].click();
         }, 250);
-
-
     }
 </script>
-
 
 <script>
 
     // passing data in js
     // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
     var all_restaurant_datas = {!! json_encode($all_restaurant_datas,JSON_HEX_TAG) !!};
-
+    // 編輯陣列中的每一筆物件，加上可以讓fullcalendar閱讀的屬性
     all_restaurant_datas.forEach(element => {
-        element.title = String(element.customer_id) + ":" + element.date + element.time;
+        element.title = String(element.total_number) + "peolpe  at:" + element.time;
+        element.borderColor = "#CCCCCC";
+        // fullcalendar的時間格式為 YYYY-MM-DDTHH:mm:ss
         if (element.time_session == "Lunch") {
             element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#78B399";
@@ -283,61 +282,85 @@
             element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#FFE4AB";
         }
-        if (element.time_session == "Breakfst") {
+        if (element.time_session == "Breakfast") {
             element.start = element.date + "T" + element.time + ":00";
             element.backgroundColor = "#B8A783";
         }
         element.className ="Order_" + String(element.id);
+        // 預設中沒有設定結束時間時，單一日的事件會被記載成全天的事件
+        // 設定false，改成預設事件會延續一小時
         element.allDay = false;
-        console.log(element.date + "T" + element.time + ":00");
-
     });
 
     // https://fullcalendar.io/docs/event-parsing
     // 添加事件進日曆
     $(document).ready(function () {
             var calendarEl = document.getElementById('calendar');
-
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                // 選擇要匯入的插件(要先用cdn或其他方式裝進檔案)
                 plugins: ['dayGrid', 'interaction','timeGrid'],
                 // 讓日曆可被點選，單這一個只有顏色，沒有其他效果
                 selectable: true,
-                // 設定行事曆顯示模式，月份或是週、日等
+                // 設定行事曆預設顯示模式，月份或是週、日等
                 defaultView: 'timeGridWeek',
+                // 行事曆的上方功能列設定
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'timeGridWeek,timeGridDay'
+                    right: 'timeGridWeek,timeGridDay,dayGridMonth'
                 },
+                // 讓事件超過一定數量後摺疊，不會無限制的堆疊撐開欄位
                 eventLimit: true,
+                // calendar的title設定
+                titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+                    month: 'long',
+                    year: 'numeric',
+                    day: '2-digit',
+                    // weekday: 'long'
+                },
+                // Render時執行
                 eventRender: function(info) {
+                    // 用tippy套件讓滑鼠指倒物件時可以有資訊顯示
                     tippy(info.el, {
+                        // 出現和消失的時間(ms)
                         delay:[100,200],
+                        // 名符其實，箭頭
                         arrow:true,
+                        // 讓content中可以寫入HTML語法
                         allowHTML:true,
-                        content: `<b>customer</b> : ${info.event.extendedProps.customer_id} <br> <b>payment condition</b> : ${info.event.extendedProps.payment_condition}`,
+                        // 內容區塊
+                        content: `<b>Customer : </b>  ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b>  ${info.event.extendedProps.payment_condition} <br><b>Vegetarian Number : </b>${info.event.extendedProps.vegetarian_number}`,
                     });
                 },
+                // 將JSON格式的資料餵進calender
                 events: all_restaurant_datas,
+                // 點擊事件時執行
                 eventClick:function(info){
+
+
+                    // 觸發連結，讓畫面移動到編輯區塊
                     let order_id = info.event.id;
                     $(`#edit_btn${order_id}`).click();
                 }
             });
-
+            // 將calendar選染出來
             calendar.render();
-
     })
-
 </script>
 <script>
     // test timepicker
     $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 15,
-        minTime: '1',
+        //24小時，沒有AM PM
+        timeFormat: 'H:mm',
+        // 每一選項的間格為30min
+        interval: 30,
+        // 可選的最小的時間(可單寫時，或是像maxTime寫完整)
+        minTime: '7',
+        // 可選的最大時間
         maxTime: '6:00pm',
-        defaultTime: '1',
+        // 預設顯示現在時間
+        defaultTime: 'now',
+        // 選單的開始時間，跟最小時間相互影響，設同樣的最好理解
         startTime: '12:00',
         dynamic: true,
         dropdown: true,

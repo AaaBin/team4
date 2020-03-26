@@ -249,6 +249,17 @@
 {{-- 接入js，並初始化datatables --}}
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+{{-- calendar --}}
+<!-- moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- fullcalendar -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- core -->
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<!-- interaction plugin -->
+<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
+<!-- day grid -->
+<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
@@ -318,17 +329,7 @@
     }
 </script>
 
-{{-- calendar --}}
-<!-- moment.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<!-- fullcalendar -->
-<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
-<!-- core -->
-<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
-<!-- interaction plugin -->
-<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
-<!-- day grid -->
-<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+
 <script>
 
     // passing data in js
@@ -337,6 +338,7 @@
 
     all_camp_datas.forEach(element => {
         element.title = String(element.customer_id) + ":" + element.campsite_type ;
+        element.borderColor = "#CCCCCC";
         element.start = element.check_in_date;
         element.end = element.striking_camp_date;
         if (element.campsite_type == "Grass") {
@@ -369,7 +371,7 @@
                         delay:[100,200],
                         arrow:true,
                         allowHTML:true,
-                        content: `<b>customer</b> : ${info.event.extendedProps.customer_id} <br> <b>payment condition</b> : ${info.event.extendedProps.payment_condition}`,
+                        content: `<b>Customer : </b>  ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b> ${info.event.extendedProps.payment_condition} <br><b>Equipment Need : </b>${info.event.extendedProps.equipment_need}`,
                     });
                 },
                 events: all_camp_datas,

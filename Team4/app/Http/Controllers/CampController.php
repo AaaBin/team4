@@ -10,7 +10,7 @@ class CampController extends Controller
 {
     public function index(Request $request)
     {
-        $all_camp_datas = Camp::all();
+        $all_camp_datas = Camp::with('customer')->get();
         return view('admin/camp/index', compact("all_camp_datas"));
     }
 
