@@ -31,8 +31,6 @@ class RestaurantController extends Controller
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
-        dd($request_data);
-
         $item = Restaurant::find($id);
         $item->update($request_data);
         return redirect('admin/booking/restaurant');

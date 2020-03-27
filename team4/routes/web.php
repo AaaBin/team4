@@ -69,6 +69,14 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::post('/booking/restaurant','RestaurantController@store');
     Route::patch('/booking/restaurant/{id}','RestaurantController@update');
     Route::delete('/booking/restaurant/{id}','RestaurantController@delete');
+
+    // customer
+    Route::get('/customer','CustomerController@index');
+    Route::post('/customer','CustomerController@store');
+    Route::patch('/customer/{id}','CustomerController@update');
+    Route::delete('/customer/{id}','CustomerController@delete');
+
+
 });
 
 
