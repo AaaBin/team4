@@ -15,37 +15,67 @@ class CampController extends Controller
     }
 
     // store
-    // public function store(Request $request)
-    // {
-    //     $request_data = $request->all();
-    //     // 以new創建新資料
-    //     $camp = new Camp;
-    //     $camp->date = $request_data['date'];
-    //     $camp->title = $request_data['title'];
-    //     $camp->content = $request_data['content'];
-    //     //save data
-    //     $camp->save();
+    public function store(Request $request)
+    {
+        $request_data = $request->all();
+        if ($request_data["campsite_type"] == "Grass") {
+            $one_day_price = 300;
+        }
+        if ($request_data["campsite_type"] == "Small Pavilion") {
+            $one_day_price = 400;
+        }
+        if ($request_data["campsite_type"] == "Big Pavilion") {
+            $one_day_price = 2500;
+        }
+        $check_in_date = Carbon::parse($request_data["check_in_date"]);
+        $striking_camp_date = Carbon::parse($request_data["striking_camp_date"]);
+        $camp_days = $striking_camp_date->diffInDays($check_in_date);
+        // 以new創建新資料
+        $camp = new Camp;
+        $camp->customer_id = $request_data['customer_id'];
+        $camp->adult = $request_data['adult'];
+        $camp->child = $request_data['child'];
+        $camp->check_in_date = $request_data['check_in_date'];
+        $camp->striking_camp_date = $request_data['striking_camp_date'];
+        $camp->campsite_type = $request_data['campsite_type'];
+        $camp->equipment_need = $request_data['equipment_need'];
 
-    //     return redirect('/admin/camp');
-    // }
+        if ($request_data['equipment_need'] == "Yes") {
+            $camp->price = $camp_days * $one_day_price + 1000;
+        }else {
+            $camp->price = $camp_days * $one_day_price;
+        }
+        $camp->remark = $request_data['remark'];
+
+        //save data
+        $camp->save();
+
+        return redirect('/admin/booking/camp');
+    }
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
         $item = Camp::find($id);
         if ($request_data["campsite_type"] == "Grass") {
-            $one_dat_price = 300;
+            $one_day_price = 300;
         }
         if ($request_data["campsite_type"] == "Small Pavilion") {
-            $one_dat_price = 400;
+            $one_day_price = 400;
         }
         if ($request_data["campsite_type"] == "Big Pavilion") {
-            $one_dat_price = 2500;
+            $one_day_price = 2500;
         }
 
         $check_in_date = Carbon::parse($request_data["check_in_date"]);
         $striking_camp_date = Carbon::parse($request_data["striking_camp_date"]);
         $camp_days = $striking_camp_date->diffInDays($check_in_date);
-        $item->price = $camp_days * $one_dat_price;
+
+        if ($request_data['equipment_need'] == "Yes") {
+            $item->price = $camp_days * $one_day_price + 1000;
+        }else {
+            $item->price = $camp_days * $one_day_price;
+        }
+
         $item->update($request_data);
         return redirect('admin/booking/camp');
     }

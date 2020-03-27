@@ -15,7 +15,7 @@
 
 
 <style>
-    .fc-event-container{
+    .fc-event-container {
         cursor: pointer;
     }
 </style>
@@ -26,12 +26,67 @@
 @section('content')
 <div class="container">
     <h2>營區預約表單</h2>
-    {{-- <p>
+    <p>
         <a class="btn btn-primary" data-toggle="collapse" href="#create_collapse" role="button" aria-expanded="false"
             aria-controls="create_collapse">
             new camp booking list
         </a>
-    </p> --}}
+    </p>
+    {{-- 摺疊，新增區塊 --}}
+    <div class="collapse" id="create_collapse">
+        <div class="card card-body">
+            <form method="POST" action="/admin/booking/camp" enctype="multipart/form-data">
+                @csrf
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="customer_id">Customer id</label>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="adult">Adult</label>
+                        <input type="number" min="0" class="form-control" id="adult" name="adult" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="child">Child</label>
+                        <input type="number" min="0" class="form-control" id="child" name="child" value="0" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="check_in_date">Check in date</label>
+                        <input type="date" class="form-control" name="check_in_date" id="check_in_date" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="striking_camp_date">Striking camp date</label>
+                        <input type="date" class="form-control" name="striking_camp_date" id="striking_camp_date"
+                            required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="campsite_type">Campsite type</label>
+                        <select class="form-control" name="campsite_type">
+                            <option>Grass</option>
+                            <option>Pavilion</option>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="equipment_need">Equipment Need</label>
+                        <select class="form-control" name="equipment_need">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="remark">Remark</label>
+                    <textarea class="form-control" name="remark" id="remark" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 <hr>
 
@@ -39,7 +94,7 @@
 
 
 {{-- calendar --}}
-<div class="container" style="padding:25px 50px">
+<div class="container my-5">
     <div id="calendar"></div>
 </div>
 
@@ -50,11 +105,33 @@
 
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <b>
-            <p>Order ID:{{$item->id}} </p>
-            <p>Customer ID:{{$item->customer_id}}</p>
-            <p>Name:</p>
-            </b>
+            <div class="card p-4">
+                <div class="row">
+                    <p class="col">Order ID:{{$item->id}} </p>
+                    <p class="col">Check in date:{{$item->check_in_date}}</p>
+                    <p class="col">Adult:{{$item->adult}}</p>
+
+                </div>
+                <div class="row">
+                    <p class="col">Customer ID:{{$item->customer_id}}</p>
+                    <p class="col">Striking camp date:{{$item->striking_camp_date}}</p>
+                    <p class="col">Child:{{$item->child}}</p>
+                </div>
+                <div class="row">
+                    <p class="col">Name:{{$item->customer->name}}</p>
+                    <p class="col">Campsite type:{{$item->campsite_type}}</p>
+                    <p class="col"></p>
+                </div>
+                <div class="row">
+                    <p class="col"></p>
+                    <p class="col">Equipment need:{{$item->equipment_need}}</p>
+                    <p class="col"></p>
+                </div>
+                <b>
+                <p>Payment condition:{{$item->payment_condition}}</p>
+                </b>
+                <p>Remark:{{$item->remark}}</p>
+            </div>
             <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -89,8 +166,7 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label for="campsite_type{{$item->id}}">Campsite type</label>
-                        <select id="campsite_type{{$item->id}}" class="form-control form-control-lg "
-                            name="campsite_type">
+                        <select id="campsite_type{{$item->id}}" class="form-control  " name="campsite_type">
                             @if ($item->campsite_type == "Grass")
                             <option selected>Grass</option>
                             <option>Small Pavilion</option>
@@ -112,8 +188,8 @@
                     </div>
                     <div class="form-group col">
                         <label for="equipment_need{{$item->id}}">Equipment need</label>
-                        <select id="equipment_need{{$item->id}}"
-                            class="form-control form-control-lg equipment_need_select" name="equipment_need">
+                        <select id="equipment_need{{$item->id}}" class="form-control  equipment_need_select"
+                            name="equipment_need">
                             @if ($item->equipment_need == "Yes")
                             <option selected>Yes</option>
                             <option>No</option>
@@ -124,12 +200,22 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="payment_condition{{$item->id}}">Payment condition</label>
-                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
-                        value="{{$item->payment_condition}}" required>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="payment_condition{{$item->id}}">Payment condition</label>
+                        <select id="payment_condition{{$item->id}}" class="form-control"
+                            name="payment_condition">
+                            @if ($item->payment_condition == "Ok")
+                            <option selected>Ok</option>
+                            <option>Not yet</option>
+                            @else
+                            <option selected>Not yet</option>
+                            <option>Ok</option>
+                            @endif
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="remark{{$item->id}}">Remark</label>
                     <textarea type="text" class="form-control" name="remark"
@@ -143,48 +229,7 @@
     @endforeach
 
 </div>
-{{-- 摺疊，新增區塊 --}}
-{{-- <div class="collapse" id="create_collapse">
-        <div class="card card-body">
-            <form method="POST" action="/admin/flower" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="customer_id">Customer id</label>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
-                </div>
-                <div class="form-group">
-                    <label for="adult">Adult</label>
-                    <input type="number" min="0" class="form-control" id="adult" name="adult" required>
-                </div>
-                <div class="form-group">
-                    <label for="child">Child</label>
-                    <input type="number" min="0" class="form-control" id="child" name="child" required>
-                </div>
-                <div class="form-group">
-                    <label for="check_in_date">Check in date</label>
-                    <input type="date" class="form-control" name="check_in_date" id="check_in_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="striking_camp_date">Striking camp date</label>
-                    <input type="date" class="form-control" name="striking_camp_date" id="striking_camp_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="campsite_type">Campsite type</label>
-                    <select class="form-control form-control-lg">
-                        <option>Grass</option>
-                        <option>Pavilion</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="equipment_need">
-                    <label class="form-check-label" for="equipment_need">
-                        Equipment need
-                    </label>
-                  </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div> --}}
+
 
 <hr>
 <div class="table_section p-5">
@@ -331,13 +376,12 @@
 
 
 <script>
-
     // passing data in js
     // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
     var all_camp_datas = {!! json_encode($all_camp_datas,JSON_HEX_TAG) !!};
 
     all_camp_datas.forEach(element => {
-        element.title = String(element.customer_id) + ":" + element.campsite_type ;
+        element.title = element.customer.name + ":" + element.campsite_type ;
         element.borderColor = "#CCCCCC";
         element.start = element.check_in_date;
         element.end = element.striking_camp_date;

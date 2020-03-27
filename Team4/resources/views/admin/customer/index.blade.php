@@ -24,15 +24,15 @@
             <form method="POST" action="/admin/customer" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row ">
-                    <div class="form-group">
+                    <div class="form-group col">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <div class="form-group mx-5">
+                    <div class="form-group col">
                         <label for="phone">Phone</label>
                         <input class="form-control" type="text" min="0" name="phone" id="phone" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col">
                         <label for="email">Email</label>
                         <input class="form-control" type="text" min="0" name="email" id="email" required>
                     </div>
@@ -92,15 +92,15 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-row ">
-                    <div class="form-group">
+                    <div class="form-group col">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" required>
                     </div>
-                    <div class="form-group mx-5">
+                    <div class="form-group col">
                         <label for="phone">Phone</label>
                         <input class="form-control" type="text" min="0" name="phone" id="phone" value="{{$item->phone}}" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col">
                         <label for="email">Email</label>
                         <input class="form-control" type="text" min="0" name="email" id="email" value="{{$item->email}}" required>
                     </div>

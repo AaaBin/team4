@@ -19,7 +19,7 @@
 
 <style>
     /* 針對fullcalendar上的事件改變滑鼠hover的游標 */
-    .fc-event-container{
+    .fc-event-container {
         cursor: pointer;
     }
 </style>
@@ -30,8 +30,56 @@
 @section('content')
 <div class="container">
     <h2>用餐預約表單</h2>
+
+    <hr>
+
+    {{-- 摺疊，新增區塊 --}}
+    <div class="collapse" id="create_collapse">
+        <div class="card card-body">
+            <form method="POST" action="/admin/booking/restaurant" enctype="multipart/form-data">
+                @csrf
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="adult">Total Number</label>
+                        <input type="number" min="0" class="form-control" id="total_number"
+                            name="total_number"  required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="vegetarian_number">Vegetarian Number</label>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number" name="vegetarian_number" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="time_session">Time_session</label>
+                        <select id="time_session" class="form-control form-control-lg " name="time_session">
+                            <option selected>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment_condition{{$item->id}}">Payment condition</label>
+                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
+                        value="{{$item->payment_condition}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="remark{{$item->id}}">Remark</label>
+                    <textarea type="text" class="form-control" name="remark"
+                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
-<hr>
+
 
 
 
@@ -50,9 +98,9 @@
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
             <b>
-            <p>Order ID:{{$item->id}}</p>
-            <p>Customer ID:{{$item->customer_id}}</p>
-            <p>Name:</p>
+                <p>Order ID:{{$item->id}}</p>
+                <p>Customer ID:{{$item->customer_id}}</p>
+                <p>Name:</p>
             </b>
             <form method="POST" action="/admin/booking/restaurant/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
@@ -60,13 +108,13 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label for="adult{{$item->total_number}}">Total Number</label>
-                        <input type="number" min="0" class="form-control" id="total_number{{$item->id}}" name="total_number"
-                            value="{{$item->total_number}}" required>
+                        <input type="number" min="0" class="form-control" id="total_number{{$item->id}}"
+                            name="total_number" value="{{$item->total_number}}" required>
                     </div>
                     <div class="form-group col">
                         <label for="vegetarian_number{{$item->id}}">Vegetarian Number</label>
-                        <input type="number" min="0" class="form-control" id="vegetarian_number{{$item->id}}" name="vegetarian_number"
-                            value="{{$item->vegetarian_number}}" required>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number{{$item->id}}"
+                            name="vegetarian_number" value="{{$item->vegetarian_number}}" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -77,8 +125,7 @@
                     </div>
                     <div class="form-group col">
                         <label for="time{{$item->time}}">Time</label>
-                        <select id="time{{$item->id}}" class="form-control form-control-lg "
-                            name="time">
+                        <select id="time{{$item->id}}" class="form-control form-control-lg " name="time">
                             @if ($item->time == "Breakfast")
                             <option selected>Breakfast</option>
                             <option>Lunch</option>
@@ -265,7 +312,6 @@
 </script>
 
 <script>
-
     // passing data in js
     // https://stackoverflow.com/questions/30074107/laravel-5-passing-variable-to-javascript
     var all_restaurant_datas = {!! json_encode($all_restaurant_datas,JSON_HEX_TAG) !!};
