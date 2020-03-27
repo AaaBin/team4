@@ -54,18 +54,24 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Order</th>
                 <th style="width:200px;">edit/delete</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($all_customer_datas as $item)
-
             <tr id="data_{{$item->id}}">
                 <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->phone}}</td>
                 <td>{{$item->email}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#order_detail{{$item->id}}">
+                        order detail
+                    </button>
+                </td>
                 <td>
                     {{-- 修改、刪除 --}}
                     <a class="btn col-12 btn-block btn-sm btn-primary" data-toggle="collapse"
@@ -93,16 +99,19 @@
                 @method('PATCH')
                 <div class="form-row ">
                     <div class="form-group col">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" required>
+                        <label for="name{{$item->id}}">Name</label>
+                        <input type="text" class="form-control" id="name{{$item->id}}" name="name"
+                            value="{{$item->name}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="phone">Phone</label>
-                        <input class="form-control" type="text" min="0" name="phone" id="phone" value="{{$item->phone}}" required>
+                        <label for="phone{{$item->id}}">Phone</label>
+                        <input class="form-control" type="text" min="0" name="phone" id="phone{{$item->id}}"
+                            value="{{$item->phone}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="email">Email</label>
-                        <input class="form-control" type="text" min="0" name="email" id="email" value="{{$item->email}}" required>
+                        <label for="email{{$item->id}}">Email</label>
+                        <input class="form-control" type="text" min="0" name="email" id="email{{$item->id}}"
+                            value="{{$item->email}}" required>
                     </div>
                 </div>
 
@@ -114,6 +123,99 @@
     @endforeach
 
 </div>
+@foreach ($all_customer_datas as $item)
+<!-- 彈出視窗 -->
+<div class="modal fade" id="order_detail{{$item->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">訂單狀態:{{$item->name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Camp:</h3>
+                @if ($item->camp == "[]")
+                <p>this customer do not have any camping order</p>
+                @else
+                    @foreach ($item->camp as $camp_item)
+                    <div class="card p-4 my-2 border-secondary">
+                        <div class="row">
+                            <p class="col">Camp Order ID:{{$camp_item->id}} </p>
+                            <p class="col">Check in date:{{$camp_item->check_in_date}}</p>
+                            <p class="col">Adult:{{$camp_item->adult}}</p>
+
+                        </div>
+                        <div class="row">
+                            <p class="col">Customer ID:{{$camp_item->customer_id}}</p>
+                            <p class="col">Striking camp date:{{$camp_item->striking_camp_date}}</p>
+                            <p class="col">Child:{{$camp_item->child}}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col">Name:{{$camp_item->customer->name}}</p>
+                            <p class="col">Campsite type:{{$camp_item->campsite_type}}</p>
+                            <p class="col"></p>
+                        </div>
+                        <div class="row">
+                            <p class="col"></p>
+                            <p class="col">Equipment need:{{$camp_item->equipment_need}}</p>
+                            <p class="col"></p>
+                        </div>
+                        <b>
+                            <p>Payment condition:{{$camp_item->payment_condition}}</p>
+                        </b>
+                        <p>Remark:
+                            <span class="card p-2">{{$camp_item->remark}}</span>
+                        </p>
+                    </div>
+                    @endforeach
+                @endif
+                <hr>
+                <h3>Resrtautant:</h3>
+                @if ($item->restaurant == "[]")
+                <p>this customer do not have any restaurant order</p>
+                @else
+                    @foreach ($item->restaurant as $restaurant_item)
+                    <div class="card p-4 my-2 border-secondary">
+                        <div class="row">
+                            <p class="col">Restautant Order ID:{{$restaurant_item->id}} </p>
+                            <p class="col">Date:{{$restaurant_item->date}}</p>
+                            <p class="col">Total number:{{$restaurant_item->total_number}}</p>
+
+                        </div>
+                        <div class="row">
+                            <p class="col">Customer ID:{{$restaurant_item->customer_id}}</p>
+                            <p class="col">Time:{{$restaurant_item->time}}</p>
+                            <p class="col">Vegetarian number:{{$restaurant_item->vegetarian_number}}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-4">Name:{{$restaurant_item->customer->name}}</p>
+                            <p class="col-4">Time session:{{$restaurant_item->time_session}}</p>
+                        </div>
+                        <b>
+                            <p>Payment condition:{{$restaurant_item->payment_condition}}</p>
+                        </b>
+                        <p>Remark:
+                            <span class="card p-2">{{$restaurant_item->remark}}</span>
+                        </p>
+                    </div>
+                    @endforeach
+                @endif
+                <hr>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+
 @endsection
 @section('js')
 {{-- 接入js，並初始化datatables --}}

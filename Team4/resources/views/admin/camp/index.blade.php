@@ -31,9 +31,19 @@
             aria-controls="create_collapse">
             new camp booking list
         </a>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </p>
     {{-- 摺疊，新增區塊 --}}
     <div class="collapse" id="create_collapse">
+        <p>新增訂單前請先確認已經建立顧客資料，若無顧客資料則無法建立訂單</p>
         <div class="card card-body">
             <form method="POST" action="/admin/booking/camp" enctype="multipart/form-data">
                 @csrf
@@ -68,7 +78,8 @@
                         <label for="campsite_type">Campsite type</label>
                         <select class="form-control" name="campsite_type">
                             <option>Grass</option>
-                            <option>Pavilion</option>
+                            <option>Small Pavilion</option>
+                            <option>Big Pavilion</option>
                         </select>
                     </div>
                     <div class="form-group col">
@@ -128,7 +139,7 @@
                     <p class="col"></p>
                 </div>
                 <b>
-                <p>Payment condition:{{$item->payment_condition}}</p>
+                    <p>Payment condition:{{$item->payment_condition}}</p>
                 </b>
                 <p>Remark:
                     <span class="card p-2">{{$item->remark}}</span>
@@ -205,8 +216,7 @@
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label for="payment_condition{{$item->id}}">Payment condition</label>
-                        <select id="payment_condition{{$item->id}}" class="form-control"
-                            name="payment_condition">
+                        <select id="payment_condition{{$item->id}}" class="form-control" name="payment_condition">
                             @if ($item->payment_condition == "Ok")
                             <option selected>Ok</option>
                             <option>Not yet</option>
@@ -384,17 +394,19 @@
 
     all_camp_datas.forEach(element => {
         element.title = element.customer.name + ":" + element.campsite_type ;
-        element.borderColor = "#CCCCCC";
         element.start = element.check_in_date;
         element.end = element.striking_camp_date;
         if (element.campsite_type == "Grass") {
-            element.backgroundColor = "#78B399";
+            element.borderColor = "#BEEF9E";
+            element.backgroundColor = "#BEEF9E";
         }
         if (element.campsite_type == "Small Pavilion") {
-            element.backgroundColor = "#FFE4AB";
+            element.borderColor = "#F4E8D9";
+            element.backgroundColor = "#F4E8D9";
         }
         if (element.campsite_type == "Big Pavilion") {
-            element.backgroundColor = "#B8A783";
+            element.borderColor = "#CCC2B8";
+            element.backgroundColor = "#CCC2B8";
         }
         element.className ="Order_" + String(element.id);
 

@@ -17,13 +17,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
-        // 以new創建新資料
-        $customer = new Customer;
-        $customer->date = $request_data['date'];
-        $customer->title = $request_data['title'];
-        $customer->content = $request_data['content'];
-        //save data
-        $customer->save();
+        Customer::create($request_data);
 
         return redirect('/admin/customer');
     }

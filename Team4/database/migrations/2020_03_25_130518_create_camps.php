@@ -24,7 +24,7 @@ class CreateCamps extends Migration
             $table->string('equipment_need');
             $table->string('price');
             $table->string('payment_condition')->default("not yet");
-            $table->string('remark',1000)->nullable();
+            $table->string('remark',1000)->nullable()->default("No");
             $table->timestamps();
         });
     }

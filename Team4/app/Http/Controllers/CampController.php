@@ -18,6 +18,10 @@ class CampController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
+
+        $validatedData = $request->validate([
+            'customer_id' => 'exists:customers,id',
+        ]);
         if ($request_data["campsite_type"] == "Grass") {
             $one_day_price = 300;
         }

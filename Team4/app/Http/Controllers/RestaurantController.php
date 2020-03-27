@@ -18,6 +18,10 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
+
+        $validatedData = $request->validate([
+            'customer_id' => 'exists:customers,id',
+        ]);
         // 以new創建新資料
         $restaurant = new Restaurant;
         $restaurant->customer_id = $request_data['customer_id'];

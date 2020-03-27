@@ -36,15 +36,24 @@
 <div class="container">
     <h2>用餐預約表單</h2>
 
-    <hr>
     <p>
         <a class="btn btn-primary" data-toggle="collapse" href="#create_collapse" role="button" aria-expanded="false"
             aria-controls="create_collapse">
             new restaurant booking list
         </a>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </p>
     {{-- 摺疊，新增區塊 --}}
-    <div class="collapse" id="create_collapse">
+    <div class="collapse my-3" id="create_collapse">
+        <p>新增訂單前請先確認已經建立顧客資料，若無顧客資料則無法建立訂單</p>
         <div class="card card-body">
             <form method="POST" action="/admin/booking/restaurant" enctype="multipart/form-data">
                 @csrf
@@ -71,7 +80,7 @@
                     </div>
                     <div class="form-group col">
                         <label for="time">Time</label>
-                        <input class="form-control timepicker" id="time" name="time" required>
+                        <input class="form-control timepicker" id="time" name="time" required autocomplete="off">
                     </div>
                     <div class="form-group col">
                         <label for="time_session">Time_session</label>
@@ -92,6 +101,7 @@
         </div>
     </div>
 </div>
+<hr>
 
 
 
@@ -99,7 +109,7 @@
 
 
 {{-- calendar --}}
-<div class="container" style="padding:25px 50px">
+<div class="container">
     <div id="calendar"></div>
 </div>
 
@@ -123,11 +133,11 @@
                     <p class="col">Vegetarian number:{{$item->vegetarian_number}}</p>
                 </div>
                 <div class="row">
-                    <p class="col-4">Name:{{$item->customer->name}}</p>
+                    <p class="col-4">Name:{{$item->customer['name']}}</p>
                     <p class="col-4">Time session:{{$item->time_session}}</p>
                 </div>
                 <b>
-                <p>Payment condition:{{$item->payment_condition}}</p>
+                    <p>Payment condition:{{$item->payment_condition}}</p>
                 </b>
                 <p>Remark:
                     <span class="card p-2">{{$item->remark}}</span>
@@ -138,33 +148,35 @@
                 @method('PATCH')
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="customer_id">Customer ID</label>
-                        <input type="number" min="0" class="form-control" id="customer_id" name="customer_id"
-                            value="{{$item->customer_id}}" required>
+                        <label for="customer_id{{$item->id}}">Customer ID</label>
+                        <input type="number" min="0" class="form-control" id="customer_id{{$item->id}}"
+                            name="customer_id" value="{{$item->customer_id}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="total_number">Total Number</label>
-                        <input type="number" min="0" class="form-control" id="total_number" name="total_number"
-                            value="{{$item->total_number}}" required>
+                        <label for="total_number{{$item->id}}">Total Number</label>
+                        <input type="number" min="0" class="form-control" id="total_number{{$item->id}}"
+                            name="total_number" value="{{$item->total_number}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="vegetarian_number">Vegetarian Number</label>
-                        <input type="number" min="0" class="form-control" id="vegetarian_number"
+                        <label for="vegetarian_number{{$item->id}}">Vegetarian Number</label>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number{{$item->id}}"
                             value="{{$item->vegetarian_number}}" name="vegetarian_number" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date" value="{{$item->date}}" required>
+                        <label for="date{{$item->id}}">Date</label>
+                        <input type="date" class="form-control" id="date{{$item->id}}" name="date"
+                            value="{{$item->date}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="time">Time</label>
-                        <input class="form-control timepicker" id="time" name="time" value="{{$item->time}}" required>
+                        <label for="time{{$item->id}}">Time</label>
+                        <input class="form-control timepicker" id="time{{$item->id}}" name="time"
+                            value="{{$item->time}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="time_session">Time_session</label>
-                        <select id="time_session" class="form-control" name="time_session">
+                        <label for="time_session{{$item->id}}">Time_session</label>
+                        <select id="time_session{{$item->id}}" class="form-control" name="time_session">
                             @if ($item->time_session == "Breakfast")
                             <option selected>Breakfast</option>
                             <option>Lunch</option>
@@ -199,8 +211,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="remark">Remark</label>
-                    <textarea type="text" class="form-control" name="remark" id="remark"></textarea>
+                    <label for="remark{{$item->id}}">Remark</label>
+                    <textarea type="text" class="form-control" name="remark" id="remark{{$item->id}}"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
@@ -365,19 +377,21 @@
     // 編輯陣列中的每一筆物件，加上可以讓fullcalendar閱讀的屬性
     all_restaurant_datas.forEach(element => {
         element.title = String(element.total_number) + "peolpe  at:" + element.time;
-        element.borderColor = "#CCCCCC";
         // fullcalendar的時間格式為 YYYY-MM-DDTHH:mm:ss
         if (element.time_session == "Lunch") {
             element.start = element.date + "T" + element.time + ":00";
-            element.backgroundColor = "#78B399";
+            element.borderColor = "#FFEA92";
+            element.backgroundColor = "#FFEA92";
         }
         if (element.time_session == "Dinner") {
             element.start = element.date + "T" + element.time + ":00";
-            element.backgroundColor = "#FFE4AB";
+            element.borderColor = "#F7ACA9";
+            element.backgroundColor = "#F7ACA9";
         }
         if (element.time_session == "Breakfast") {
             element.start = element.date + "T" + element.time + ":00";
-            element.backgroundColor = "#B8A783";
+            element.borderColor = "#C5F9EC";
+            element.backgroundColor = "#C5F9EC";
         }
         element.className ="Order_" + String(element.id);
         // 預設中沒有設定結束時間時，單一日的事件會被記載成全天的事件
@@ -422,14 +436,13 @@
                         // 讓content中可以寫入HTML語法
                         allowHTML:true,
                         // 內容區塊
-                        content: `<b>Customer : </b>  ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b>  ${info.event.extendedProps.payment_condition} <br><b>Vegetarian Number : </b>${info.event.extendedProps.vegetarian_number}`,
+                        content: `<b>Customer : </b> ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b>  ${info.event.extendedProps.payment_condition} <br><b>Vegetarian Number : </b>${info.event.extendedProps.vegetarian_number}`,
                     });
                 },
                 // 將JSON格式的資料餵進calender
                 events: all_restaurant_datas,
                 // 點擊事件時執行
                 eventClick:function(info){
-
 
                     // 觸發連結，讓畫面移動到編輯區塊
                     let order_id = info.event.id;
