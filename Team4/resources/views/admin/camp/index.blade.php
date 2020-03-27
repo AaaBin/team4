@@ -83,7 +83,7 @@
                     <label for="remark">Remark</label>
                     <textarea class="form-control" name="remark" id="remark" cols="30" rows="10"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" data-toggle="collapse">Submit</button>
             </form>
         </div>
     </div>
@@ -105,7 +105,7 @@
 
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <div class="card p-4">
+            <div class="card p-4 my-2">
                 <div class="row">
                     <p class="col">Order ID:{{$item->id}} </p>
                     <p class="col">Check in date:{{$item->check_in_date}}</p>
@@ -130,7 +130,9 @@
                 <b>
                 <p>Payment condition:{{$item->payment_condition}}</p>
                 </b>
-                <p>Remark:{{$item->remark}}</p>
+                <p>Remark:
+                    <span class="card p-2">{{$item->remark}}</span>
+                </p>
             </div>
             <form method="POST" action="/admin/booking/camp/{{$item->id}}" enctype="multipart/form-data">
                 @csrf

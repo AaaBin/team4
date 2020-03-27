@@ -22,6 +22,11 @@
     .fc-event-container {
         cursor: pointer;
     }
+
+    .ui-timepicker-container,
+    .ui-corner-all {
+        border-radius: 3px;
+    }
 </style>
 @endsection
 
@@ -32,7 +37,12 @@
     <h2>用餐預約表單</h2>
 
     <hr>
-
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#create_collapse" role="button" aria-expanded="false"
+            aria-controls="create_collapse">
+            new restaurant booking list
+        </a>
+    </p>
     {{-- 摺疊，新增區塊 --}}
     <div class="collapse" id="create_collapse">
         <div class="card card-body">
@@ -40,13 +50,18 @@
                 @csrf
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="adult">Total Number</label>
-                        <input type="number" min="0" class="form-control" id="total_number"
-                            name="total_number"  required>
+                        <label for="customer_id">Customer ID</label>
+                        <input type="number" min="0" class="form-control" id="customer_id" name="customer_id" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="total_number">Total Number</label>
+                        <input type="number" min="0" class="form-control" id="total_number" name="total_number"
+                            required>
                     </div>
                     <div class="form-group col">
                         <label for="vegetarian_number">Vegetarian Number</label>
-                        <input type="number" min="0" class="form-control" id="vegetarian_number" name="vegetarian_number" required>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number"
+                            name="vegetarian_number" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -55,26 +70,24 @@
                         <input type="date" class="form-control" id="date" name="date" required>
                     </div>
                     <div class="form-group col">
+                        <label for="time">Time</label>
+                        <input class="form-control timepicker" id="time" name="time" required>
+                    </div>
+                    <div class="form-group col">
                         <label for="time_session">Time_session</label>
-                        <select id="time_session" class="form-control form-control-lg " name="time_session">
+                        <select id="time_session" class="form-control" name="time_session">
                             <option selected>Breakfast</option>
                             <option>Lunch</option>
                             <option>Dinner</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="payment_condition{{$item->id}}">Payment condition</label>
-                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
-                        value="{{$item->payment_condition}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="remark{{$item->id}}">Remark</label>
-                    <textarea type="text" class="form-control" name="remark"
-                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
+                    <label for="remark">Remark</label>
+                    <textarea type="text" class="form-control" name="remark" id="remark"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="#create_collapse" data-toggle="collapse" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>
@@ -97,65 +110,97 @@
 
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
-            <b>
-                <p>Order ID:{{$item->id}}</p>
-                <p>Customer ID:{{$item->customer_id}}</p>
-                <p>Name:</p>
-            </b>
+            <div class="card p-4 my-2">
+                <div class="row">
+                    <p class="col">Order ID:{{$item->id}} </p>
+                    <p class="col">Date:{{$item->date}}</p>
+                    <p class="col">Total number:{{$item->total_number}}</p>
+
+                </div>
+                <div class="row">
+                    <p class="col">Customer ID:{{$item->customer_id}}</p>
+                    <p class="col">Time:{{$item->time}}</p>
+                    <p class="col">Vegetarian number:{{$item->vegetarian_number}}</p>
+                </div>
+                <div class="row">
+                    <p class="col-4">Name:{{$item->customer->name}}</p>
+                    <p class="col-4">Time session:{{$item->time_session}}</p>
+                </div>
+                <b>
+                <p>Payment condition:{{$item->payment_condition}}</p>
+                </b>
+                <p>Remark:
+                    <span class="card p-2">{{$item->remark}}</span>
+                </p>
+            </div>
             <form method="POST" action="/admin/booking/restaurant/{{$item->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="adult{{$item->total_number}}">Total Number</label>
-                        <input type="number" min="0" class="form-control" id="total_number{{$item->id}}"
-                            name="total_number" value="{{$item->total_number}}" required>
+                        <label for="customer_id">Customer ID</label>
+                        <input type="number" min="0" class="form-control" id="customer_id" name="customer_id"
+                            value="{{$item->customer_id}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="vegetarian_number{{$item->id}}">Vegetarian Number</label>
-                        <input type="number" min="0" class="form-control" id="vegetarian_number{{$item->id}}"
-                            name="vegetarian_number" value="{{$item->vegetarian_number}}" required>
+                        <label for="total_number">Total Number</label>
+                        <input type="number" min="0" class="form-control" id="total_number" name="total_number"
+                            value="{{$item->total_number}}" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="vegetarian_number">Vegetarian Number</label>
+                        <input type="number" min="0" class="form-control" id="vegetarian_number"
+                            value="{{$item->vegetarian_number}}" name="vegetarian_number" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="date{{$item->id}}">Date</label>
-                        <input type="date" class="form-control" id="date{{$item->id}}" name="date"
-                            value="{{$item->date}}" required>
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" value="{{$item->date}}" required>
                     </div>
                     <div class="form-group col">
-                        <label for="time{{$item->time}}">Time</label>
-                        <select id="time{{$item->id}}" class="form-control form-control-lg " name="time">
-                            @if ($item->time == "Breakfast")
+                        <label for="time">Time</label>
+                        <input class="form-control timepicker" id="time" name="time" value="{{$item->time}}" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="time_session">Time_session</label>
+                        <select id="time_session" class="form-control" name="time_session">
+                            @if ($item->time_session == "Breakfast")
                             <option selected>Breakfast</option>
                             <option>Lunch</option>
                             <option>Dinner</option>
-                            @else
-
-                            @if ($item->time == "Lunch")
+                            @endif
+                            @if ($item->time_session == "Lunch")
+                            <option>Breakfast</option>
                             <option selected>Lunch</option>
                             <option>Dinner</option>
+                            @endif
+                            @if ($item->time_session == "Dinner")
                             <option>Breakfast</option>
-                            @else
-                            <option selected>Dinner</option>
                             <option>Lunch</option>
-                            <option>Breakfast</option>
+                            <option selected>Dinner</option>
                             @endif
 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <label for="payment_condition{{$item->id}}">Payment condition</label>
+                        <select id="payment_condition{{$item->id}}" class="form-control" name="payment_condition">
+                            @if ($item->payment_condition == "Ok")
+                            <option selected>Ok</option>
+                            <option>Not yet</option>
+                            @else
+                            <option selected>Not yet</option>
+                            <option>Ok</option>
                             @endif
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="payment_condition{{$item->id}}">Payment condition</label>
-                    <input type="text" class="form-control" name="payment_condition" id="payment_condition{{$item->id}}"
-                        value="{{$item->payment_condition}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="remark{{$item->id}}">Remark</label>
-                    <textarea type="text" class="form-control" name="remark"
-                        id="remark{{$item->id}}">{{$item->remark}}</textarea>
+                    <label for="remark">Remark</label>
+                    <textarea type="text" class="form-control" name="remark" id="remark"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a class="btn btn-secondary" data-toggle="collapse" href="#edit_collapse{{$item->id}}">cancel</a>
@@ -177,6 +222,7 @@
                 <th>vegetarian_number</th>
                 <th>date</th>
                 <th>time</th>
+                <th>time_session</th>
                 <th>price</th>
                 <th>payment_condition</th>
                 <th>remark</th>
@@ -193,6 +239,7 @@
                 <td>{{$item->vegetarian_number}}</td>
                 <td>{{$item->date}}</td>
                 <td>{{$item->time}}</td>
+                <td>{{$item->time_session}}</td>
                 <td>{{$item->price}}</td>
                 <td>{{$item->payment_condition}}</td>
                 <td>{{$item->remark}}</td>
@@ -397,17 +444,17 @@
     // test timepicker
     $('.timepicker').timepicker({
         //24小時，沒有AM PM
-        timeFormat: 'H:mm',
+        timeFormat: 'HH:mm',
         // 每一選項的間格為30min
         interval: 30,
         // 可選的最小的時間(可單寫時，或是像maxTime寫完整)
-        minTime: '7',
+        minTime: '06:30',
         // 可選的最大時間
         maxTime: '6:00pm',
         // 預設顯示現在時間
-        defaultTime: 'now',
+        // defaultTime: '12:00',
         // 選單的開始時間，跟最小時間相互影響，設同樣的最好理解
-        startTime: '12:00',
+        startTime: '06:30',
         dynamic: true,
         dropdown: true,
         scrollbar: false

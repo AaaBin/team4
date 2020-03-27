@@ -9,7 +9,7 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        $all_customer_datas = Customer::all();
+        $all_customer_datas = Customer::with('camp')->with('restaurant')->get();
         return view('admin/customer/index', compact("all_customer_datas"));
     }
 

@@ -16,7 +16,7 @@ class Customer extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -25,5 +25,14 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = ['name', 'phone', 'email', 'created_at', 'updated_at'];
+
+    public function camp()
+    {
+        return $this->hasMany('App\Camp');
+    }
+    public function restaurant()
+    {
+        return $this->hasMany('App\Restaurant');
+    }
 
 }

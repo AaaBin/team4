@@ -20,18 +20,25 @@ class RestaurantController extends Controller
         $request_data = $request->all();
         // 以new創建新資料
         $restaurant = new Restaurant;
+        $restaurant->customer_id = $request_data['customer_id'];
+        $restaurant->total_number = $request_data['total_number'];
+        $restaurant->vegetarian_number = $request_data['vegetarian_number'];
         $restaurant->date = $request_data['date'];
-        $restaurant->title = $request_data['title'];
-        $restaurant->content = $request_data['content'];
+        $restaurant->time = $request_data['time'];
+        $restaurant->time_session = $request_data['time_session'];
+        $restaurant->price = 500 * $request_data['total_number'];
+        $restaurant->remark = $request_data['remark'];
+        $restaurant->customer_id = $request_data['customer_id'];
         //save data
         $restaurant->save();
 
-        return redirect('/admin/restaurant');
+        return redirect('/admin/booking/restaurant');
     }
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
         $item = Restaurant::find($id);
+        $item->price = 500 * $request_data['total_number'];
         $item->update($request_data);
         return redirect('admin/booking/restaurant');
     }
