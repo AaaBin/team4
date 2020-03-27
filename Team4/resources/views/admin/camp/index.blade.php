@@ -95,6 +95,7 @@
                     <textarea class="form-control" name="remark" id="remark" cols="30" rows="10"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" data-toggle="collapse">Submit</button>
+                <a class="btn btn-secondary"data-toggle="collapse" href="#create_collapse" role="button">Cancel</a>
             </form>
         </div>
     </div>
@@ -429,7 +430,7 @@
                         delay:[100,200],
                         arrow:true,
                         allowHTML:true,
-                        content: `<b>Customer : </b>  ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b> ${info.event.extendedProps.payment_condition} <br><b>Equipment Need : </b>${info.event.extendedProps.equipment_need}`,
+                        content: `<b>Customer : </b>  ${info.event.extendedProps.customer.name} <br> <b>Payment Condition : </b> ${info.event.extendedProps.payment_condition} <br><b>Equipment Need : </b>${info.event.extendedProps.equipment_need} <br> <b>Adult: </b> ${info.event.extendedProps.adult} <br> <b>Child : </b> ${info.event.extendedProps.child}`,
                     });
                 },
                 events: all_camp_datas,

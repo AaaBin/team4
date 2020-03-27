@@ -50,7 +50,7 @@
                                 頁面
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="FrontPageDropdown">
-                                <a class="dropdown-item" href="/image_home">image home</a>
+                                <a class="dropdown-item" href="/">image home</a>
                                 <a class="dropdown-item" href="/home">home</a>
                                 <a class="dropdown-item" href="/intro">intro</a>
                                 <a class="dropdown-item" href="/flower">flower</a>
