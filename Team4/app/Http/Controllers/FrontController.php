@@ -53,6 +53,11 @@ class FrontController extends Controller
     {
         return view('/front/booking');
     }
+    // 預定紀錄
+    public function booking_record()
+    {
+        return view('/front/booking_record');
+    }
     // 交通
     public function traffic()
     {
