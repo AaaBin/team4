@@ -24,6 +24,7 @@ Route::get('/intro','FrontController@intro');
 Route::get('/flower','FrontController@flower');
 Route::get('/activity','FrontController@activity');
 Route::get('/booking','FrontController@booking');
+Route::get('/booking_record','FrontController@booking_record');
 Route::get('/traffic','FrontController@traffic');
 Route::get('/firefly_season','FrontController@firefly_season');
 

@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>沐心泉</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    <link rel="icon" href="{{asset('img/nav/logo_PC.svg')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('css/nav_style.css')}}">
@@ -23,20 +23,20 @@
     <nav class="nav_pc">
         <nav class="nav_pc_content fixed-top pt-4 px-4 d-flex justify-content-between">
             <div class="logo_pc ml-2">
-                <a href="#">
+                <a href="/home">
                     <img src="{{asset('img/nav/logo_PC.svg')}}" alt="logo" style="width: 70%;">
                 </a>
             </div>
 
             <div class="navbar_pc d-flex align-items-center">
                 <ul>
-                    <li class="mx-2"><a class="nav_about" href="">園區介紹</a></li>
-                    <li class="mx-2"><a href="">近日花況</a></li>
-                    <li class="mx-2"><a href="">活動資訊</a></li>
-                    <li class="mx-2"><a href="">當季活動</a></li>
-                    <li class="mx-2"><a href="">線上預約</a></li>
-                    <li class="mx-2"><a href="">訂位紀錄</a></li>
-                    <li class="mx-2"><a href="">交通指引</a></li>
+                    <li class="mx-2"><a class="nav_about" href="/intro">園區介紹</a></li>
+                    <li class="mx-2"><a href="/flower">近日花況</a></li>
+                    <li class="mx-2"><a href="/activity">活動資訊</a></li>
+                    <li class="mx-2"><a href="/firefly_season">當季活動</a></li>
+                    <li class="mx-2"><a href="/booking">線上預約</a></li>
+                    <li class="mx-2"><a href="/booking_record">訂位紀錄</a></li>
+                    <li class="mx-2"><a href="/traffic">交通指引</a></li>
                 </ul>
 
                 <div class="nav_fb ml-5 mr-2">

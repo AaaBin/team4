@@ -1,0 +1,391 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h3 {
+  font-size: 24px;
+  color: #000;
+}
+
+@media (max-width: 1139px) {
+  h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  h3 {
+    font-size: 16px;
+  }
+}
+
+p {
+  font-size: 19px;
+}
+
+@media (max-width: 1139px) {
+  p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  p {
+    font-size: 12px;
+  }
+}
+
+button img {
+  height: 20px;
+  width: 40px;
+  color: blue;
+}
+
+.content .garden_about {
+  margin-top: 160px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_about {
+    margin-top: 110px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_about {
+    margin-top: 60px;
+  }
+}
+
+.content .garden_about .garden_about_title {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_about .garden_about_title {
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_about .garden_about_title {
+    margin-bottom: 50px;
+  }
+}
+
+.content .garden_about .garden_about_text {
+  margin-bottom: 120px;
+}
+
+@media (max-width: 767px) {
+  .content .garden_about .garden_about_text {
+    margin-bottom: 40px;
+  }
+}
+
+.content .garden_about .garden_about_text .garden_about_textup {
+  margin: 80px 0 50px 0;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_about .garden_about_text .garden_about_textup {
+    margin: 70px 0 40px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_about .garden_about_text .garden_about_textup {
+    margin: 40px 0 30px 0;
+  }
+}
+
+.content .garden_view {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_view {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_view {
+    margin-bottom: 60px;
+  }
+}
+
+.content .garden_view .garden_view_box {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 767px) {
+  .content .garden_view .garden_view_box {
+    margin-bottom: 40px;
+  }
+}
+
+.content .garden_view .garden_view_box .garden_view_text h3 {
+  margin: 70px 0 40px 0;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_view .garden_view_box .garden_view_text h3 {
+    margin: 10px 0 20px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_view .garden_view_box .garden_view_text h3 {
+    margin: 40px 0 30px 0;
+  }
+}
+
+.content .garden_view .garden_purpos .garden_purpos_img {
+  margin-bottom: 40px;
+}
+
+.content .garden_walks {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_walks {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_walks {
+    margin-bottom: 60px;
+  }
+}
+
+.content .garden_walks .garden_walks_text h3 {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_walks .garden_walks_text h3 {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_walks .garden_walks_text h3 {
+    margin-bottom: 40px;
+  }
+}
+
+.content .garden_info {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info {
+    margin-bottom: 60px;
+  }
+}
+
+.content .garden_info .garden_info_text {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_text {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_text {
+    margin-bottom: 60px;
+  }
+}
+
+.content .garden_info .garden_info_text .garden_info_text_up .garden_info_text_up_zh {
+  padding: 50px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_text .garden_info_text_up .garden_info_text_up_zh {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_text .garden_info_text_up .garden_info_text_up_zh {
+    padding: 20px;
+  }
+}
+
+.content .garden_info .garden_info_text .garden_info_text_down {
+  width: 360px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_text .garden_info_text_down {
+    width: 290px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_text .garden_info_text_down {
+    width: 215px;
+  }
+}
+
+.content .garden_info .garden_info_card {
+  margin-bottom: 80px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_card {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_card {
+    margin-bottom: 40px;
+  }
+}
+
+.content .garden_info .garden_info_card .garden_info_card_text {
+  margin: 80px 0;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_card .garden_info_card_text {
+    margin: 40px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_card .garden_info_card_text {
+    margin: 30px 0;
+  }
+}
+
+.content .garden_info .garden_info_card .garden_info_card_dining .garden_info_card_dining_bottom a {
+  text-decoration: none;
+}
+
+.content .garden_info .garden_info_card .garden_info_card_dining .garden_info_card_dining_bottom a button {
+  background-color: transparent;
+  border: 1px solid;
+  padding: 5px 25px;
+}
+
+.content .garden_info .garden_info_card .garden_info_card_dining .garden_info_card_dining_bottom a button h3{
+    margin: 0;
+  }
+
+.content .garden_info .garden_info_card .garden_info_card_dining .garden_info_card_dining_bottom a button:hover h3 img {
+  margin: 0 0 0 30px;
+}
+
+.content .garden_info .garden_info_card .garden_info_card_dining .garden_info_card_dining_bottom a button h3 img {
+  margin: 0 0 0 20px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.content .garden_info .garden_info_card_button {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_card_button {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_card_button {
+    margin: 60px;
+  }
+}
+
+.content .garden_info .garden_info_card_button a button {
+  background-color: transparent;
+  border: 1px solid;
+  padding: 5px 25px;
+}
+.content .garden_info .garden_info_card_button a button h3{
+    margin: 0;
+  }
+
+.content .garden_info .garden_info_card_button a button:hover h3 img {
+  margin: 0 0 0 30px;
+}
+
+.content .garden_info .garden_info_card_button a button h3 img {
+  margin: 0 0 0 20px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.content .garden_info .garden_info_dining {
+  margin-bottom: 200px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_dining {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_dining {
+    margin: 30px;
+  }
+}
+
+.content .garden_info .garden_info_dining .garden_info_dining_text {
+  margin-bottom: 80px;
+}
+
+@media (max-width: 1139px) {
+  .content .garden_info .garden_info_dining .garden_info_dining_text {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content .garden_info .garden_info_dining .garden_info_dining_text {
+    margin: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+  .content .garden_info .garden_info_dining .garden_info_dining_img .garden_info_dining_img_n:nth-child(n+4) {
+    display: none;
+  }
+}
+
+.garden_footer {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 1139px) {
+  .garden_footer {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .garden_footer {
+    margin: 20px;
+  }
+}
+/*# sourceMappingURL=garden.css.map */
