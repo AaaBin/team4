@@ -16,17 +16,21 @@ class FrontController extends Controller
         // 將寄送資料儲存成變數
         $details = ['email' => 'birnie1571@gmail.com'];
         // 用new job的方式建立新的job，夾帶變數並加上要delay的時間
-        $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(3));
+        $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(0));
         // dispatch(派送)這一job進入queue，在這裡是使用database，代表會在database中建立資料
         dispatch($emailJob);
         return redirect('/home');
     }
-    public function testmail()
+    public function testmail(Request $request)
     {
         Mail::to('birnie1571@gmail.com')->send(new test);
         return redirect('/home');
     }
-
+    public function testmail2(Request $request)
+    {
+        Mail::to('birnie1571@gmail.com')->later(2,new test);
+        return redirect('/home');
+    }
 
 
     // 形象首頁

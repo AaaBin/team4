@@ -13,6 +13,8 @@
 
 Route::get('/test','FrontController@test_queue');
 Route::get('/test2','FrontController@testmail');
+Route::get('/test3','FrontController@testmail2');
+
 
 Auth::routes();
 
