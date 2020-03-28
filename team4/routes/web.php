@@ -12,7 +12,7 @@
 */
 
 Route::get('/test','FrontController@test_queue');
-
+Route::get('/test2','FrontController@testmail');
 
 Auth::routes();
 

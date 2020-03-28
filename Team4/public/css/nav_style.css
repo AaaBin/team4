@@ -34,6 +34,8 @@
 
   .nav_pc .nav_pc_content ul {
     margin: unset;
+    background-color: #FEFDF8;
+    padding: 3px 5px;
   }
 
   .nav_pc .nav_pc_content ul li {

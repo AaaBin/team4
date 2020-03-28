@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\flower;
+use App\Mail\test;
 use Carbon\Carbon;
 use App\Jobs\SendEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -14,9 +16,14 @@ class FrontController extends Controller
         // 將寄送資料儲存成變數
         $details = ['email' => 'birnie1571@gmail.com'];
         // 用new job的方式建立新的job，夾帶變數並加上要delay的時間
-        $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(60));
+        $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(3));
         // dispatch(派送)這一job進入queue，在這裡是使用database，代表會在database中建立資料
         dispatch($emailJob);
+        return redirect('/home');
+    }
+    public function testmail()
+    {
+        Mail::to('birnie1571@gmail.com')->send(new test);
         return redirect('/home');
     }
 
@@ -30,7 +37,7 @@ class FrontController extends Controller
     // 首頁
     public function home()
     {
-        return view('/front/index');
+        return view('/front/home');
     }
     // 園區介紹
     public function intro()

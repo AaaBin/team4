@@ -21,7 +21,7 @@
     <!-- 電腦nav------------------------------------ -->
 
     <nav class="nav_pc">
-        <nav class="nav_pc_content fixed-top pt-4 px-4 d-flex justify-content-between">
+        <nav class="nav_pc_content fixed-top pt-2 px-4 d-flex justify-content-between">
             <div class="logo_pc ml-2">
                 <a href="/home">
                     <img src="{{asset('img/nav/logo_PC.svg')}}" alt="logo" style="width: 70%;">
