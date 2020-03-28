@@ -13,6 +13,14 @@ const mix = require('laravel-mix');
 
 // mix.js('resources/js/app.js', 'public/js');
 // mix.sass('resources/sass/app.scss', 'public/css');
-mix.sass('resources/sass/flower_style.scss', 'public/css');
-mix.sass('resources/sass/index_style.scss', 'public/css');
+// 花況
+// mix.sass('resources/sass/flower_style.scss', 'public/css');
+// 首頁
+// mix.sass('resources/sass/index_style.scss', 'public/css');
+// 當季活動  (error)
+// mix.sass('resources/sass/firefly_style.scss', 'public/css');
+// 活動
+// mix.sass('resources/sass/activity_style.scss', 'public/css');
+
+
 
