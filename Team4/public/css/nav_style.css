@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "GenWanMinTW";
-    src: url(/fonts/GenWanMinTW-Light.ttf?b81844a0b71ae52ab10b13422385fee1) format("truetype"), url(/fonts/GenWanMinTW-Medium.ttf?b5354584ebb4a9be5bcebacb8c7b3c63) format("truetype"), url(/fonts/GenWanMinTW-Regular.ttf?b2a2424c5194f70602274b8bb7413088) format("truetype"), url(/fonts/GenWanMinTW-SemiBold.ttf?734ef9e62c83f8b68880cc16f669d6cd) format("truetype"), url(/fonts/GenWanMinTW-Light.woff?d199374e73094f0be5450cce33b5f24a) format("woff"), url(/fonts/GenWanMinTW-Medium.woff?d41d8cd98f00b204e9800998ecf8427e) format("woff"), url(/fonts/GenWanMinTW-Regular.woff?d41d8cd98f00b204e9800998ecf8427e) format("woff"), url(/fonts/GenWanMinTW-SemiBold.woff?d41d8cd98f00b204e9800998ecf8427e) format("woff");
+    font-family: 'GenWanMinTW';
+    src: url("../fonts/GenWanMinTW-Light.ttf") format("truetype"), url("../fonts/GenWanMinTW-Medium.ttf") format("truetype"), url("../fonts/GenWanMinTW-Regular.ttf") format("truetype"), url("../fonts/GenWanMinTW-SemiBold.ttf") format("truetype"), url("../fonts/GenWanMinTW-Light.woff") format("woff"), url("../fonts/GenWanMinTW-Medium.woff") format("woff"), url("../fonts/GenWanMinTW-Regular.woff") format("woff"), url("../fonts/GenWanMinTW-SemiBold.woff") format("woff");
   }
 
   * {
@@ -9,9 +9,9 @@
 
   body {
     background-color: #FEFDF8;
-    font-family: "GenWanMinTW";
+    font-family: 'GenWanMinTW';
     margin: 0;
-    letter-spacing: 0.2em;
+    letter-spacing: .2em;
     position: relative;
   }
 
@@ -41,11 +41,12 @@
     display: inline-block;
     color: #3A4B40;
     list-style: none;
-    transition: 0.7s;
+    -webkit-transition: .7s;
+    transition: .7s;
   }
 
   .nav_pc .nav_pc_content ul li a:after {
-    content: "";
+    content: '';
     background-color: #3A4B40;
     height: 4px;
     width: 25%;
@@ -53,7 +54,8 @@
     top: 160%;
     left: 35%;
     opacity: 0;
-    transition: 0.5s;
+    -webkit-transition: .5s;
+    transition: .5s;
   }
 
   .nav_pc .nav_pc_content ul li a:hover {
@@ -107,7 +109,8 @@
   }
 
   .nav #toggle:focus ~ .toggle-container .button-toggle {
-    box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+    -webkit-box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+            box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
   }
 
   .nav .nav_menu_btn {
@@ -116,9 +119,15 @@
     top: 25px;
     right: 20px;
     pointer-events: none;
+    -webkit-transition: 0.5s;
     transition: 0.5s;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     text-align: center;
   }
 
@@ -133,12 +142,14 @@
     line-height: 7px;
     text-transform: uppercase;
     white-space: nowrap;
-    transform: scaleY(-0.2);
+    -webkit-transform: scaleY(-0.2);
+            transform: scaleY(-0.2);
+    -webkit-transition: 0.5s, opacity 1s;
     transition: 0.5s, opacity 1s;
   }
 
   .nav .nav-item:after {
-    content: "";
+    content: '';
     background-color: #3A4B40;
     height: 3px;
     width: 45%;
@@ -146,66 +157,81 @@
     top: 40px;
     left: 22%;
     opacity: 0;
-    transition: 0.7s;
+    -webkit-transition: .7s;
+    transition: .7s;
   }
 
   .nav .nav-item:nth-child(1) {
-    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
   }
 
   .nav .nav-item:nth-child(1):before {
-    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
   }
 
   .nav .nav-item:nth-child(2) {
-    transition-delay: 0.05s;
+    -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
   }
 
   .nav .nav-item:nth-child(2):before {
-    transition-delay: 0.05s;
+    -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
   }
 
   .nav .nav-item:nth-child(3) {
-    transition-delay: 0.1s;
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
   }
 
   .nav .nav-item:nth-child(3):before {
-    transition-delay: 0.1s;
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
   }
 
   .nav .nav-item:nth-child(4) {
-    transition-delay: 0.15s;
+    -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
   }
 
   .nav .nav-item:nth-child(4):before {
-    transition-delay: 0.15s;
+    -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
   }
 
   .nav .nav-item:nth-child(5) {
-    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
   }
 
   .nav .nav-item:nth-child(5):before {
-    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
   }
 
   .nav .nav-item:nth-child(6) {
-    transition-delay: 0.25s;
+    -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
   }
 
   .nav .nav-item:nth-child(6):before {
-    transition-delay: 0.25s;
+    -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
   }
 
   .nav .nav-item:nth-child(7) {
-    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
   }
 
   .nav .nav-item:nth-child(7):before {
-    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
   }
 
-  .nav .nav-item:nth-child(n+4) {
+  .nav .nav-item:nth-child(n + 4) {
     letter-spacing: -8px;
     margin-top: -7px;
     opacity: 0;
@@ -213,18 +239,21 @@
 
   .nav .nav-item:before {
     position: absolute;
-    content: "";
+    content: '';
     top: 50%;
     left: 0;
     width: 100%;
     height: 2px;
     background-color: #3A4B40;
-    transform: translateY(-50%) scaleY(3);
+    -webkit-transform: translateY(-50%) scaleY(3);
+            transform: translateY(-50%) scaleY(3);
+    -webkit-transition: 0.5s;
     transition: 0.5s;
   }
 
   .nav .nav-item:nth-child(3):before {
-    transform: translateY(-50%) scaleY(2);
+    -webkit-transform: translateY(-50%) scaleY(2);
+            transform: translateY(-50%) scaleY(2);
   }
 
   @media screen and (min-width: 992px) {
@@ -234,29 +263,35 @@
   }
 
   #toggle:checked ~ .toggle-container .button-toggle {
-    box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+    -webkit-box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+            box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
   }
 
   #toggle:checked ~ .toggle-container .button-toggle:hover {
-    box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+    -webkit-box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+            box-shadow: 0 0 0 px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
   }
 
   #toggle:checked ~ .toggle-container .button-toggle:before {
-    transform: translateY(-50%) rotate(45deg) scale(1);
+    -webkit-transform: translateY(-50%) rotate(45deg) scale(1);
+            transform: translateY(-50%) rotate(45deg) scale(1);
   }
 
   #toggle:checked ~ .toggle-container .button-toggle:after {
-    transform: translateY(-30%) rotate(-45deg) scale(1);
+    -webkit-transform: translateY(-30%) rotate(-45deg) scale(1);
+            transform: translateY(-30%) rotate(-45deg) scale(1);
   }
 
   #toggle:checked:focus ~ .toggle-container .button-toggle {
-    box-shadow: 0 0 50px 550px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.1), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+    -webkit-box-shadow: 0 0 50px 550px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.1), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+            box-shadow: 0 0 50px 550px rgba(255, 255, 255, 0.8), inset 0 0 0 20px rgba(242, 163, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.1), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
   }
 
   #toggle:checked ~ .nav_menu_btn {
     margin-bottom: 100px;
     pointer-events: auto;
-    transform: translate(50px, 50px);
+    -webkit-transform: translate(50px, 50px);
+            transform: translate(50px, 50px);
     right: 100px;
   }
 
@@ -267,65 +302,81 @@
     line-height: 40px;
     margin-top: 0;
     opacity: 1;
-    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition: 0.5s, opacity 0.1s;
     transition: 0.5s, opacity 0.1s;
     text-decoration: none;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(1) {
-    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(1):before {
-    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(2) {
-    transition-delay: 0.25s;
+    -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(2):before {
-    transition-delay: 0.25s;
+    -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(3) {
-    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(3):before {
-    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(4) {
-    transition-delay: 0.15s;
+    -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(4):before {
-    transition-delay: 0.15s;
+    -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(5) {
-    transition-delay: 0.1s;
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(5):before {
-    transition-delay: 0.1s;
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(6) {
-    transition-delay: 0.05s;
+    -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(6):before {
-    transition-delay: 0.05s;
+    -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(7) {
-    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:nth-child(7):before {
-    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
   }
 
   #toggle:checked ~ .nav_menu_btn .nav-item:before {
@@ -339,12 +390,11 @@
 
   #toggle:checked ~ .nav_menu_btn .nav-item:hover::after {
     top: 36px;
-    opacity: 0.7;
+    opacity: .7;
     background-color: #F2A300;
   }
 
   /* Toggle button */
-
   .button-toggle {
     position: absolute;
     top: 0px;
@@ -357,32 +407,36 @@
     border: none;
     cursor: pointer;
     border-radius: 100%;
+    -webkit-transition: 0.6s;
     transition: 0.6s;
   }
 
   .button-toggle:hover {
-    box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+    -webkit-box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
+            box-shadow: 0 0 0 8px rgba(242, 163, 0, 0.2), inset 0 0 0 20px rgba(242, 163, 0, 0.2);
   }
 
-  .button-toggle:before,
-  .button-toggle:after {
+  .button-toggle:before, .button-toggle:after {
     position: absolute;
-    content: "";
+    content: '';
     top: 50%;
     left: 0;
     width: 100%;
     height: 1px;
     background-color: #3A4B40;
     border-radius: 5px;
+    -webkit-transition: 0.5s;
     transition: 0.5s;
   }
 
   .button-toggle:before {
-    transform: translateY(-50%) rotate(45deg) scale(0);
+    -webkit-transform: translateY(-50%) rotate(45deg) scale(0);
+            transform: translateY(-50%) rotate(45deg) scale(0);
   }
 
   .button-toggle:after {
-    transform: translateY(-50%) rotate(-45deg) scale(0);
+    -webkit-transform: translateY(-50%) rotate(-45deg) scale(0);
+            transform: translateY(-50%) rotate(-45deg) scale(0);
   }
 
   .nav_pc_content {
@@ -391,4 +445,18 @@
 
   .nav {
     background: unset !important;
+  }
+
+
+
+  footer {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+  }
+
+  footer .container {
+    line-height: 50px;
   }
