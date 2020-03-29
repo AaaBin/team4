@@ -19,6 +19,7 @@ class FrontController extends Controller
         $emailJob = (new SendEmail($details))->delay(Carbon::now()->addMinutes(0));
         // dispatch(派送)這一job進入queue，在這裡是使用database，代表會在database中建立資料
         dispatch($emailJob);
+        // SendEmail::dispatchNow($details);
         return redirect('/home');
     }
     public function testmail(Request $request)
