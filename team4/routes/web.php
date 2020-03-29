@@ -29,7 +29,7 @@ Route::get('/booking','FrontController@booking');
 Route::get('/booking_record','FrontController@booking_record');
 Route::get('/traffic','FrontController@traffic');
 Route::get('/firefly_season','FrontController@firefly_season');
-
+Route::post('/booking_form_store','FrontController@booking_form_store');
 
 
 Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], function (){

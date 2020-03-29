@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Camp;
 use App\flower;
+use App\Customer;
 use App\Mail\test;
 use Carbon\Carbon;
+use App\Restaurant;
 use App\Jobs\SendEmail;
+use App\Mail\SendToCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\GlobalState\Restorer;
 
 class FrontController extends Controller
 {
@@ -79,5 +84,105 @@ class FrontController extends Controller
     public function firefly_season()
     {
         return view('/front/firefly_season');
+    }
+    // booking_form_store
+    public function booking_form_store(Request $request)
+    {
+        $request_data = $request->all();
+        $customer = new Customer;
+        // customer
+        $customer->name = $request_data["customer_name"];
+        $customer->phone = $request_data["customer_phone"];
+        $customer->email = $request_data["customer_email"];
+        $customer->save();
+        // camp
+
+        if ($request_data["adult"] != null) {
+            $carbon_check_in_date = Carbon::parse($request_data["check_in_date"]);
+            $carbon_striking_camp_date = Carbon::parse($request_data["striking_camp_date"]);
+            $camp_days = $carbon_striking_camp_date->diffInDays($carbon_check_in_date);
+            if ($request_data["campsite_type"] == "Grass") {
+                $one_day_price = 300;
+            }
+            if ($request_data["campsite_type"] == "Small Pavilion") {
+                $one_day_price = 400;
+            }
+            if ($request_data["campsite_type"] == "Big Pavilion") {
+                $one_day_price = 700;
+            }
+            $camp = new Camp;
+            $camp->customer_id = $customer->id;
+            $camp->adult = $request_data["adult"];
+            if ($request_data["child"] != null) {
+                $camp->child = $request_data["child"];
+            } else {
+                $camp->child = 0;
+            }
+            $camp->check_in_date = $request_data["check_in_date"];
+            $camp->striking_camp_date = $request_data["striking_camp_date"];
+            $camp->campsite_type = $request_data["campsite_type"];
+            if ($request_data["equipment_need"] == 'on') {
+                $camp->equipment_need = "Yes";
+            } else {
+                $camp->equipment_need = "No";
+            }
+            $camp->price = $one_day_price * $camp_days;
+            if ($request_data["remark_camp"] != null) {
+                $camp->remark = $request_data["remark_camp"];
+            }
+            $camp->save();
+        }
+
+        // restaurant
+        if ($request_data["total_number"] != null) {
+            $restaurant = new Restaurant;
+
+            // $restaurant->customer_id = 5;
+            // $restaurant->total_number = 5;
+            // $restaurant->vegetarian_number = 5;
+            // $restaurant->date = "2020-04-01";
+            // $restaurant->time = '17:30';
+            // $restaurant->time_session = 'Dinner';
+            // $restaurant->price = 2500;
+            // $restaurant->payment_condition = "Not yet";
+            // $restaurant->remark = "5555";
+            // $restaurant->guide_need = "No";
+
+            $restaurant->customer_id = $customer->id;
+            $restaurant->total_number = $request_data['total_number'];
+            if ($request_data['vegetarian_number'] != null) {
+                $restaurant->vegetarian_number = $request_data['vegetarian_number'];
+            }
+            $restaurant->date = $request_data['restaurant_date'];
+            $restaurant->time = $request_data['restaurant_time'];
+            // 判斷時段
+            $order_time = Carbon::create($request_data['restaurant_time']);
+            $Breakfast_time = Carbon::create('11:00'); //1100前為早餐
+            $Lunch_time = Carbon::create('15:00');  //1500前為午餐
+            $comparison1 = $Lunch_time->diffInHours($order_time,false);  //後減前
+            $comparison2 = $Breakfast_time->diffInHours($order_time,false);
+            if ($comparison1 >= 0) {
+                $restaurant->time_session = "Dinner";
+            } else {
+                if ($comparison2 >= 0) {
+                    $restaurant->time_session = "Lunch";
+                } else {
+                    $restaurant->time_session = "Breakfast";
+                }
+            }
+            $restaurant->price = 500 * $request_data['total_number'];
+            if ($request_data['remark_restaurant'] != null) {
+                $restaurant->remark = $request_data['remark_restaurant'];
+            }
+            if ($request_data["guide_need"] == 'on') {
+                $restaurant->guide_need = "Yes";
+            } else {
+                $restaurant->guide_need = "No";
+            }
+            $restaurant->save();
+        }
+
+        Mail::to($request_data['customer_email'])->send(new SendToCustomer);
+        return $request_data;
     }
 }

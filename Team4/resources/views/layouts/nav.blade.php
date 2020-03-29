@@ -105,6 +105,9 @@
     </script>
     {{-- AOS --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    {{-- sweetalart --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
         AOS.init();
     </script>

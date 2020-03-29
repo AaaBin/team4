@@ -8,6 +8,13 @@
     .navbar_pc {
         display: none !important;
     }
+    .home_link_to_booking_btn{
+        transition: 0.2s
+    }
+    .home_link_to_booking_btn:hover{
+        text-decoration: none;
+        color: #F1A200 ;
+    }
 </style>
 @endsection
 
@@ -133,6 +140,7 @@
         <div class="home_welcome_text font_24">
             <p>洗滌您心靈的疲憊</p>
             <p>歡迎來到沐心泉</p>
+            <a href="/booking" class="home_link_to_booking_btn mt-3" >-立即預約-</a>
 
         </div>
     </div>

@@ -499,6 +499,8 @@ p {
 .container_all .booking_rightnow .booking_rightnow_box .booking_rightnow_container .booking_rightnow_content_all .booking_rightnow_content .booking_rightnow_content_tag #list-camping-list {
   width: 60px;
   height: 150px;
+  padding: 25px 15px;
+
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
 }
@@ -509,13 +511,15 @@ p {
     height: 50px;
     -webkit-clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
             clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+    padding: 15px 15px;
+
   }
 }
 
 .container_all .booking_rightnow .booking_rightnow_box .booking_rightnow_container .booking_rightnow_content_all .booking_rightnow_content .booking_rightnow_content_tag #list-restaurant-list {
   width: 60px;
   height: 150px;
-  padding: 35px 25px;
+  padding: 25px 15px;
   -webkit-clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
           clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
   -webkit-transform: translateY(-21px);
@@ -530,7 +534,7 @@ p {
             clip-path: polygon(0 0, 85% 0, 100% 100%, 15% 100%);
     -webkit-transform: translateX(-21px);
             transform: translateX(-21px);
-    padding: 15px 25px;
+    padding: 15px 15px;
   }
 }
 
