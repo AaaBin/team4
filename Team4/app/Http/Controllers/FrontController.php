@@ -181,8 +181,8 @@ class FrontController extends Controller
             }
             $restaurant->save();
         }
-
-        Mail::to($request_data['customer_email'])->send(new SendToCustomer);
+        // send mail to customer(error)
+        Mail::to($request_data['customer_email'])->later(0,new SendToCustomer($request_data));
         return $request_data;
     }
 }

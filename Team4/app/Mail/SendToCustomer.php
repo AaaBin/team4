@@ -3,9 +3,9 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendToCustomer extends Mailable
 {
@@ -16,9 +16,11 @@ class SendToCustomer extends Mailable
      *
      * @return void
      */
-    public function __construct()
-    {
+    public $request_data;
 
+    public function __construct($request_data)
+    {
+        $this->request_data = $request_data;
     }
 
     /**
@@ -28,6 +30,8 @@ class SendToCustomer extends Mailable
      */
     public function build()
     {
-        return $this->view('mails');
+        return $this->view('mails/send_to_customer')
+                    ->subject("預約成功通知信")
+                    ->with(['request_data'=>$this->request_data]);
     }
 }

@@ -148,10 +148,9 @@
 
         </div>
         <div class="garden_info_card_button text-center">
-          <a href="#">
+          <a href="/booking">
             <button type="button" class="">
               <h3>了解更多<img src="{{asset('img/intro/arrow-right01.svg')}}" alt=""></h3>
-
             </button>
           </a>
         </div>

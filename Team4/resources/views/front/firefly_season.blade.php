@@ -230,7 +230,7 @@
                     享受最令人期待的螢河之旅。
                 </h4>
                 <div class="april_snow_button">
-                    <a href="">
+                    <a href="/booking">
                         線上預約
                         <img src="{{asset('img/firefly/arrow_right_white.svg')}}" alt="" width="19px">
                     </a>
