@@ -5,33 +5,20 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 <link rel="stylesheet" href="{{asset('css/home_style.css')}}">
 <style>
-    /* nav:nth-child(1){
-        display: none;
-    } */
+    .navbar_pc{
+        display: none !important;
+    }
 </style>
 @endsection
 
 {{-- 內容 --}}
 @section('content')
-<div class="all">
-    <!-- header -->
-    {{-- <div class="home_header px-5 mb-3">
-        <div class="home_header_logo">
-            <img src="{{asset('img/home/logo.svg')}}" alt="">
-            <div class="small_logo">
-                <img src="{{asset('img/home/logo-1.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="home_header_social">
-            <div class="home_header_social_fb"></div>
-        </div>
-        <div class="home_header_hamburger"></div>
-    </div> --}}
+<!-- 固定 spring -->
+<div class="home_springmountain">
+    <span>←Spring Mountain</span>
+</div>
+<div class="all pt-5">
 
-    <!-- 固定 spring -->
-    <div class="home_springmountain">
-        <span>Spring Mountain</span>
-    </div>
     <!-- banner & navbar -->
     <div class="home_banner_area">
         <div class="home_banner">
@@ -52,16 +39,16 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-        {{-- <div class="home_nav_right">
+        <div class="home_nav_right">
             <ul>
-                <li><a href="">園 區 介 紹</a></li>
-                <li><a href="">近 日 花 況</a></li>
-                <li><a href="">活 動 資 訊</a></li>
-                <li><a href="">當 季 活 動</a></li>
-                <li><a href="">線 上 預 約</a></li>
-                <li><a href="">交 通 指 引</a></li>
+                <li><a href="/intro">園 區 介 紹</a></li>
+                <li><a href="/flower">近 日 花 況</a></li>
+                <li><a href="/activity">活 動 資 訊</a></li>
+                <li><a href="/firefly_season">當 季 活 動</a></li>
+                <li><a href="/booking">線 上 預 約</a></li>
+                <li><a href="/traffic">交 通 指 引</a></li>
             </ul>
-        </div> --}}
+        </div>
     </div>
 
     <!-- banner 底下的 slogan -->
@@ -150,16 +137,7 @@
         </div>
     </div>
 
-    <!-- footer -->
-    <div class="home_footer font_24">
-        <a class="home_footer_booking" href="">線上預約 <img src="{{asset('')}}./img/arrow-right.svg" alt=""></a>
-        <div class="home_footer_copyright">
-            <p>Team4 © for educational purposes only</p>
-        </div>
-
-    </div>
 </div>
-
 @endsection
 
 {{-- js --}}
@@ -175,26 +153,35 @@
         },
     });
 
-    let array=["一月至三月/櫻花季","四月至五月/油桐花季.螢火蟲季","五月至八月/金針花季","十二月/白雪木"]
+    let array = ["一月至三月/櫻花季", "四月至五月/油桐花季.螢火蟲季", "五月至八月/金針花季", "十二月/白雪木"]
     let button = document.querySelectorAll(".swiper-pagination-bullet");
-    button.forEach((item,index)=>{
-        item.innerText=array[index];
+    button.forEach((item, index) => {
+        item.innerText = array[index];
     });
 
-    $('.swiper-pagination-bullet').click(function(){
-            // 要在新噌一個 remove 其他的 active
-            $('.swiper-pagination-bullet').removeClass("active");
-            $(this).addClass("active");
+    $('.swiper-pagination-bullet').click(function () {
+        // 要在新噌一個 remove 其他的 active
+        $('.swiper-pagination-bullet').removeClass("active");
+        $(this).addClass("active");
     });
-    $(document).ready(function(){
+    $(document).ready(function () {
         $(".ig_container").height($(".ig_container img").width());
     });
-    $(window).resize(function(){
+    $(window).resize(function () {
         $(".ig_container").height($(".ig_container img").width());
         // console.log($(".ig_container img").width());
     });
 
 
 
+</script>
+<script>
+    $('.home_springmountain').click(function () {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    })
+    $(function () {
+        $(".swiper-pagination-bullet:nth-child(1) ").addClass('active');
+    })
 </script>
 @endsection
