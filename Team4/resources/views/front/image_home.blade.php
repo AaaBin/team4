@@ -36,9 +36,10 @@
                 height: 40%;
                 width: 40%;
             }
+
             .enter_btn {
-            font-size: 21px;
-        }
+                font-size: 21px;
+            }
         }
 
         #myvideo {
@@ -61,43 +62,46 @@
             font-family: 'Monsieur La Doulaise', cursive;
 
         }
+
         @media (max-width: 576px) {
             .video_area .logo {
                 height: 40%;
                 width: 40%;
             }
+
             .enter_btn {
-            font-size: 21px;
-        }
+                font-size: 21px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div>
+    <a href="/firefly_season">
+        <div>
 
-        <div class="video_area">
+            <div class="video_area">
 
-            <video loop="true" muted autoplay="autoplay" height="100vh" class="video_area" id="myvideo">
-                <source type="video/mp4" src="{{asset('video/首頁-Firefly.mp4')}}">
-            </video>
+                <video loop="true" muted autoplay="autoplay" height="100vh" class="video_area" id="myvideo">
+                    <source type="video/mp4" src="{{asset('video/首頁-Firefly.mp4')}}">
+                </video>
 
-            <div class="logo">
-                <img src="{{asset('img/image_home/logo-index.svg')}}" alt="" width="100%">
+                <div class="logo">
+                    <img src="{{asset('img/image_home/logo-index.svg')}}" alt="" width="100%">
+                </div>
+                <div class="enter_btn">Enter Spring Mountain</div>
+
             </div>
-            <a href="/home" class="enter_btn">Enter Spring Mountain</a>
+
+
+
+
+
+
+
 
         </div>
-
-
-
-
-
-
-
-
-    </div>
-
+    </a>
 
 </body>
 
