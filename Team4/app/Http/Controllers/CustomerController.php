@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Camp;
 use App\Customer;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -34,8 +36,16 @@ class CustomerController extends Controller
     // delete
     public function delete($id)
     {
-        $item = Customer::find($id);
-        $item->delete();
+        $customer = Customer::find($id);
+        $camps = Camp::where('customer_id',$customer->id)->get();
+        foreach ($camps as $camp) {
+            $camp->delete();
+        }
+        $restaurants = Restaurant::where('customer_id',$customer->id)->get();
+        foreach ($restaurants as $restaurant) {
+            $restaurant->delete();
+        }
+        $customer->delete();
         return ;
     }
 }

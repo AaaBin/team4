@@ -291,7 +291,7 @@
     function show_confirm(id){
             swal({
             title: "Delete data",
-            text: "Once deleted, you will not be able to recover it. Make sure this video is not using",
+            text: "Once deleted, you will not be able to recover it. Make sure this restaurant order is not using",
             icon: "warning",
             buttons: true,
             dangerMode: true,
