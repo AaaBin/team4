@@ -112,28 +112,28 @@
         </div>
         <div class="ig_connect_row row col-md-10 col-12 mx-auto ">
             <div class="ig_connect_fig col-md-2 col-4">
-                <a href="https://www.instagram.com/p/B8llMWnBhAt/"><img src="./img/B8llMWnBhAt.jpg" alt=""
+                <a href="https://www.instagram.com/p/B8llMWnBhAt/"><img src="{{asset('img/traffic/B8llMWnBhAt.jpg')}}" alt=""
                         class="img-fluid"></a>
 
             </div>
             <div class="ig_connect_fig col-md-2 col-4">
-                <a href="https://www.instagram.com/p/B6DBmbZAN8l/"><img src="./img/B6DBmbZAN8l.jpg" alt=""
+                <a href="https://www.instagram.com/p/B6DBmbZAN8l/"><img src="{{asset('img/traffic/B6DBmbZAN8l.jpg')}}" alt=""
                         class="img-fluid"></a>
             </div>
             <div class="ig_connect_fig col-md-2 col-4">
-                <a href="https://www.instagram.com/p/BlFmJK-nZ9Q/"><img src="./img/BlFmJK-nZ9Q.jpg" alt=""
+                <a href="https://www.instagram.com/p/BlFmJK-nZ9Q/"><img src="{{asset('img/traffic/BlFmJK-nZ9Q.jpg')}}" alt=""
                         class="img-fluid"></a>
             </div>
             <div class="ig_connect_fig col-2 d-none d-md-block">
-                <a href="https://www.instagram.com/p/Bm_E41nnhrP/"><img src="./img/Bm_E41nnhrP.jpg" alt=""
+                <a href="https://www.instagram.com/p/Bm_E41nnhrP/"><img src="{{asset('img/traffic/Bm_E41nnhrP.jpg')}}" alt=""
                         class="img-fluid"></a>
             </div>
             <div class="ig_connect_fig col-2 d-none d-md-block">
-                <a href="https://www.instagram.com/p/B6KRKnIpFNs/"><img src="./img/B6KRKnIpFNs.jpg" alt=""
+                <a href="https://www.instagram.com/p/B6KRKnIpFNs/"><img src="{{asset('img/traffic/B6KRKnIpFNs.jpg')}}" alt=""
                         class="img-fluid"></a>
             </div>
             <div class="ig_connect_fig col-2 d-none d-md-block">
-                <a href="https://www.instagram.com/p/B5wLA4AHbIX/"><img src="./img/B5wLA4AHbIX.jpg" alt=""
+                <a href="https://www.instagram.com/p/B5wLA4AHbIX/"><img src="{{asset('img/traffic/B5wLA4AHbIX.jpg')}}" alt=""
                         class="img-fluid"></a>
             </div>
 
