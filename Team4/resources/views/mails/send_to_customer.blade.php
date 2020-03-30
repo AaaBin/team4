@@ -5,7 +5,7 @@
     <title>沐心泉-預約成功通知</title>
 </head>
 
-<body style="padding:0 150px">
+<body>
     <p>您於我們沐心泉網站寫了預約表單，內容如下:</p>
     <table >
         <tr>

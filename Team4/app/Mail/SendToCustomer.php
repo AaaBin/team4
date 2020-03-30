@@ -31,6 +31,7 @@ class SendToCustomer extends Mailable
     public function build()
     {
         return $this->view('mails/send_to_customer')
+                    ->from('birnie1571@gmail.com','Spring Mountain')
                     ->subject("預約成功通知信");
     }
 }

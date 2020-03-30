@@ -183,7 +183,6 @@ class FrontController extends Controller
             $passing_data_to_mail['restaurant'] = $restaurant;
         }
 
-
         Mail::to($request_data['customer_email'])->later(0,new SendToCustomer($passing_data_to_mail));
         return $request_data;
     }

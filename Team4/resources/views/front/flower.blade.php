@@ -3,6 +3,11 @@
 {{-- CSS --}}
 @section('css')
 <link rel="stylesheet" href="{{asset('css/flower_style.css')}}">
+<style>
+    .flower_condition_recent_content{
+        min-width: 100%;
+    }
+</style>
 @endsection
 
 {{-- 內容 --}}
@@ -41,6 +46,32 @@
                 反正就是走走路、聊聊天、流流汗、吹吹風，防疫期間，這個行程跟待在家裡面和家人聊天好像真的有一模沒有兩樣。所以真的在家憋不住了，再到山裡走走吧！
             </article>
         </div>
+
+        @foreach ($flower_datas as $item)
+        <div class="container d-flex flex-column align-items-center px-md-4 ">
+            <h2 class="flower_condition_recent_title my-5 px-3 mb-md-0">
+                近期花況
+            </h2>
+            <?php
+            $dates = explode('-',$item->date);
+            $date_m = $dates[1];
+            $date_d = $dates[2];
+            ?>
+            <div class="flower_condition_recent_date_area position-relative mb-2">
+                <div class="flower_condition_recent_date_area_m pr-4">{{$date_m}}</div>
+                <div class="flower_condition_recent_date_area_d pl-4">{{$date_d}}</div>
+            </div>
+            <article class="flower_condition_recent_content">
+                {!!$item->content!!}
+            </article>
+        </div>
+        @if ($loop->first)
+        @break
+        @endif
+        @endforeach
+
+
+
     </section>
     <section class="flower_view mb-5">
         <div class="container d-flex flex-column align-items-center">
@@ -69,6 +100,31 @@
 
     </section>
     <section class="flower_condition_old">
+
+        @foreach ($flower_datas as $item)
+        <?php
+            $dates = explode('-',$item->date);
+            $date_m = $dates[1];
+            $date_d = $dates[2];
+            ?>
+
+        @if ($loop->first)
+        {{-- do nothing --}}
+        @else
+        <div class="container d-flex flex-column align-items-center justify-content-center mb-5 px-3 px-md-4">
+            <div class="flower_condition_old_date_area position-relative mb-2">
+                <div class="flower_condition_old_date_area_m pr-4">{{$date_m}}</div>
+                <div class="flower_condition_old_date_area_d pl-4">{{$date_d}}</div>
+            </div>
+            <article class="flower_condition_old_content">
+                {!!$item->content!!}
+            </article>
+        </div>
+        @endif
+
+
+        @endforeach
+
         <div class="container d-flex flex-column align-items-center justify-content-center mb-5 px-3 px-md-4">
             <div class="flower_condition_old_date_area position-relative mb-2">
                 <div class="flower_condition_old_date_area_m pr-4">02</div>
