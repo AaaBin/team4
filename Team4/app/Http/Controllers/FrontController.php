@@ -136,18 +136,6 @@ class FrontController extends Controller
         // restaurant
         if ($request_data["total_number"] != null) {
             $restaurant = new Restaurant;
-
-            // $restaurant->customer_id = 5;
-            // $restaurant->total_number = 5;
-            // $restaurant->vegetarian_number = 5;
-            // $restaurant->date = "2020-04-01";
-            // $restaurant->time = '17:30';
-            // $restaurant->time_session = 'Dinner';
-            // $restaurant->price = 2500;
-            // $restaurant->payment_condition = "Not yet";
-            // $restaurant->remark = "5555";
-            // $restaurant->guide_need = "No";
-
             $restaurant->customer_id = $customer->id;
             $restaurant->total_number = $request_data['total_number'];
             if ($request_data['vegetarian_number'] != null) {
@@ -181,8 +169,22 @@ class FrontController extends Controller
             }
             $restaurant->save();
         }
-        // send mail to customer(error)
-        Mail::to($request_data['customer_email'])->later(0,new SendToCustomer($request_data));
+
+        // send mail to customer
+        $passing_data_to_mail = [
+            'customer'=>$customer,
+            'camp'=>'',
+            'restaurant'=>'',
+        ];
+        if ($request_data["adult"] != null) {
+            $passing_data_to_mail['camp'] = $camp;
+        }
+        if ($request_data["total_number"] != null) {
+            $passing_data_to_mail['restaurant'] = $restaurant;
+        }
+
+
+        Mail::to($request_data['customer_email'])->later(0,new SendToCustomer($passing_data_to_mail));
         return $request_data;
     }
 }

@@ -448,6 +448,7 @@
                         });
                     })
                     .catch(function (error) {
+                        swal('送出表單失敗，請再次嘗試或聯絡')
                         console.log(error);
                     });
                 } else {

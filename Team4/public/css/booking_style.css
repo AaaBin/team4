@@ -194,8 +194,8 @@ p {
   position: absolute;
   width: 76%;
   height: 660px;
-  background-image: url("../img/booking/camping01.jpg");
-  background-size: cover;
+  background-image: url("../img/booking/camping.jpeg");
+  background-size: contain;
   background-position: center;
 }
 
@@ -286,7 +286,7 @@ p {
   position: absolute;
   width: 74%;
   height: 660px;
-  background-image: url("../img/booking/restaurant01.jpg");
+  background-image: url("../img/booking/restaurant.jpeg");
   background-size: cover;
   background-position: center;
 }
