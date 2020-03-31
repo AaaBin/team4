@@ -79,6 +79,9 @@ class FrontController extends Controller
     {
         return view('/front/booking_record');
     }
+
+
+
     public function booking_record_search(Request $request)
     {
         // 驗證是否有符合的使用者資料
@@ -95,6 +98,9 @@ class FrontController extends Controller
         $restaurant = Restaurant::where('customer_id', $customer->id)->get()->sortBy('date')->first();
         return redirect('/booking_record')->with('customer', $customer)->with('camp', $camp)->with('restaurant', $restaurant);
     }
+
+
+
     // 交通
     public function traffic()
     {

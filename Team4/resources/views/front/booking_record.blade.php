@@ -20,6 +20,9 @@
     .booking_record_search .container form button:focus {
         box-shadow: 0 0 0 0.1rem #F2A300;
     }
+    .bookingrecord_userdata_inner {
+        margin: auto;
+    }
 </style>
 @endsection
 
