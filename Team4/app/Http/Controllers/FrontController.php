@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Camp;
-use App\flower;
 use App\Customer;
-use App\Mail\test;
-use Carbon\Carbon;
-use App\Restaurant;
+use App\flower;
 use App\Jobs\SendEmail;
 use App\Mail\SendToCustomer;
+use App\Mail\test;
+use App\Restaurant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use SebastianBergmann\GlobalState\Restorer;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class FrontController extends Controller
 {
@@ -27,17 +28,20 @@ class FrontController extends Controller
         // SendEmail::dispatchNow($details);
         return redirect('/home');
     }
-    public function testmail(Request $request)
+    public function test_mail(Request $request)
     {
-        Mail::to('birnie1571@gmail.com')->send(new test);
-        return redirect('/home');
-    }
-    public function testmail2(Request $request)
-    {
-        Mail::to('birnie1571@gmail.com')->later(2,new test);
+        Mail::to('birnie1571@gmail.com')->later(2, new test);
         return redirect('/home');
     }
 
+    public function testpy()
+    {
+        $process = new Process(['python', 'C:/Users/user/Desktop/py/ig.py']);
+        $process->run();
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+    }
 
     // 形象首頁
     public function image_home()
@@ -58,7 +62,7 @@ class FrontController extends Controller
     public function flower()
     {
         $flower_datas = flower::all()->sortByDesc('date');
-        return view('/front/flower',compact('flower_datas'));
+        return view('/front/flower', compact('flower_datas'));
     }
     // 活動
     public function activity()
@@ -75,6 +79,22 @@ class FrontController extends Controller
     {
         return view('/front/booking_record');
     }
+    public function booking_record_search(Request $request)
+    {
+        // 驗證是否有符合的使用者資料
+        $validatedData = $request->validate([
+            'search_email' => 'exists:customers,email',
+        ]);
+        $request_data = $request->all();
+
+        // 抓出使用者資料
+        $customer = Customer::where('email', $request_data['search_email'])->first();
+        // camp data
+        $camp = Camp::where('customer_id', $customer->id)->get()->sortBy('check_in_date')->first();
+        // restaurant
+        $restaurant = Restaurant::where('customer_id', $customer->id)->get()->sortBy('date')->first();
+        return redirect('/booking_record')->with('customer', $customer)->with('camp', $camp)->with('restaurant', $restaurant);
+    }
     // 交通
     public function traffic()
     {
@@ -89,12 +109,16 @@ class FrontController extends Controller
     public function booking_form_store(Request $request)
     {
         $request_data = $request->all();
-        $customer = new Customer;
-        // customer
-        $customer->name = $request_data["customer_name"];
-        $customer->phone = $request_data["customer_phone"];
-        $customer->email = $request_data["customer_email"];
-        $customer->save();
+        $customer = Customer::where('email', $request_data['customer_email'])->first();
+        if ($customer == null) {
+            $customer = new Customer;
+            // customer
+            $customer->name = $request_data["customer_name"];
+            $customer->phone = $request_data["customer_phone"];
+            $customer->email = $request_data["customer_email"];
+            $customer->save();
+        }
+
         // camp
 
         if ($request_data["adult"] != null) {
@@ -146,9 +170,9 @@ class FrontController extends Controller
             // 判斷時段
             $order_time = Carbon::create($request_data['restaurant_time']);
             $Breakfast_time = Carbon::create('11:00'); //1100前為早餐
-            $Lunch_time = Carbon::create('15:00');  //1500前為午餐
-            $comparison1 = $Lunch_time->diffInHours($order_time,false);  //後減前
-            $comparison2 = $Breakfast_time->diffInHours($order_time,false);
+            $Lunch_time = Carbon::create('15:00'); //1500前為午餐
+            $comparison1 = $Lunch_time->diffInHours($order_time, false); //後減前
+            $comparison2 = $Breakfast_time->diffInHours($order_time, false);
             if ($comparison1 >= 0) {
                 $restaurant->time_session = "Dinner";
             } else {
@@ -172,9 +196,9 @@ class FrontController extends Controller
 
         // send mail to customer
         $passing_data_to_mail = [
-            'customer'=>$customer,
-            'camp'=>'',
-            'restaurant'=>'',
+            'customer' => $customer,
+            'camp' => '',
+            'restaurant' => '',
         ];
         if ($request_data["adult"] != null) {
             $passing_data_to_mail['camp'] = $camp;
@@ -183,7 +207,7 @@ class FrontController extends Controller
             $passing_data_to_mail['restaurant'] = $restaurant;
         }
 
-        Mail::to($request_data['customer_email'])->later(0,new SendToCustomer($passing_data_to_mail));
+        Mail::to($request_data['customer_email'])->later(0, new SendToCustomer($passing_data_to_mail));
         return $request_data;
     }
 }

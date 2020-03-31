@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/test','FrontController@test_queue');
-Route::get('/test2','FrontController@testmail');
-Route::get('/test3','FrontController@testmail2');
+Route::get('/test_queue','FrontController@test_queue');
+Route::get('/test_mail','FrontController@test_mail');
+Route::get('/testpy','FrontController@testpy');
+
 
 
 Auth::routes();
@@ -27,6 +28,7 @@ Route::get('/flower','FrontController@flower');
 Route::get('/activity','FrontController@activity');
 Route::get('/booking','FrontController@booking');
 Route::get('/booking_record','FrontController@booking_record');
+Route::post('/booking_record_search','FrontController@booking_record_search');
 Route::get('/traffic','FrontController@traffic');
 Route::get('/firefly_season','FrontController@firefly_season');
 Route::post('/booking_form_store','FrontController@booking_form_store');

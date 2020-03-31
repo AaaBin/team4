@@ -443,12 +443,12 @@
                         })
                     .then(function (response) {
                         console.log(response);
-                        swal("已成功送出表單，我們將會寄送電子郵件與您聯絡", {
+                        swal("已成功送出表單，我們將會寄送電子郵件與您聯絡，若無收到信件請聯絡我們。", {
                         icon: "success",
                         });
                     })
                     .catch(function (error) {
-                        swal('送出表單失敗，請再次嘗試或聯絡')
+                        swal('送出表單失敗，請再次嘗試或聯絡我們')
                         console.log(error);
                     });
                 } else {
