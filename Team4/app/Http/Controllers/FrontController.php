@@ -12,8 +12,6 @@ use App\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class FrontController extends Controller
 {
@@ -36,11 +34,9 @@ class FrontController extends Controller
 
     public function testpy()
     {
-        $process = new Process(['python', 'C:/Users/user/Desktop/py/ig.py']);
-        $process->run();
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        $jsondata = shell_exec("python C:\Users\user\Documents\GitHub\team4\Team4\public\ig.py");
+        $data = json_decode($jsondata);
+        dd($jsondata);
     }
 
     // 形象首頁
@@ -80,8 +76,6 @@ class FrontController extends Controller
         return view('/front/booking_record');
     }
 
-
-
     public function booking_record_search(Request $request)
     {
         // 驗證是否有符合的使用者資料
@@ -98,8 +92,6 @@ class FrontController extends Controller
         $restaurant = Restaurant::where('customer_id', $customer->id)->get()->sortBy('date')->first();
         return redirect('/booking_record')->with('customer', $customer)->with('camp', $camp)->with('restaurant', $restaurant);
     }
-
-
 
     // 交通
     public function traffic()
