@@ -80,8 +80,6 @@ Route::group(['middleware' => ['auth','RoleCheck'], 'prefix' =>'/admin'], functi
     Route::post('/customer','CustomerController@store');
     Route::patch('/customer/{id}','CustomerController@update');
     Route::delete('/customer/{id}','CustomerController@delete');
-
-
 });
 
 

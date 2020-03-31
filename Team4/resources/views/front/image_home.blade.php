@@ -73,6 +73,13 @@
                 font-size: 21px;
             }
         }
+        .not_admin_message{
+            position: absolute;
+            bottom: 125px;
+            z-index:1;
+            color: white;
+            font-family: 微軟正黑體;
+        }
     </style>
 </head>
 
@@ -90,6 +97,11 @@
                     <img src="{{asset('img/image_home/logo-index.svg')}}" alt="" width="100%">
                 </div>
                 <div class="enter_btn">Enter Spring Mountain</div>
+                @if (session('message'))
+                <span class="not_admin_message" role="alert">
+                    <strong>您不是管理者</strong>
+                </span>
+                @endif
 
             </div>
 
