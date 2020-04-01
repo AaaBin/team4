@@ -19,11 +19,10 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
-
         $validatedData = $request->validate([
             'customer_id' => 'exists:customers,id',
         ]);
-
+        // dd($request_data);
         // 判斷時段
         $Breakfast_time = Carbon::create('11:00'); //1100前為早餐
         $Lunch_time = Carbon::create('15:00');  //1500前為午餐
@@ -36,8 +35,11 @@ class RestaurantController extends Controller
         $restaurant->customer_id = $request_data['customer_id'];
         $restaurant->total_number = $request_data['total_number'];
         $restaurant->vegetarian_number = $request_data['vegetarian_number'];
+        $set_times = explode(':',$request_data['time']);
+        $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
+        dd($date);
+
         $restaurant->date = $request_data['date'];
-        $restaurant->time = $request_data['time'];
         if ($comparison1 >= 0) {
             $restaurant->time_session = "Dinner";
         } else {

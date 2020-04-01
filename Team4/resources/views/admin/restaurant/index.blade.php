@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css">
 {{-- timepicker --}}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+{{-- datepicker --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 
 <style>
     /* 針對fullcalendar上的事件改變滑鼠hover的游標 */
@@ -76,7 +79,7 @@
                 <div class="form-row">
                     <div class="form-group col-4">
                         <label for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="text" class="form-control restaurant_date" id="date" name="date" required>
                     </div>
                     <div class="form-group col-4">
                         <label for="time">Time</label>
@@ -274,6 +277,9 @@
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 {{-- time grid --}}
 <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+{{-- datepicker --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
@@ -425,7 +431,7 @@
     })
 </script>
 <script>
-    // test timepicker
+    // timepicker
     $('.timepicker').timepicker({
         //24小時，沒有AM PM
         timeFormat: 'HH:mm',
@@ -443,5 +449,15 @@
         dropdown: true,
         scrollbar: false
     });
+    // datepicker
+    $(function () {
+                $('.restaurant_date').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1996,
+                    maxYear: parseInt(moment().format('YYYY'), 10)
+                }, function (start, end, label) {
+                });
+            });
 </script>
 @endsection

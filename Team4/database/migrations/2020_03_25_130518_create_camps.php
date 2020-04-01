@@ -18,8 +18,8 @@ class CreateCamps extends Migration
             $table->integer("customer_id"); //關連到顧客id
             $table->string("adult");
             $table->string('child')->nullable();
-            $table->string('check_in_date');
-            $table->string('striking_camp_date');
+            $table->dateTime('check_in_date');
+            $table->dateTime('striking_camp_date');
             $table->string('campsite_type');
             $table->string('equipment_need');
             $table->string('price');

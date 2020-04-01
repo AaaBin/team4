@@ -356,7 +356,7 @@
             });
     </script>
     <script>
-        // test timepicker
+        // timepicker
             $('.timepicker').timepicker({
                 //24小時，沒有AM PM
                 timeFormat: 'HH:mm',
