@@ -37,9 +37,8 @@ class RestaurantController extends Controller
         $restaurant->vegetarian_number = $request_data['vegetarian_number'];
         $set_times = explode(':',$request_data['time']);
         $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
-        dd($date);
 
-        $restaurant->date = $request_data['date'];
+        $restaurant->date = $date;
         if ($comparison1 >= 0) {
             $restaurant->time_session = "Dinner";
         } else {
@@ -60,6 +59,7 @@ class RestaurantController extends Controller
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
+        // dd($request_data);
         $item = Restaurant::find($id);
         $item->price = 500 * $request_data['total_number'];
         // 判斷時段
@@ -77,7 +77,10 @@ class RestaurantController extends Controller
                 $item->time_session = "Breakfast";
             }
         }
-        $item->update($request_data);
+        $set_times = explode(':',$request_data['time']);
+        $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
+        $item->date = $date;
+        $item->update();
         return redirect('admin/booking/restaurant');
     }
     // delete

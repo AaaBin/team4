@@ -139,72 +139,77 @@
                 @if ($item->camp == "[]")
                 <p>this customer do not have any camping order</p>
                 @else
-                    @foreach ($item->camp as $camp_item)
-                    <div class="card p-4 my-2 border-secondary">
-                        <?php
+                @foreach ($item->camp as $camp_item)
+                <div class="card p-4 my-2 border-secondary">
+                    <?php
                         $check_in_date = explode(' ',$camp_item->check_in_date)[0];
                         $striking_camp_date = explode(' ',$camp_item->striking_camp_date)[0];
                         ?>
-                        <div class="row">
-                            <p class="col">Camp Order ID:{{$camp_item->id}} </p>
-                            <p class="col">Check in date:{{$check_in_date}}</p>
-                            <p class="col">Adult:{{$camp_item->adult}}</p>
+                    <div class="row">
+                        <p class="col">Camp Order ID:{{$camp_item->id}} </p>
+                        <p class="col">Check in date:{{$check_in_date}}</p>
+                        <p class="col">Adult:{{$camp_item->adult}}</p>
 
-                        </div>
-                        <div class="row">
-                            <p class="col">Customer ID:{{$camp_item->customer_id}}</p>
-                            <p class="col">Striking camp date:{{$striking_camp_date}}</p>
-                            <p class="col">Child:{{$camp_item->child}}</p>
-                        </div>
-                        <div class="row">
-                            <p class="col">Name:{{$camp_item->customer->name}}</p>
-                            <p class="col">Campsite type:{{$camp_item->campsite_type}}</p>
-                            <p class="col"></p>
-                        </div>
-                        <div class="row">
-                            <p class="col"></p>
-                            <p class="col">Equipment need:{{$camp_item->equipment_need}}</p>
-                            <p class="col"></p>
-                        </div>
-                        <b>
-                            <p>Payment condition:{{$camp_item->payment_condition}}</p>
-                        </b>
-                        <p>Remark:
-                            <span class="card p-2">{{$camp_item->remark}}</span>
-                        </p>
                     </div>
-                    @endforeach
+                    <div class="row">
+                        <p class="col">Customer ID:{{$camp_item->customer_id}}</p>
+                        <p class="col">Striking camp date:{{$striking_camp_date}}</p>
+                        <p class="col">Child:{{$camp_item->child}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="col">Name:{{$camp_item->customer->name}}</p>
+                        <p class="col">Campsite type:{{$camp_item->campsite_type}}</p>
+                        <p class="col"></p>
+                    </div>
+                    <div class="row">
+                        <p class="col"></p>
+                        <p class="col">Equipment need:{{$camp_item->equipment_need}}</p>
+                        <p class="col"></p>
+                    </div>
+                    <b>
+                        <p>Payment condition:{{$camp_item->payment_condition}}</p>
+                    </b>
+                    <p>Remark:
+                        <span class="card p-2">{{$camp_item->remark}}</span>
+                    </p>
+                </div>
+                @endforeach
                 @endif
                 <hr>
                 <h3>Resrtautant:</h3>
                 @if ($item->restaurant == "[]")
                 <p>this customer do not have any restaurant order</p>
                 @else
-                    @foreach ($item->restaurant as $restaurant_item)
-                    <div class="card p-4 my-2 border-secondary">
-                        <div class="row">
-                            <p class="col">Restautant Order ID:{{$restaurant_item->id}} </p>
-                            <p class="col">Date:{{$restaurant_item->date}}</p>
-                            <p class="col">Total number:{{$restaurant_item->total_number}}</p>
+                @foreach ($item->restaurant as $restaurant_item)
+                <div class="card p-4 my-2 border-secondary">
+                    <?php
+                        $restaurant_date = explode(' ',$restaurant_item->date)[0];
+                        $restaurant_time = explode(' ',$restaurant_item->date)[1];
+                        ?>
+                    <div class="row">
+                        <p class="col">Restautant Order ID:{{$restaurant_item->id}} </p>
+                        <p class="col">Date:{{$restaurant_date}}</p>
+                        <p class="col">Total number:{{$restaurant_item->total_number}}</p>
 
-                        </div>
-                        <div class="row">
-                            <p class="col">Customer ID:{{$restaurant_item->customer_id}}</p>
-                            <p class="col">Time:{{$restaurant_item->time}}</p>
-                            <p class="col">Vegetarian number:{{$restaurant_item->vegetarian_number}}</p>
-                        </div>
-                        <div class="row">
-                            <p class="col-4">Name:{{$restaurant_item->customer->name}}</p>
-                            <p class="col-4">Time session:{{$restaurant_item->time_session}}</p>
-                        </div>
-                        <b>
-                            <p>Payment condition:{{$restaurant_item->payment_condition}}</p>
-                        </b>
-                        <p>Remark:
-                            <span class="card p-2">{{$restaurant_item->remark}}</span>
-                        </p>
                     </div>
-                    @endforeach
+
+                    <div class="row">
+                        <p class="col">Customer ID:{{$restaurant_item->customer_id}}</p>
+                        <p class="col">Time:{{$restaurant_time}}</p>
+                        <p class="col">Vegetarian number:{{$restaurant_item->vegetarian_number}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="col-4">Name:{{$restaurant_item->customer->name}}</p>
+                        <p class="col-4">Time session:{{$restaurant_item->time_session}}</p>
+                    </div>
+                    <b>
+                        <p>Payment condition:{{$restaurant_item->payment_condition}}</p>
+                    </b>
+                    <p>Remark:
+                        <span class="card p-2">{{$restaurant_item->remark}}</span>
+                    </p>
+                </div>
+                @endforeach
                 @endif
                 <hr>
 

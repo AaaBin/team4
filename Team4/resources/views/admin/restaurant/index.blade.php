@@ -116,15 +116,19 @@
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
             <div class="card p-4 my-2">
+                <?php
+                $date = explode(' ',$item->date)[0];
+                $time = explode(' ',$item->date)[1]
+                ?>
                 <div class="row">
                     <p class="col">Order ID:{{$item->id}} </p>
-                    <p class="col">Date:{{$item->date}}</p>
+                    <p class="col">Date:{{$date}}</p>
                     <p class="col">Total number:{{$item->total_number}}</p>
 
                 </div>
                 <div class="row">
                     <p class="col">Customer ID:{{$item->customer_id}}</p>
-                    <p class="col">Time:{{$item->time}}</p>
+                    <p class="col">Time:{{$time}}</p>
                     <p class="col">Vegetarian number:{{$item->vegetarian_number}}</p>
                 </div>
                 <div class="row">
@@ -162,12 +166,12 @@
                     <div class="form-group col-4">
                         <label for="date{{$item->id}}">Date</label>
                         <input type="date" class="form-control" id="date{{$item->id}}" name="date"
-                            value="{{$item->date}}" required>
+                            value="{{$date}}" required>
                     </div>
                     <div class="form-group col-4">
                         <label for="time{{$item->id}}">Time</label>
                         <input class="form-control timepicker" id="time{{$item->id}}" name="time"
-                            value="{{$item->time}}" required>
+                            value="{{$time}}" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -356,17 +360,17 @@
         element.title = String(element.total_number) + "peolpe  at:" + element.time;
         // fullcalendar的時間格式為 YYYY-MM-DDTHH:mm:ss
         if (element.time_session == "Lunch") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date;
             element.borderColor = "#FFEA92";
             element.backgroundColor = "#FFEA92";
         }
         if (element.time_session == "Dinner") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date ;
             element.borderColor = "#F7ACA9";
             element.backgroundColor = "#F7ACA9";
         }
         if (element.time_session == "Breakfast") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date;
             element.borderColor = "#C5F9EC";
             element.backgroundColor = "#C5F9EC";
         }
