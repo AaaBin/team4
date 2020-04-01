@@ -1,0 +1,866 @@
+@charset "UTF-8";
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.all {
+  overflow: hidden;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.active {
+  font-size: 20px;
+  outline: none;
+  font-weight: 900;
+  text-shadow: 0 0 0.2em black;
+}
+
+@media (max-width: 768px) {
+  .active {
+    font-weight: 700;
+    text-shadow: unset;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.font_19 {
+  font-size: 19px;
+}
+
+.font_24 {
+  font-size: 24px;
+}
+
+.home_header {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .home_header {
+    height: 100px;
+  }
+}
+
+.home_header .home_header_logo {
+  height: 75px;
+  width: 75px;
+}
+
+@media (max-width: 768px) {
+  .home_header .home_header_logo {
+    height: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .home_header .home_header_logo img {
+    display: none;
+  }
+}
+
+.home_header .home_header_logo .small_logo {
+  width: 100%;
+  height: 50px;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .home_header .home_header_logo .small_logo {
+    display: block;
+  }
+}
+
+.home_header .home_header_logo .small_logo img {
+  display: block;
+}
+
+@media (max-width: 814px) {
+  .home_header .home_header_social .home_header_social_fb {
+    display: none;
+  }
+}
+
+.home_header .home_header_social .home_header_social_fb img {
+  width: 55px;
+  height: 55px;
+}
+
+.home_header .home_header_hamburger {
+  display: none;
+}
+
+.swiper-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination {
+    margin: auto;
+  }
+}
+
+.swiper-pagination-clickable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: absolute;
+  top: 58%;
+  right: 18%;
+}
+
+@media (max-width: 1725px) {
+  .swiper-pagination-clickable {
+    top: 56%;
+  }
+}
+
+@media (max-width: 1560px) {
+  .swiper-pagination-clickable {
+    top: 54%;
+  }
+}
+
+@media (max-width: 1450px) {
+  .swiper-pagination-clickable {
+    top: 52%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .swiper-pagination-clickable {
+    top: 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .swiper-pagination-clickable {
+    top: 48%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .swiper-pagination-clickable {
+    top: 46%;
+  }
+}
+
+@media (max-width: 1040px) {
+  .swiper-pagination-clickable {
+    top: 44%;
+  }
+}
+
+@media (max-width: 975px) {
+  .swiper-pagination-clickable {
+    top: 42%;
+  }
+}
+
+@media (max-width: 910px) {
+  .swiper-pagination-clickable {
+    top: 40%;
+  }
+}
+
+@media (max-width: 814px) {
+  .swiper-pagination-clickable {
+    top: 38%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination-clickable {
+    position: unset;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    height: 250px;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
+    margin-top: -50px;
+  }
+}
+
+.swiper-pagination-bullet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 350px;
+  margin: 20px 0 !important;
+  border-radius: 100%;
+  opacity: .8;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.swiper-pagination-bullet:hover {
+  color: #F1A200;
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination-bullet {
+    color: black;
+    margin: 15px !important;
+    height: 300px;
+    width: 25%;
+    font-size: 16px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+.swiper-pagination-bullet.active {
+  color: #F1A200;
+}
+
+.swiper-container {
+  height: 80%;
+  z-index: -1;
+}
+
+.home_springmountain {
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+
+.home_springmountain:hover {
+  color: #F1A200;
+}
+
+@media (max-width: 991px) {
+  .home_springmountain {
+    display: none;
+  }
+}
+
+.home_springmountain span {
+  font-size: 18px;
+  position: fixed;
+  right: 0;
+  top: 80%;
+  z-index: 1000;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.home_banner_area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.home_banner_area .home_banner {
+  width: 85%;
+}
+
+@media (max-width: 814px) {
+  .home_banner_area .home_banner {
+    width: 100%;
+  }
+}
+
+.home_banner_area .home_banner img {
+  width: 100%;
+}
+@media (max-width: 991px) {
+    .home_banner_area .home_banner img {
+        z-index: -1;
+      }
+  }
+.home_banner_area .home_banner span {
+  outline: none;
+}
+
+.home_banner_area .home_nav_right {
+  width: 15%;
+}
+
+@media (max-width: 991px) {
+  .home_banner_area .home_nav_right {
+    display: none;
+  }
+}
+
+.home_banner_area .home_nav_right ul {
+  margin-top: 100px;
+  padding: 0 0 0 20px;
+}
+
+@media (max-width: 1050px) {
+  .home_banner_area .home_nav_right ul {
+    padding:0 0 0 10px;
+  }
+}
+
+@media (max-width: 914px) {
+  .home_banner_area .home_nav_right ul {
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 846px) {
+  .home_banner_area .home_nav_right ul {
+    padding-left: 5px;
+  }
+}
+
+.home_banner_area .home_nav_right ul li {
+  list-style: none;
+  margin: 20px;
+}
+
+.home_banner_area .home_nav_right ul li a {
+  text-decoration: none;
+  color: black;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 18px;
+}
+
+.home_banner_area .home_nav_right ul li a:hover {
+  color: #F1A200;
+}
+@media (max-width: 1310px) {
+    .home_banner_area .home_nav_right ul li a {
+      font-size: 16px;
+    }
+  }
+@media (max-width: 1150px) {
+  .home_banner_area .home_nav_right ul li a {
+    font-size: 14px;
+  }
+}
+
+.home_slogan .home_slogan_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 150px;
+  margin: 180px auto;
+}
+
+.home_slogan .home_slogan_text p {
+  line-height: 100px;
+}
+
+@media (max-width: 768px) {
+  .home_slogan .home_slogan_text p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home_slogan .home_slogan_text span {
+    font-size: 14px;
+  }
+}
+
+.home_transitions {
+  width: 100%;
+  min-height: 600px;
+  background-image: url("../img/home/涼風.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .home_transitions {
+    min-height: 360px;
+  }
+}
+
+.home_sunrise {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 900px;
+  margin: 100px auto;
+}
+
+@media (max-width: 768px) {
+  .home_sunrise {
+    height: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_sunrise {
+    height: 265px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.home_sunrise .home_sunrise_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .home_sunrise .home_sunrise_text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_sunrise .home_sunrise_text {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.home_sunrise .home_sunrise_img {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/home/日出曙光1.jpg");
+  background-size: cover;
+}
+
+.home_forest {
+  position: relative;
+}
+
+.home_forest .home_forest_img {
+  position: absolute;
+  height: 660px;
+  width: 65%;
+  background-image: url("../img/home/翠綠原始林木.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .home_forest .home_forest_img {
+    height: 360px;
+    top: 60px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_forest .home_forest_img {
+    display: none;
+  }
+}
+
+.home_forest .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 660px;
+  margin: 0 auto 100px auto;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .home_forest .container {
+    height: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_forest .container {
+    height: 265px;
+    margin: 0 auto 50px auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.home_forest .container .home_forest_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .home_forest .container .home_forest_text {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_forest .container .home_forest_text {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.home_forest .container .home_forest_img_col {
+  display: none;
+  background-image: url("../img/home/翠綠原始林木.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 265px;
+}
+
+@media (max-width: 576px) {
+  .home_forest .container .home_forest_img_col {
+    display: block;
+    width: 100%;
+    height: 265px;
+  }
+}
+
+.home_nature {
+  position: relative;
+}
+
+.home_nature .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 660px;
+  margin: 0 auto 100px auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .home_nature .container {
+    height: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_nature .container {
+    height: 265px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0;
+  }
+}
+
+.home_nature .container .home_nature_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .home_nature .container .home_nature_text {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_nature .container .home_nature_text {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.home_nature .container .home_nature_img_col {
+  display: none;
+  background-image: url("../img/home/自然美妙天籟.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 265px;
+}
+
+@media (max-width: 576px) {
+  .home_nature .container .home_nature_img_col {
+    display: block;
+    width: 100%;
+    height: 265px;
+  }
+}
+
+.home_nature .home_nature_img {
+  position: absolute;
+  height: 660px;
+  width: 64%;
+  background-image: url("../img/home/自然美妙天籟.jpg");
+  background-size: cover;
+  top: 0;
+  right: 0;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .home_nature .home_nature_img {
+    height: 360px;
+    top: 60px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_nature .home_nature_img {
+    display: none;
+  }
+}
+
+.home_ig_title .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+  .home_ig_title .container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.home_ig_title .container .home_ig_title_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .home_ig_title .container .home_ig_title_text {
+    font-size: 14px;
+    margin-top: unset;
+    margin-bottom: unset;
+    margin: 60px 0;
+  }
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container img {
+  height: 100%;
+  width: 23%;
+}
+
+.home_welcome {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.home_welcome .home_welcome_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 180px 0;
+}
+
+@media (max-width: 768px) {
+  .home_welcome .home_welcome_text {
+    margin: 60px 0;
+    font-size: 14px;
+  }
+}
+
+.home_footer {
+  position: relative;
+  background-color: lemonchiffon;
+  width: 100%;
+  height: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 768px) {
+  .home_footer {
+    height: 430px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home_footer {
+    height: 320px;
+  }
+}
+
+.home_footer a {
+  text-decoration: none;
+  color: black;
+}
+
+.home_footer a img {
+  height: 40px;
+  width: 40px;
+}
+
+@media (max-width: 768px) {
+  .home_footer a {
+    font-size: 18px;
+  }
+}
+
+.home_footer .home_footer_booking {
+  width: 220px;
+  height: 30px;
+  background-color: lightcoral;
+  text-align: center;
+  line-height: 24px;
+}
+
+@media (max-width: 768px) {
+  .home_footer .home_footer_booking {
+    width: 130px;
+    height: 20px;
+  }
+}
+
+.home_footer .home_footer_copyright {
+  margin: 50px auto;
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .home_footer .home_footer_copyright {
+    font-size: 10px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
