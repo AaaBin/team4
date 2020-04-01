@@ -17,6 +17,14 @@ p {
   margin: 0;
 }
 
+.nav_pc_content {
+  background: unset !important;
+}
+
+.nav {
+  background: unset !important;
+}
+
 .active {
   font-size: 20px;
   outline: none;
@@ -265,9 +273,9 @@ body {
   }
 }
 
-.swiper-pagination-bullet.active {
+/* .swiper-pagination-bullet.active {
   color: #F1A200;
-}
+} */
 
 .swiper-container {
   height: 80%;

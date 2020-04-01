@@ -92,9 +92,9 @@
     </div>
     <!-- 立即預約 -->
     <div class="booking_rightnow ">
-        <div class="booking_rightnow_title col-10 mx-auto d-flex justify-content-center">
+        <!-- <div class="booking_rightnow_title col-10 mx-auto d-flex justify-content-center">
             立即預約&#8195;&#8594;
-        </div>
+        </div> -->
         <!-- background -->
         <div class="booking_rightnow_box">
             <!-- <div class="booking_rightnow_fig ">

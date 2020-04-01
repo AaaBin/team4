@@ -56,7 +56,7 @@
             text-decoration: none;
             outline: 0;
             border: 0;
-            color: rgb(255, 255, 255);
+            color: rgba(255, 255, 255, .6);
             position: absolute;
             bottom: 150px;
             font-family: 'Monsieur La Doulaise', cursive;
