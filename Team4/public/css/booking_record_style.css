@@ -1,0 +1,176 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 20px;
+}
+
+@media (max-width: 576px) {
+  .all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text {
+    margin: 0;
+  }
+}
+
+.all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_R {
+  width: 20%;
+  margin: 20px 0;
+}
+
+@media (max-width: 1200px) {
+  .all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_R {
+    margin: 20;
+    width: 20%;
+  }
+}
+
+@media (max-width: 960px) {
+  .all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_R {
+    margin: 20;
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_R {
+    margin: 20;
+    width: 40%;
+  }
+}
+
+@media (max-width: 576px) {
+  .all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_R {
+    margin: 20;
+    width: 30%;
+  }
+}
+
+.all .bookingrecord_userdata .bookingrecord_userdata_inner .bookingrecord_userdata_inner_text .bookingrecord_userdata_inner_text_L p {
+  margin: 0;
+}
+
+.all .bookingrecord_data {
+  background-color: #CBCBCB;
+}
+
+@media (max-width: 768px) {
+  .all .bookingrecord_data .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 5% 0;
+  }
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner {
+  height: 310px;
+  width: 100%;
+  margin: 40px 0;
+  background-color: white;
+  border: #F2A300 solid 1px;
+  border-radius: 20px;
+  -webkit-box-shadow: 10px 10px 12px 2px;
+          box-shadow: 10px 10px 12px 2px;
+}
+
+@media (max-width: 1200px) {
+  .all .bookingrecord_data .bookingrecord_data_inner {
+    margin: 10% 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .all .bookingrecord_data .bookingrecord_data_inner {
+    margin: 10% 0;
+  }
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_L {
+  width: 30%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_L img {
+  width: 50%;
+  height: 50%;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_Mid {
+  width: 5%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_Mid .inner_Mid_line {
+  height: 180px;
+  width: 1px;
+  border: #F2A300 solid 1px;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R {
+  width: 65%;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_top p {
+  font-size: 19px;
+  margin: 0;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_mid {
+  margin: 10% 0;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_mid .inner_R_mid_left {
+  margin-right: 10%;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_mid .inner_R_mid_left p {
+  font-size: 19px;
+  margin: 0;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_mid .inner_R_mid_right p {
+  font-size: 19px;
+  margin: 0;
+}
+
+.all .bookingrecord_data .bookingrecord_data_inner .inner_R .inner_R_btm p {
+  margin-left: 5%;
+  font-size: 19px;
+}
+/*# sourceMappingURL=style.css.map */

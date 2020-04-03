@@ -1,0 +1,393 @@
+* {
+  font-family: 'Noto Serif TC', serif;
+  font-family: 'Lora', serif;
+}
+
+.flower .flower_weather .container {
+  padding: 130px 0 0 0;
+}
+
+.flower .flower_weather .container .flower_weather_title {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_weather .container .flower_weather_title {
+    font-size: 24px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_left {
+  padding: 50px 15px 0 0;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_left {
+    width: 230px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_left img {
+    width: 100%;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right {
+  padding: 0 0 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_right {
+    width: 230px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_current_temp {
+  font-size: 50px;
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_date {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_date {
+    font-size: 19px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_max_min_temp {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_max_min_temp {
+    font-size: 19px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_rain_chance {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_rain_chance {
+    font-size: 19px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_today .flower_weather_today_right .flower_weather_today_comfort {
+  font-size: 19px;
+}
+
+.flower .flower_weather .container .flower_weather_bottom {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_bottom {
+    width: unset;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_weather .container .flower_weather_bottom {
+    padding: 10px 30px 10px 120px;
+    border: 1px solid #cccccc;
+    min-width: 1080px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_today_current_temp {
+  font-size: 72px;
+  top: -60px;
+  left: -75px;
+  background-color: #FEFDF8;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_today_date {
+  position: absolute;
+  top: -30px;
+  letter-spacing: 8px;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_bottom_text_area {
+  font-size: 19px;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks {
+  padding: 0 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks {
+    width: 580px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks {
+    width: unset;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_today_icon img {
+  width: 100px;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week {
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week {
+    font-size: 16px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 50px;
+  right: -15px;
+  top: 15px;
+  background-color: #3A4B40;
+}
+
+@media screen and (min-width: 500px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week::after {
+    right: -21px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week::after {
+    right: -25px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week::after {
+    right: -30px;
+  }
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week:nth-last-child(1)::after {
+  display: none;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week .flower_weather_week_dayofweek {
+  margin: 0 0 5px 0;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week .flower_weather_week_temp {
+  margin: 0 0 5px 0;
+}
+
+.flower .flower_weather .container .flower_weather_bottom .flower_weather_weeks .flower_weather_week .flower_weather_week_icon img {
+  width: 100%;
+}
+
+.flower .flower_condition_recent .container .flower_condition_recent_title {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_condition_recent .container .flower_condition_recent_title {
+    font-size: 24px;
+  }
+}
+
+.flower .flower_condition_recent .container .flower_condition_recent_date_area {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_condition_recent .container .flower_condition_recent_date_area {
+    -webkit-transform: translateX(-320px) translateY(60px);
+            transform: translateX(-320px) translateY(60px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_condition_recent .container .flower_condition_recent_date_area {
+    -webkit-transform: translateX(-440px) translateY(60px);
+            transform: translateX(-440px) translateY(60px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_condition_recent .container .flower_condition_recent_date_area {
+    -webkit-transform: translateX(-490px) translateY(120px);
+            transform: translateX(-490px) translateY(120px);
+  }
+}
+
+.flower .flower_condition_recent .container .flower_condition_recent_date_area::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 133px;
+  background-color: #3A4B40;
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.flower .flower_condition_recent .container .flower_condition_recent_content {
+  border: 1px solid #3A4B40;
+  font-size: 14px;
+  padding: 70px 25px;
+  line-height: 24px;
+  letter-spacing: 5px;
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_condition_recent .container .flower_condition_recent_content {
+    padding: 70px 130px;
+  }
+}
+
+.flower .flower_view .container .flower_view_title {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_view .container .flower_view_title {
+    font-size: 24px;
+  }
+}
+
+.flower .flower_view .container .flower_view_imgs {
+  width: 100%;
+}
+
+.flower .flower_view .container .flower_view_imgs .flower_view_img {
+  background-color: #cccccc;
+  overflow: hidden;
+  height: 0px;
+  padding-top: 32%;
+  width: 32%;
+  max-width: 32%;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img {
+    max-width: 13%;
+    max-height: 90px;
+    padding-top: 13%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img {
+    max-width: 16%;
+    max-height: 150px;
+    padding-top: 16%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img {
+    max-width: 16%;
+    max-height: 180px;
+    padding-top: 16%;
+  }
+}
+
+.flower .flower_view .container .flower_view_imgs .flower_view_img img {
+  width: 180px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img img {
+    width: 100px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img img {
+    width: 165px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_view .container .flower_view_imgs .flower_view_img img {
+    width: 190px;
+  }
+}
+
+.flower .flower_condition_old .container .flower_condition_old_date_area {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.flower .flower_condition_old .container .flower_condition_old_date_area::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 133px;
+  background-color: #3A4B40;
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+@media screen and (min-width: 768px) {
+  .flower .flower_condition_old .container .flower_condition_old_date_area {
+    -webkit-transform: translateX(-320px) translateY(60px);
+            transform: translateX(-320px) translateY(60px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_condition_old .container .flower_condition_old_date_area {
+    -webkit-transform: translateX(-460px) translateY(60px);
+            transform: translateX(-460px) translateY(60px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_condition_old .container .flower_condition_old_date_area {
+    -webkit-transform: translateX(-490px) translateY(120px);
+            transform: translateX(-490px) translateY(120px);
+  }
+}
+
+.flower .flower_condition_old .container .flower_condition_old_content {
+  border: 1px solid #3A4B40;
+  font-size: 14px;
+  padding: 70px 25px;
+  line-height: 24px;
+  letter-spacing: 5px;
+}
+
+@media screen and (min-width: 992px) {
+  .flower .flower_condition_old .container .flower_condition_old_content {
+    min-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flower .flower_condition_old .container .flower_condition_old_content {
+    padding: 70px 130px;
+    min-width: 1080px;
+  }
+}
+/*# sourceMappingURL=flower_style.css.map */
