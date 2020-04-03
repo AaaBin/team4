@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css">
 {{-- timepicker --}}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+{{-- datepicker --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 
 <style>
     /* 針對fullcalendar上的事件改變滑鼠hover的游標 */
@@ -76,7 +79,7 @@
                 <div class="form-row">
                     <div class="form-group col-4">
                         <label for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="text" class="form-control restaurant_date" id="date" name="date" required>
                     </div>
                     <div class="form-group col-4">
                         <label for="time">Time</label>
@@ -113,15 +116,19 @@
     <div class="collapse py-5" id="edit_collapse{{$item->id}}">
         <div class="card card-body">
             <div class="card p-4 my-2">
+                <?php
+                $date = explode(' ',$item->date)[0];
+                $time = explode(' ',$item->date)[1]
+                ?>
                 <div class="row">
                     <p class="col">Order ID:{{$item->id}} </p>
-                    <p class="col">Date:{{$item->date}}</p>
+                    <p class="col">Date:{{$date}}</p>
                     <p class="col">Total number:{{$item->total_number}}</p>
 
                 </div>
                 <div class="row">
                     <p class="col">Customer ID:{{$item->customer_id}}</p>
-                    <p class="col">Time:{{$item->time}}</p>
+                    <p class="col">Time:{{$time}}</p>
                     <p class="col">Vegetarian number:{{$item->vegetarian_number}}</p>
                 </div>
                 <div class="row">
@@ -159,12 +166,12 @@
                     <div class="form-group col-4">
                         <label for="date{{$item->id}}">Date</label>
                         <input type="date" class="form-control" id="date{{$item->id}}" name="date"
-                            value="{{$item->date}}" required>
+                            value="{{$date}}" required>
                     </div>
                     <div class="form-group col-4">
                         <label for="time{{$item->id}}">Time</label>
                         <input class="form-control timepicker" id="time{{$item->id}}" name="time"
-                            value="{{$item->time}}" required>
+                            value="{{$time}}" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -274,6 +281,9 @@
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 {{-- time grid --}}
 <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+{{-- datepicker --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
@@ -350,17 +360,17 @@
         element.title = String(element.total_number) + "peolpe  at:" + element.time;
         // fullcalendar的時間格式為 YYYY-MM-DDTHH:mm:ss
         if (element.time_session == "Lunch") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date;
             element.borderColor = "#FFEA92";
             element.backgroundColor = "#FFEA92";
         }
         if (element.time_session == "Dinner") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date ;
             element.borderColor = "#F7ACA9";
             element.backgroundColor = "#F7ACA9";
         }
         if (element.time_session == "Breakfast") {
-            element.start = element.date + "T" + element.time + ":00";
+            element.start = element.date;
             element.borderColor = "#C5F9EC";
             element.backgroundColor = "#C5F9EC";
         }
@@ -425,7 +435,7 @@
     })
 </script>
 <script>
-    // test timepicker
+    // timepicker
     $('.timepicker').timepicker({
         //24小時，沒有AM PM
         timeFormat: 'HH:mm',
@@ -443,5 +453,15 @@
         dropdown: true,
         scrollbar: false
     });
+    // datepicker
+    $(function () {
+                $('.restaurant_date').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1996,
+                    maxYear: parseInt(moment().format('YYYY'), 10)
+                }, function (start, end, label) {
+                });
+            });
 </script>
 @endsection

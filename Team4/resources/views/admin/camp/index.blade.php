@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
 <!-- fullcalendar day grid -->
 <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
+{{-- date range picker --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 
 
 <style>
@@ -64,13 +67,8 @@
 
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="check_in_date">Check in date</label>
-                        <input type="date" class="form-control" name="check_in_date" id="check_in_date" required>
-                    </div>
-                    <div class="form-group col">
-                        <label for="striking_camp_date">Striking camp date</label>
-                        <input type="date" class="form-control" name="striking_camp_date" id="striking_camp_date"
-                            required>
+                        <label for="camp_date">Check in date</label>
+                        <input type="text" class="form-control camp_date_picker" name="camp_date" id="camp_date" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -95,7 +93,7 @@
                     <textarea class="form-control" name="remark" id="remark" cols="30" rows="10"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" data-toggle="collapse">Submit</button>
-                <a class="btn btn-secondary"data-toggle="collapse" href="#create_collapse" role="button">Cancel</a>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#create_collapse" role="button">Cancel</a>
             </form>
         </div>
     </div>
@@ -120,13 +118,19 @@
             <div class="card p-4 my-2">
                 <div class="row">
                     <p class="col">Order ID:{{$item->id}} </p>
-                    <p class="col">Check in date:{{$item->check_in_date}}</p>
+                    <?php
+                    $check_in_date = explode(' ',$item->check_in_date)[0]
+                    ?>
+                    <p class="col">Check in date:{{$check_in_date}}</p>
                     <p class="col">Adult:{{$item->adult}}</p>
 
                 </div>
                 <div class="row">
                     <p class="col">Customer ID:{{$item->customer_id}}</p>
-                    <p class="col">Striking camp date:{{$item->striking_camp_date}}</p>
+                    <?php
+                    $striking_camp_date = explode(' ',$item->striking_camp_date)[0]
+                    ?>
+                    <p class="col">Striking camp date:{{$striking_camp_date}}</p>
                     <p class="col">Child:{{$item->child}}</p>
                 </div>
                 <div class="row">
@@ -169,12 +173,12 @@
                     <div class="form-group col">
                         <label for="check_in_date{{$item->id}}">Check in date</label>
                         <input type="date" class="form-control" id="check_in_date{{$item->id}}" name="check_in_date"
-                            value="{{$item->check_in_date}}" required>
+                            value="{{$check_in_date}}" required>
                     </div>
                     <div class="form-group col">
                         <label for="striking_camp_date{{$item->id}}">Striking camp date</label>
                         <input type="date" class="form-control" name="striking_camp_date"
-                            id="striking_camp_date{{$item->id}}" value="{{$item->striking_camp_date}}" required>
+                            id="striking_camp_date{{$item->id}}" value="{{$striking_camp_date}}" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -271,8 +275,14 @@
                 <td>{{$item->customer_id}}</td>
                 <td>{{$item->adult}}</td>
                 <td>{{$item->child}}</td>
-                <td>{{$item->check_in_date}}</td>
-                <td>{{$item->striking_camp_date}}</td>
+                <?php
+                $check_in_date_table = explode(' ',$item->check_in_date)[0];
+                $striking_camp_date_table = explode(' ',$item->striking_camp_date)[0];
+                ?>
+
+                <td>{{$check_in_date_table}}</td>
+                <td>{{$striking_camp_date_table}}</td>
+
                 <td>{{$item->campsite_type}}</td>
                 <td>{{$item->equipment_need}}</td>
                 <td>{{$item->price}}</td>
@@ -318,6 +328,9 @@
 <script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
 <!-- day grid -->
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+{{-- date range picker --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
@@ -446,6 +459,14 @@
 
 </script>
 <script>
-
+    $(function () {
+        $('.camp_date_picker').daterangepicker({
+            opens: 'center'
+        }, function (start, end, label) {
+            check_in_date = start.format('YYYY-MM-DD');
+            striking_camp_date = end.format('YYYY-MM-DD');
+            camp_datepicker_code = 1;
+        });
+    });
 </script>
 @endsection

@@ -94,8 +94,12 @@
                         </div>
                         <div class="inner_R_mid_right">
                             <span>入住時間</span>
-                            <p>{{session('camp')->check_in_date}}入住<p>
-                                    <p>{{session('camp')->striking_camp_date}}拔營</p>
+                            <?php
+                            $check_in_date_table = explode(' ',session('camp')->check_in_date)[0];
+                            $striking_camp_date_table = explode(' ',session('camp')->striking_camp_date)[0];
+                            ?>
+                            <p>{{$check_in_date_table}}入住<p>
+                                    <p>{{$striking_camp_date_table}}拔營</p>
                         </div>
                     </div>
                     <div class="inner_R_btm">

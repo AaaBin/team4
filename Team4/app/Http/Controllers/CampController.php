@@ -17,8 +17,8 @@ class CampController extends Controller
     // store
     public function store(Request $request)
     {
-        $request_data = $request->all();
 
+        $request_data = $request->all();
         $validatedData = $request->validate([
             'customer_id' => 'exists:customers,id',
         ]);
@@ -31,16 +31,19 @@ class CampController extends Controller
         if ($request_data["campsite_type"] == "Big Pavilion") {
             $one_day_price = 2500;
         }
-        $check_in_date = Carbon::parse($request_data["check_in_date"]);
-        $striking_camp_date = Carbon::parse($request_data["striking_camp_date"]);
+
+        $check_in_dates = explode(' - ',$request_data['camp_date']);
+
+        $check_in_date = Carbon::parse($check_in_dates[0]);
+        $striking_camp_date = Carbon::parse($check_in_dates[1]);
         $camp_days = $striking_camp_date->diffInDays($check_in_date);
         // 以new創建新資料
         $camp = new Camp;
         $camp->customer_id = $request_data['customer_id'];
         $camp->adult = $request_data['adult'];
         $camp->child = $request_data['child'];
-        $camp->check_in_date = $request_data['check_in_date'];
-        $camp->striking_camp_date = $request_data['striking_camp_date'];
+        $camp->check_in_date = $check_in_date;
+        $camp->striking_camp_date = $striking_camp_date;
         $camp->campsite_type = $request_data['campsite_type'];
         $camp->equipment_need = $request_data['equipment_need'];
 

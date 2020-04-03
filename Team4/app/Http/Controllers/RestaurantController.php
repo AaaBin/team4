@@ -19,11 +19,10 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request_data = $request->all();
-
         $validatedData = $request->validate([
             'customer_id' => 'exists:customers,id',
         ]);
-
+        // dd($request_data);
         // 判斷時段
         $Breakfast_time = Carbon::create('11:00'); //1100前為早餐
         $Lunch_time = Carbon::create('15:00');  //1500前為午餐
@@ -36,8 +35,11 @@ class RestaurantController extends Controller
         $restaurant->customer_id = $request_data['customer_id'];
         $restaurant->total_number = $request_data['total_number'];
         $restaurant->vegetarian_number = $request_data['vegetarian_number'];
-        $restaurant->date = $request_data['date'];
-        $restaurant->time = $request_data['time'];
+        // 將接收的字串資料拆開
+        $set_times = explode(':',$request_data['time']);
+        // 用carbon將資料存成時間格式
+        $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
+        $restaurant->date = $date;
         if ($comparison1 >= 0) {
             $restaurant->time_session = "Dinner";
         } else {
@@ -58,6 +60,7 @@ class RestaurantController extends Controller
     public function update(Request $request,$id)
     {
         $request_data = $request->all();
+        // dd($request_data);
         $item = Restaurant::find($id);
         $item->price = 500 * $request_data['total_number'];
         // 判斷時段
@@ -75,7 +78,10 @@ class RestaurantController extends Controller
                 $item->time_session = "Breakfast";
             }
         }
-        $item->update($request_data);
+        $set_times = explode(':',$request_data['time']);
+        $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
+        $item->date = $date;
+        $item->update();
         return redirect('admin/booking/restaurant');
     }
     // delete
