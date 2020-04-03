@@ -35,9 +35,10 @@ class RestaurantController extends Controller
         $restaurant->customer_id = $request_data['customer_id'];
         $restaurant->total_number = $request_data['total_number'];
         $restaurant->vegetarian_number = $request_data['vegetarian_number'];
+        // 將接收的字串資料拆開
         $set_times = explode(':',$request_data['time']);
+        // 用carbon將資料存成時間格式
         $date = Carbon::parse($request_data['date'])->setTime($set_times[0],$set_times[1]);
-
         $restaurant->date = $date;
         if ($comparison1 >= 0) {
             $restaurant->time_session = "Dinner";

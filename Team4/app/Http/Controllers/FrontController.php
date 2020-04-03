@@ -86,10 +86,12 @@ class FrontController extends Controller
 
         // 抓出使用者資料
         $customer = Customer::where('email', $request_data['search_email'])->first();
+        // 今日時間，用來判斷，只抓即將到來的的第一筆訂位紀錄
+        $today = Carbon::now();
         // camp data
-        $camp = Camp::where('customer_id', $customer->id)->get()->sortBy('check_in_date')->first();
+        $camp = Camp::where([['customer_id', $customer->id],['check_in_date','>',$today]])->get()->sortBy('check_in_date')->first();
         // restaurant
-        $restaurant = Restaurant::where('customer_id', $customer->id)->get()->sortBy('date')->first();
+        $restaurant = Restaurant::where([['customer_id', $customer->id],['date','>',$today]])->get()->sortBy('date')->first();
         return redirect('/booking_record')->with('customer', $customer)->with('camp', $camp)->with('restaurant', $restaurant);
     }
 
@@ -163,8 +165,9 @@ class FrontController extends Controller
             if ($request_data['vegetarian_number'] != null) {
                 $restaurant->vegetarian_number = $request_data['vegetarian_number'];
             }
-            $restaurant->date = $request_data['restaurant_date'];
-            $restaurant->time = $request_data['restaurant_time'];
+            $times = explode(':',$request_data['restaurant_time']);
+            $date = Carbon::parse($request_data['restaurant_date'])->setTime($times[0],$times[1]);
+            $restaurant->date = $date;
             // 判斷時段
             $order_time = Carbon::create($request_data['restaurant_time']);
             $Breakfast_time = Carbon::create('11:00'); //1100前為早餐
